@@ -16,6 +16,7 @@ License: GPL2
 
 add_action('admin_menu', 'dewordpressify_admin_menu');
 add_action('admin_init', 'dewordpressify_settings_init');
+add_action('admin_init', 'menu_edits');
 
 function dewordpressify_admin_menu() {
     add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
@@ -35,19 +36,26 @@ function dewordpressify_settings_init() {
         'dewordpressify'
     );
 
+    // add_settings_field(
+    //     'text_input',
+    //     __('Text input title', 'wordpress'),
+    //     'text_input_render',
+    //     'dewordpressify',
+    //     'dewordpressify_section'
+    // );
+
     add_settings_field(
-        'text_input',
-        __('Text input title', 'wordpress'),
-        'text_input_render',
+        'thank_you',
+        __('Hide thank you sentence in admin footer', 'wordpress'),
+        'thank_you',
         'dewordpressify',
         'dewordpressify_section'
     );
 
-
     add_settings_field(
-        'checkbox',
-        __('Checkbox title', 'wordpress'),
-        'checkbox_render',
+        'footer_version',
+        __('Hide WordPress version number in footer', 'wordpress'),
+        'footer_version',
         'dewordpressify',
         'dewordpressify_section'
     );
@@ -62,14 +70,20 @@ function text_input_render() {
     <input type='text' name='dewordpressify_settings[text_input]' value='<?php echo $options['text_input'] ?>'>
 <?php }
 
-function checkbox_render() {
+function thank_you() {
     $options = get_option('dewordpressify_settings'); 
-    $checked = $options['checkbox'] ? 'checked' : ''; ?>
+    $checked = $options['thank_you'] ? 'checked' : ''; ?>
 
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[checkbox]'>
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[thank_you]'>
 <?php }
 
 
+function footer_version() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = $options['footer_version'] ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[footer_version]'>
+<?php }
 
 
 function options_page() { ?>
@@ -86,3 +100,38 @@ function options_page() { ?>
 
     </form>
 <?php }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function menu_edits() {
+    $options = get_option('dewordpressify_settings');
+
+    if ($options['thank_you']) {
+        // Admin footer modification
+        function remove_footer_admin () {
+            echo '';
+        }
+        
+        add_filter('admin_footer_text', 'remove_footer_admin');
+    }
+
+
+    if ($options['footer_version']) {
+        function remove_version() {
+            remove_filter( 'update_footer', 'core_update_footer' );
+        }
+        
+        add_action( 'admin_footer_text', 'remove_version' );
+    }
+}
