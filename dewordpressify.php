@@ -21,6 +21,10 @@ function dewordpressify_admin_menu() {
     add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
 }
 
+function getSectionDescription() {
+    echo __('This Section Description', 'wordpress');
+}
+
 function dewordpressify_settings_init() {
     register_setting('dewordpressify', 'dewordpressify_settings');
 
@@ -39,33 +43,33 @@ function dewordpressify_settings_init() {
         'dewordpressify_section'
     );
 
-	add_settings_field(
+
+    add_settings_field(
         'checkbox',
-        'A Checkbox',
+        __('Checkbox title', 'wordpress'),
         'checkbox_render',
         'dewordpressify',
-        'dewordpressify_section');
+        'dewordpressify_section'
+    );
 
 }
 
-function getSectionDescription() {
-    echo __('This Section Description', 'wordpress');
-}
+
 
 function text_input_render() {
     $options = get_option('dewordpressify_settings'); ?>
 
-    <input type='text' name='dewordpressify_settings[text_input]' value='<?php echo $options['text_input']; ?>'>
+    <input type='text' name='dewordpressify_settings[text_input]' value='<?php echo $options['text_input'] ?>'>
+<?php }
+
+function checkbox_render() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = $options['checkbox'] ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[checkbox]'>
 <?php }
 
 
-function checkbox_render() {
-	$options = get_option('dewordpressify_settings');
-
-	if($options['chkbox2']) { $checked = ' checked="checked" '; }
-
-	echo "<input {$checked} id='checkbox' name='dewordpressify_settings[chkbox2]' type='checkbox' />";
-}
 
 
 function options_page() { ?>
