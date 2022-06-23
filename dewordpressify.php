@@ -17,6 +17,7 @@ License: GPL2
 add_action('admin_menu', 'dewordpressify_admin_menu');
 add_action('admin_init', 'dewordpressify_settings_init');
 add_action('admin_init', 'menu_edits');
+add_action('login_init', 'loginEdits');
 
 function dewordpressify_admin_menu() {
     add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
@@ -76,6 +77,14 @@ function dewordpressify_settings_init() {
         'dewordpressify_section'
     );
 
+    add_settings_field(
+        'login_logo',
+        __('Remove logo on login page', 'wordpress'),
+        'login_logo',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
 }
 
 
@@ -114,6 +123,13 @@ function dashboard_news() {
     $checked = $options['dashboard_news'] ? 'checked' : ''; ?>
 
     <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[dashboard_news]'>
+<?php }
+
+function login_logo() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = $options['login_logo'] ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[login_logo]'>
 <?php }
 
 
@@ -156,11 +172,11 @@ function menu_edits() {
     }
 
     if ($options['adminbar_logo']) {
-        function example_admin_bar_remove_logo() {
+        function admin_bar_remove_logo() {
             global $wp_admin_bar;
             $wp_admin_bar->remove_menu( 'wp-logo' );
         }
-        add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
+        add_action( 'wp_before_admin_bar_render', 'admin_bar_remove_logo', 0 );
     }
 
     if ($options['dashboard_news']) {
@@ -170,5 +186,39 @@ function menu_edits() {
         add_action( 'wp_network_dashboard_setup', 'rm_dahsboardnews', 20 );
         add_action( 'wp_user_dashboard_setup',    'rm_dahsboardnews', 20 );
         add_action( 'wp_dashboard_setup',         'rm_dahsboardnews', 20 );
+    }
+}
+
+function loginEdits() {
+    $options = get_option('dewordpressify_settings');
+    if ($options['login_logo']) {
+        function remove_logo() { ?>
+            <style type="text/css">
+
+                .login h1 a { display: none }
+
+                /* better centered login form */
+                @media screen and (min-height: 550px) {
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                    }
+
+                    #login {
+                        padding: 20px 0;
+                        margin: unset;
+                    }
+
+                    .login form {
+                        margin-top: unset;
+                    }
+                }
+
+            </style>
+        <?php }
+            
+        add_action( 'login_head', 'remove_logo' );
     }
 }
