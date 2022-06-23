@@ -80,6 +80,46 @@ function dewordpressify_settings_init() {
         'dewordpressify',
         'dewordpressify_section'
     );
+
+    add_settings_field(
+        'emojis',
+        __('Remove integrated emojis', 'wordpress'),
+        'emojis',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
+        'rss',
+        __('Remove integrated RSS feed', 'wordpress'),
+        'rss',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
+        'comments',
+        __('Disable comments', 'wordpress'),
+        'comments',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
+        'css',
+        __('Disable global inline styles', 'wordpress'),
+        'css',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
+        'head',
+        __('Remove unnecessary code in <head>', 'wordpress'),
+        'head',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
 }
 
 function text_input_render() {
@@ -122,6 +162,41 @@ function login_logo() {
     $checked = isset($options['login_logo']) ? 'checked' : ''; ?>
 
     <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[login_logo]'>
+<?php }
+
+function emojis() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = isset($options['emojis']) ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[emojis]'>
+<?php }
+
+function rss() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = isset($options['rss']) ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[rss]'>
+<?php }
+
+function comments() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = isset($options['comments']) ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[comments]'>
+<?php }
+
+function css() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = isset($options['css']) ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[css]'>
+<?php }
+
+function head() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = isset($options['head']) ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[head]'>
 <?php }
 
 
