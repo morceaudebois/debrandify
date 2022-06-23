@@ -60,6 +60,22 @@ function dewordpressify_settings_init() {
         'dewordpressify_section'
     );
 
+    add_settings_field(
+        'adminbar_logo',
+        __('Hide WordPress admin bar logo', 'wordpress'),
+        'adminbar_logo',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
+        'dashboard_news',
+        __('Disable news and events widget in dashboard', 'wordpress'),
+        'dashboard_news',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
 }
 
 
@@ -86,6 +102,23 @@ function footer_version() {
 <?php }
 
 
+function adminbar_logo() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = $options['adminbar_logo'] ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[adminbar_logo]'>
+<?php }
+
+function dashboard_news() {
+    $options = get_option('dewordpressify_settings'); 
+    $checked = $options['dashboard_news'] ? 'checked' : ''; ?>
+
+    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[dashboard_news]'>
+<?php }
+
+
+
+
 function options_page() { ?>
     <form action='options.php' method='post'>
 
@@ -100,19 +133,6 @@ function options_page() { ?>
 
     </form>
 <?php }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function menu_edits() {
     $options = get_option('dewordpressify_settings');
@@ -133,5 +153,22 @@ function menu_edits() {
         }
         
         add_action( 'admin_footer_text', 'remove_version' );
+    }
+
+    if ($options['adminbar_logo']) {
+        function example_admin_bar_remove_logo() {
+            global $wp_admin_bar;
+            $wp_admin_bar->remove_menu( 'wp-logo' );
+        }
+        add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
+    }
+
+    if ($options['dashboard_news']) {
+        function rm_dahsboardnews() {
+            remove_meta_box( 'dashboard_primary', get_current_screen(), 'side' );
+        }
+        add_action( 'wp_network_dashboard_setup', 'rm_dahsboardnews', 20 );
+        add_action( 'wp_user_dashboard_setup',    'rm_dahsboardnews', 20 );
+        add_action( 'wp_dashboard_setup',         'rm_dahsboardnews', 20 );
     }
 }
