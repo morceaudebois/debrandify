@@ -5,6 +5,18 @@ function dewordpressify_admin_menu() {
     add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
 }
 
+// adds script.js to settings page
+add_action('admin_enqueue_scripts', 'enqueue_script');
+function enqueue_script($hook_suffix) {
+    // if not settings page
+    if ($hook_suffix != 'settings_page_dewordpressify') return;
+
+    $handle = 'dewordpressify';
+    wp_register_script($handle, plugin_dir_url( __FILE__ ) . '/script.js');
+    wp_enqueue_script($handle);
+} 
+
+
 function options_page() { ?>
     <form action='options.php' method='post'>
 
@@ -122,17 +134,16 @@ function dewordpressify_settings_init() {
     );
 }
 
-function text_input_render() {
-    $options = get_option('dewordpressify_settings'); ?>
 
-    <input type='text' name='dewordpressify_settings[text_input]' value='<?php echo $options['text_input'] ?>'>
-<?php }
 
 function thank_you() {
     $options = get_option('dewordpressify_settings'); 
     $checked = isset($options['thank_you']) ? 'checked' : ''; ?>
 
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[thank_you]'>
+ 
+    <input <?php echo $checked ?> type="checkbox" id="dewordpressify_settings[thank_you]" name="dewordpressify_settings[thank_you]">
+    
+    <input type='text' placeholder='Set your own phrase' name='dewordpressify_settings[text_input]' value='<?php echo $options['text_input'] ?>'>
 <?php }
 
 function footer_version() {
