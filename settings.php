@@ -45,14 +45,6 @@ function dewordpressify_settings_init() {
         'dewordpressify'
     );
 
-    // add_settings_field(
-    //     'text_input',
-    //     __('Text input title', 'wordpress'),
-    //     'text_input_render',
-    //     'dewordpressify',
-    //     'dewordpressify_section'
-    // );
-
     add_settings_field(
         'thank_you',
         __('Hide thank you sentence in admin footer', 'wordpress'),
@@ -129,6 +121,14 @@ function dewordpressify_settings_init() {
         'head',
         __('Remove unnecessary code in <head>', 'wordpress'),
         'head',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
+        'email_from',
+        __('Change the "From" text of emails sent by your site.', 'wordpress'),
+        'email_from',
         'dewordpressify',
         'dewordpressify_section'
     );
@@ -210,6 +210,11 @@ function head() {
     <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[head]'>
 <?php }
 
+function email_from() {
+    $options = get_option('dewordpressify_settings');?>
+
+    <input type='text' placeholder='Set your own name' name='dewordpressify_settings[email_from]' value='<?php echo $options['email_from'] ?>'>
+<?php }
 
 add_action('admin_menu', 'dewordpressify_admin_menu');
 add_action('admin_init', 'dewordpressify_settings_init');

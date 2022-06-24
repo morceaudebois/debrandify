@@ -209,4 +209,12 @@ function everywhere() {
         remove_action('wp_head', 'wp_shortlink_wp_head', 10);
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
     }
+    
+    if (isset($options['email_from']) and !empty($options['email_from'])) {
+        function wpb_sender_name( $original_email_from ) {
+            return $options['email_from'];
+        }
+
+        add_filter( 'wp_mail_from_name', 'wpb_sender_name' );
+    } 
 }
