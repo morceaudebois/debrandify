@@ -19,39 +19,50 @@ everywhere(); // triggers on whole site
 add_action('admin_init', 'wp_admin'); // triggers in wp-admin
 add_action('login_init', 'loginPage'); // triggers on login page
 
-function loggedInAction() {
-    if (is_user_logged_in()) {
-        user_logged_in();
-    }
-}
-add_action('init', 'loggedInAction'); // triggers when user logged in
+add_action('init', function() {
+    if (is_user_logged_in()) user_logged_in();
+}); // triggers when user logged in
 
 
 function wp_admin() {
     $options = get_option('dewordpressify_settings');
-
-    if (isset($options['thank_you'])) {
-
-        function thankYouText() {
+    
+    add_filter('admin_footer_text', function($defaultString) {
+        $options = get_option('dewordpressify_settings'); // needs to be redeclared for some reason
+        
+        if (isset($options['thank_you'])) {
             return '';
+        } else {
+            if (!empty($options['thankyou_string'])) {
+                // request is needed again for some reason?
+                return get_option('dewordpressify_settings')['thankyou_string'];
+            } else {
+                return $defaultString;
+            }
         }
+    }, 11);
 
-        add_filter('admin_footer_text', 'thankYouText', 11);
-    }
 
-    if (isset($options['footer_version'])) {
+    // if (isset($options['footer_version'])) {
 
-        function versionText() {
-            return '';
-        }
+    // } else {
+    //     function versionText() {
+    //         return !empty($options['thankyou_string']);
+    //     }
 
-        add_filter('update_footer', 'versionText', 11);
-    }
+    //     add_filter('update_footer', 'versionText', 11);
+    // }
+
+
+
+
+
 
     if (isset($options['dashboard_news'])) {
         function rm_dahsboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
+
         add_action('wp_network_dashboard_setup', 'rm_dahsboardnews', 20);
         add_action('wp_user_dashboard_setup',    'rm_dahsboardnews', 20);
         add_action('wp_dashboard_setup',         'rm_dahsboardnews', 20);

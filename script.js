@@ -5,10 +5,10 @@ function hideableInputs() {
         const textInput = checkbox.parentElement.querySelector('input[type="text"');
         
         if (textInput) {
-            if (!checkbox.checked) textInput.style.display = 'none'; // init
+            if (checkbox.checked) textInput.style.display = 'none'; // init
 
             checkbox.addEventListener('change', function() {
-                textInput.style.display = this.checked ? 'inline' : 'none';
+                textInput.style.display = this.checked ? 'none' : 'inline';
             });
         }
     })
