@@ -1,5 +1,14 @@
 <?php 
 
+function getCheckedValue($value) {
+    $options = get_option('dewordpressify_settings');
+    return isset($options[$value]) ? 'checked' : '';
+}
+
+function getInputString($value) {
+    $options = get_option('dewordpressify_settings');
+    return $options[$value];
+}
 
 function dewordpressify_admin_menu() {
     add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
@@ -134,86 +143,50 @@ function dewordpressify_settings_init() {
     );
 }
 
-
-
-function thank_you() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['thank_you']) ? 'checked' : ''; ?>
-
- 
-    <input <?php echo $checked ?> type="checkbox" id="dewordpressify_settings[thank_you]" name="dewordpressify_settings[thank_you]">
+function thank_you() { ?>
+    <input <?php echo getCheckedValue('thank_you') ?> type="checkbox" id="dewordpressify_settings[thank_you]" name="dewordpressify_settings[thank_you]">
     
-    <input type='text' placeholder='Set your own phrase' name='dewordpressify_settings[text_input]' value='<?php echo $options['text_input'] ?>'>
+    <input type='text' placeholder='Set your own phrase' name='dewordpressify_settings[thankyou_string]' value='<?php echo getInputString('thankyou_string') ?>'>
 <?php }
 
-function footer_version() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['footer_version']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[footer_version]'>
+function footer_version() { ?>
+    <input <?php echo getCheckedValue('footer_version') ?> type='checkbox' name='dewordpressify_settings[footer_version]'>
 <?php }
 
-
-function adminbar_logo() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['adminbar_logo']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[adminbar_logo]'>
+function adminbar_logo() { ?>
+    <input <?php echo getCheckedValue('adminbar_logo') ?> type='checkbox' name='dewordpressify_settings[adminbar_logo]'>
 <?php }
 
-function dashboard_news() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['dashboard_news']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[dashboard_news]'>
+function dashboard_news() { ?>
+    <input <?php echo getCheckedValue('dashboard_news') ?> type='checkbox' name='dewordpressify_settings[dashboard_news]'>
 <?php }
 
-function login_logo() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['login_logo']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[login_logo]'>
+function login_logo() { ?>
+    <input <?php echo getCheckedValue('login_logo') ?> type='checkbox' name='dewordpressify_settings[login_logo]'>
 <?php }
 
-function emojis() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['emojis']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[emojis]'>
+function emojis() { ?>
+    <input <?php echo getCheckedValue('emojis') ?> type='checkbox' name='dewordpressify_settings[emojis]'>
 <?php }
 
-function rss() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['rss']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[rss]'>
+function rss() { ?>
+    <input <?php echo getCheckedValue('rss') ?> type='checkbox' name='dewordpressify_settings[rss]'>
 <?php }
 
-function comments() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['comments']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[comments]'>
+function comments() { ?>
+    <input <?php echo getCheckedValue('comments') ?> type='checkbox' name='dewordpressify_settings[comments]'>
 <?php }
 
-function css() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['css']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[css]'>
+function css() { ?>
+    <input <?php echo getCheckedValue('css') ?> type='checkbox' name='dewordpressify_settings[css]'>
 <?php }
 
-function head() {
-    $options = get_option('dewordpressify_settings'); 
-    $checked = isset($options['head']) ? 'checked' : ''; ?>
-
-    <input <?php echo $checked ?> type='checkbox' name='dewordpressify_settings[head]'>
+function head() { ?>
+    <input <?php echo getCheckedValue('head') ?> type='checkbox' name='dewordpressify_settings[head]'>
 <?php }
 
-function email_from() {
-    $options = get_option('dewordpressify_settings');?>
-
-    <input type='text' placeholder='Set your own name' name='dewordpressify_settings[email_from]' value='<?php echo $options['email_from'] ?>'>
+function email_from() { ?>
+    <input type='text' placeholder='Set your own name' name='dewordpressify_settings[email_from]' value='<?php echo getInputString('email_from') ?>'>
 <?php }
 
 add_action('admin_menu', 'dewordpressify_admin_menu');
