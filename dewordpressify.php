@@ -63,12 +63,61 @@ function user_logged_in() {
 
 function loginPage() {
     $options = get_option('dewordpressify_settings');
-    
-    if (isset($options['login_logo'])) {
-        function remove_logo() { ?>
-            <style type="text/css">
 
-                .login h1 a { display: none }
+    if (isset($options['login_logo'])) {
+        
+        function remove_logo() {
+            $options = get_option('dewordpressify_settings'); 
+            // why does it need to be redeclared?????? ?>
+
+            <style type="text/css">
+                <?php
+
+                    switch($options['login_logo']) {
+                        case 'site_logo':
+                            add_filter('login_headerurl', function() {
+                                return get_bloginfo('url');
+                            });
+
+                            add_filter('login_headertext', function() {
+                                return get_bloginfo('name');
+                            }); ?>
+
+                            .login h1 a { 
+                                overflow: visible;
+                                padding: unset;
+                                background-size: contain;
+                                background-position: center;
+                                width: 85%;
+                                background-image: url('<?php echo esc_url(wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'full' )[0]) ?>')
+                            } /* changes logo */
+
+                        <?php break;
+                        case 'site_title':
+                            add_filter('login_headerurl', function() {
+                                return get_bloginfo('url'); // changes URL
+                            });
+
+                            add_filter('login_headertext', function() {
+                                return get_bloginfo('name'); // changes link content
+                            }); ?>
+
+                            .login h1 a { 
+                                background: unset;
+                                text-indent: unset;
+                                height: unset;
+                                overflow: visible;
+                                padding: unset;
+                                width: 80%;
+                                font-size: 24px;
+                            } /* Makes link visible */
+                            
+                        <?php break;
+                        case 'none': ?>
+                            .login h1 a { display: none }
+                        <?php break;
+                    }
+                ?>
 
                 /* better centered login form */
                 @media screen and (min-height: 550px) {

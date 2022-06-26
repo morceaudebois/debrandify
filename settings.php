@@ -43,14 +43,6 @@ function dewordpressify_settings_init() {
     );
 
     add_settings_field(
-        'login_logo',
-        __('Remove logo on login page', 'wordpress'),
-        'login_logo',
-        'dewordpressify',
-        'dewordpressify_section'
-    );
-
-    add_settings_field(
         'emojis',
         __('Remove integrated emojis', 'wordpress'),
         'emojis',
