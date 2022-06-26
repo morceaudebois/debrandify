@@ -250,10 +250,17 @@ function everywhere() {
     }
     
     if (isset($options['email_from']) and !empty($options['email_from'])) {
-        function wpb_sender_name( $original_email_from ) {
+        add_filter( 'wp_mail_from_name', function($original_email_from) {
+            $options = get_option('dewordpressify_settings');
             return $options['email_from'];
-        }
-
-        add_filter( 'wp_mail_from_name', 'wpb_sender_name' );
+        } );
     } 
+
+    if (isset($options['email_username']) and !empty($options['email_username'])) {
+        // Function to change email address
+        add_filter('wp_mail_from', function() {
+            $options = get_option('dewordpressify_settings');
+            return $options['email_username'] . parse_url(get_site_url(), PHP_URL_HOST);
+        });
+    }
 }

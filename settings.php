@@ -91,6 +91,14 @@ function dewordpressify_settings_init() {
     );
 
     add_settings_field(
+        'email_username',
+        __('Change the first part of the email adress sent from your site.', 'wordpress'),
+        'email_username',
+        'dewordpressify',
+        'dewordpressify_section'
+    );
+
+    add_settings_field(
         "login_logo",
         "Login logo image",
         "login_logo_select",
@@ -158,6 +166,9 @@ function email_from() { ?>
     <input type='text' placeholder='Set your own name' name='dewordpressify_settings[email_from]' value='<?php echo getInputString('email_from') ?>'>
 <?php }
 
+function email_username() { ?>
+    <input type='text' placeholder='wordpress' name='dewordpressify_settings[email_username]' value='<?php echo getInputString('email_username') ?>'><span> @<?php  echo parse_url( get_site_url(), PHP_URL_HOST ) ; ?></span>
+<?php }
 
 function options_page() { ?>
     <form action='options.php' method='post'>
