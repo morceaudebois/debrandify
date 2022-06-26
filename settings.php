@@ -151,6 +151,8 @@ function thank_you() { ?>
 
 function footer_version() { ?>
     <input <?php echo getCheckedValue('footer_version') ?> type='checkbox' name='dewordpressify_settings[footer_version]'>
+
+    <input type='text' placeholder='Set your own phrase' name='dewordpressify_settings[version_string]' value='<?php echo getInputString('version_string') ?>'>
 <?php }
 
 function adminbar_logo() { ?>

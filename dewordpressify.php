@@ -26,36 +26,28 @@ add_action('init', function() {
 
 function wp_admin() {
     $options = get_option('dewordpressify_settings');
-    
-    add_filter('admin_footer_text', function($defaultString) {
+
+    function replaceableString($field, $string) {
         $options = get_option('dewordpressify_settings'); // needs to be redeclared for some reason
         
-        if (isset($options['thank_you'])) {
-            return '';
-        } else {
-            if (!empty($options['thankyou_string'])) {
+        if (isset($options[$field])) { return ''; }
+        else {
+            if (!empty($options[$string])) {
                 // request is needed again for some reason?
-                return get_option('dewordpressify_settings')['thankyou_string'];
+                return get_option('dewordpressify_settings')[$string];
             } else {
                 return $defaultString;
             }
         }
+    }
+
+    add_filter('admin_footer_text', function($defaultString) {
+        echo replaceableString('thank_you', 'thankyou_string');
     }, 11);
 
-
-    // if (isset($options['footer_version'])) {
-
-    // } else {
-    //     function versionText() {
-    //         return !empty($options['thankyou_string']);
-    //     }
-
-    //     add_filter('update_footer', 'versionText', 11);
-    // }
-
-
-
-
+    add_filter('update_footer', function() {
+        echo replaceableString('footer_version', 'version_string');
+    }, 11);
 
 
     if (isset($options['dashboard_news'])) {
