@@ -4,15 +4,16 @@
  * @version 1.0
  */
 /*
-Plugin Name: DeWordPressify
-Plugin URI: https://tahoe.be
-Description: DeWordPressify lets you remove WordPress' branding and replace it with your own!
-Version: 1.0
-Author: Tahoe Beetschen
-Author URI: https://tahoe.be
-License: GPL2
+    Plugin Name: DeWordPressify
+    Plugin URI: https://tahoe.be
+    Description: DeWordPressify lets you remove WordPress' branding and replace it with your own!
+    Version: 1.0
+    Author: Tahoe Beetschen
+    Author URI: https://tahoe.be
+    License: GPL2
 */
 
+include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
 
 everywhere(); // triggers on whole site
@@ -26,20 +27,6 @@ add_action('init', function() {
 
 function wp_admin() {
     $options = get_option('dewordpressify_settings');
-
-    function replaceableString($field, $string) {
-        $options = get_option('dewordpressify_settings'); // needs to be redeclared for some reason
-        
-        if (isset($options[$field])) { return ''; }
-        else {
-            if (!empty($options[$string])) {
-                // request is needed again for some reason?
-                return get_option('dewordpressify_settings')[$string];
-            } else {
-                return $defaultString;
-            }
-        }
-    }
 
     add_filter('admin_footer_text', function($defaultString) {
         echo replaceableString('thank_you', 'thankyou_string');

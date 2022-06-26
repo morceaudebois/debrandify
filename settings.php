@@ -1,49 +1,5 @@
 <?php 
 
-function getCheckedValue($value) {
-    $options = get_option('dewordpressify_settings');
-    return isset($options[$value]) ? 'checked' : '';
-}
-
-function getInputString($value) {
-    $options = get_option('dewordpressify_settings');
-    return $options[$value];
-}
-
-function dewordpressify_admin_menu() {
-    add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
-}
-
-// adds script.js to settings page
-add_action('admin_enqueue_scripts', 'enqueue_script');
-function enqueue_script($hook_suffix) {
-    // if not settings page
-    if ($hook_suffix != 'settings_page_dewordpressify') return;
-
-    $handle = 'dewordpressify';
-    wp_register_script($handle, plugin_dir_url( __FILE__ ) . '/script.js');
-    wp_enqueue_script($handle);
-} 
-
-
-function options_page() { ?>
-    <form action='options.php' method='post'>
-
-        <h2>DeWordPressify</h2>
-
-        <?php
-            settings_fields('dewordpressify');
-            do_settings_sections('dewordpressify');
-            submit_button();
-        ?>
-
-    </form>
-<?php }
-
-function getSectionDescription() {
-    echo __('This Section Description', 'wordpress');
-}
-
 function dewordpressify_settings_init() {
     register_setting('dewordpressify', 'dewordpressify_settings');
 
@@ -141,7 +97,26 @@ function dewordpressify_settings_init() {
         'dewordpressify',
         'dewordpressify_section'
     );
+
+    add_settings_field(
+        "login_logo",
+        "Login logo image",
+        "login_logo_select",
+        "dewordpressify",
+        "dewordpressify_section"
+    );
 }
+
+function login_logo_select() { 
+    $options = get_option('dewordpressify_settings')['login_logo']; ?>
+
+    <select name="dewordpressify_settings[login_logo]">
+        <option value="wp_logo" <?php selected($options, "wp_logo"); ?>>Default WordPress logo</option>
+        <option value="site_logo" <?php selected($options, "site_logo"); ?>>Site logo (if there is one)</option>
+        <option value="site_title" <?php selected($options, "site_title"); ?>>Site title</option>
+        <option value="none" <?php selected($options, "none"); ?>>Hide</option>
+    </select>
+<?php }
 
 function thank_you() { ?>
     <input <?php echo getCheckedValue('thank_you') ?> type="checkbox" id="dewordpressify_settings[thank_you]" name="dewordpressify_settings[thank_you]">
@@ -190,6 +165,40 @@ function head() { ?>
 function email_from() { ?>
     <input type='text' placeholder='Set your own name' name='dewordpressify_settings[email_from]' value='<?php echo getInputString('email_from') ?>'>
 <?php }
+
+
+function options_page() { ?>
+    <form action='options.php' method='post'>
+
+        <h2>DeWordPressify</h2>
+
+        <?php
+            settings_fields('dewordpressify');
+            do_settings_sections('dewordpressify');
+            submit_button();
+        ?>
+
+    </form>
+<?php }
+
+function getSectionDescription() {
+    echo __('This Section Description', 'wordpress');
+}
+
+function dewordpressify_admin_menu() {
+    add_options_page('DeWordPressify', 'DeWordPressify', 'manage_options', 'dewordpressify', 'options_page');
+}
+
+// adds script.js to settings page
+add_action('admin_enqueue_scripts', 'enqueue_script');
+function enqueue_script($hook_suffix) {
+    // if not settings page
+    if ($hook_suffix != 'settings_page_dewordpressify') return;
+
+    $handle = 'dewordpressify';
+    wp_register_script($handle, plugin_dir_url( __FILE__ ) . '/script.js');
+    wp_enqueue_script($handle);
+} 
 
 add_action('admin_menu', 'dewordpressify_admin_menu');
 add_action('admin_init', 'dewordpressify_settings_init');
