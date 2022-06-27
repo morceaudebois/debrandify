@@ -16,27 +16,34 @@
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
 
-// everywhere(); // triggers on whole site
-// add_action('admin_init', 'wp_admin'); // triggers in wp-admin
-// add_action('login_init', 'loginPage'); // triggers on login page
+everywhere(); // triggers on whole site
+add_action('admin_init', 'wp_admin'); // triggers in wp-admin
+add_action('login_init', 'loginPage'); // triggers on login page
 
-// add_action('init', function() {
-//     if (is_user_logged_in()) user_logged_in();
-// }); // triggers when user logged in
+add_action('init', function() {
+    if (is_user_logged_in()) user_logged_in();
+}); // triggers when user logged in
 
 function wp_admin() {
-    $options = get_option('dewordpressify_settings');
+    $options = get_option('dwpify_general');
 
     add_filter('admin_footer_text', function($defaultString) {
-        echo replaceableString('thank_you', 'thankyou_string');
+        if (!is_null(replaceableString('general', 'thank_you', 'thankyou_string'))) {
+            echo replaceableString('general', 'thank_you', 'thankyou_string');
+        } else {
+            echo $defaultString;
+        }
     }, 11);
 
-    add_filter('update_footer', function() {
-        echo replaceableString('footer_version', 'version_string');
+    add_filter('update_footer', function($defaultString) {
+        if (!is_null(replaceableString('general', 'footer_version', 'version_string'))) {
+            echo replaceableString('general', 'footer_version', 'version_string');
+        } else {
+            echo $defaultString;
+        }
     }, 11);
 
-
-    if (isset($options['dashboard_news'])) {
+    if (isset($options['dashboard_news']) && !empty($options['dashboard_news'])) {
         function rm_dahsboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
@@ -48,9 +55,9 @@ function wp_admin() {
 }
 
 function user_logged_in() {
-    $options = get_option('dewordpressify_settings');
+    $options = get_option('dwpify_general');
 
-    if (isset($options['adminbar_logo'])) {
+    if (isset($options['adminbar_logo']) && !empty($options['adminbar_logo'])) {
         function admin_bar_remove_logo() {
             global $wp_admin_bar;
             $wp_admin_bar->remove_menu('wp-logo');
@@ -61,12 +68,13 @@ function user_logged_in() {
 }
 
 function loginPage() {
-    $options = get_option('dewordpressify_settings');
+    $options = get_option('dwpify_general');
 
     if (isset($options['login_logo'])) {
         
         function remove_logo() {
-            $options = get_option('dewordpressify_settings'); 
+            $options = get_option('dwpify_general'); 
+            
             // why does it need to be redeclared?????? ?>
 
             <style type="text/css">
@@ -145,14 +153,14 @@ function loginPage() {
 }
 
 function everywhere() {
-    $options = get_option('dewordpressify_settings');
+    $options = get_option('dwpify_general');
 
-    if (isset($options['emojis'])) {
+    if (isset($options['emojis']) && !empty($options['emojis'])) {
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('wp_print_styles', 'print_emoji_styles');
     }
 
-    if (isset($options['rss'])) {
+    if (isset($options['rss']) && !empty($options['rss'])) {
         remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
         remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
         remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -177,7 +185,7 @@ function everywhere() {
         add_action('do_feed_atom_comments', 'disableRss', 1);
     }
 
-    if (isset($options['comments'])) {
+    if (isset($options['comments']) && !empty($options['comments'])) {
         // Disable support for comments and trackbacks in post types
         function df_disable_comments_post_types_support() {
             $post_types = get_post_types();
@@ -234,19 +242,7 @@ function everywhere() {
         add_action('init', 'df_disable_comments_admin_bar');
     }
 
-    if (isset($options['css'])) {
-        remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
-        remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
-    }
-
-    if (isset($options['head'])) {
-        remove_action('wp_head', 'rsd_link');
-        remove_action('wp_head', 'wlwmanifest_link');
-        remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
-        remove_action('wp_head', 'wp_generator');
-        remove_action('wp_head', 'wp_shortlink_wp_head', 10);
-        remove_action('wp_head', 'wp_oembed_add_discovery_links');
-    }
+    $options = get_option('dwpify_email');
     
     if (isset($options['email_from']) and !empty($options['email_from'])) {
         add_filter( 'wp_mail_from_name', function($original_email_from) {
@@ -261,5 +257,21 @@ function everywhere() {
             $options = get_option('dewordpressify_settings');
             return $options['email_username'] . parse_url(get_site_url(), PHP_URL_HOST);
         });
+    }
+
+    $options = get_option('dwpify_advanced');
+
+    if (isset($options['css']) && !empty($options['css'])) {
+        remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+        remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+    }
+
+    if (isset($options['head']) && !empty($options['head'])) {
+        remove_action('wp_head', 'rsd_link');
+        remove_action('wp_head', 'wlwmanifest_link');
+        remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
+        remove_action('wp_head', 'wp_generator');
+        remove_action('wp_head', 'wp_shortlink_wp_head', 10);
+        remove_action('wp_head', 'wp_oembed_add_discovery_links');
     }
 }

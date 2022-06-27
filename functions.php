@@ -1,15 +1,8 @@
 <?php 
 
-function replaceableString($field, $string) {
-    $options = get_option('dewordpressify_settings'); // needs to be redeclared for some reason
+function replaceableString($section, $input, $string) {
+    $options = get_option('dwpify_' . $section);
     
-    if (isset($options[$field])) { return ''; }
-    else {
-        if (!empty($options[$string])) {
-            // request is needed again for some reason?
-            return get_option('dewordpressify_settings')[$string];
-        } else {
-            return $defaultString;
-        }
-    }
+    if (!empty($options[$input])) { return ''; } // if checked, hidden
+    else if (!empty($options[$string])) {return $options[$string]; }
 }

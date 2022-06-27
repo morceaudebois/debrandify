@@ -104,7 +104,7 @@ class dwpifyOptions {
         );
 
         add_settings_field(
-            'dashboard_news_logo',
+            'dashboard_news',
             __('Disable news and events widget in dashboard', 'wordpress'),
             array($this, 'dashboard_news_callback'), 
             'dwpify_setting_general',
@@ -303,7 +303,7 @@ class dwpifyOptions {
 
    public function sanitize($input)  {
         $new_input = array();
-        $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'emojis', 'login_logo');
+        $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'emojis', 'login_logo', 'dashboard_news');
 
         foreach ($toBeVerified as &$value) {
             $new_input[$value] = sanitize_text_field($input[$value]);
