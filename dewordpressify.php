@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * @package DeWordPressify
  * @version 1.0
@@ -16,14 +16,13 @@
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
 
-everywhere(); // triggers on whole site
-add_action('admin_init', 'wp_admin'); // triggers in wp-admin
-add_action('login_init', 'loginPage'); // triggers on login page
+// everywhere(); // triggers on whole site
+// add_action('admin_init', 'wp_admin'); // triggers in wp-admin
+// add_action('login_init', 'loginPage'); // triggers on login page
 
-add_action('init', function() {
-    if (is_user_logged_in()) user_logged_in();
-}); // triggers when user logged in
-
+// add_action('init', function() {
+//     if (is_user_logged_in()) user_logged_in();
+// }); // triggers when user logged in
 
 function wp_admin() {
     $options = get_option('dewordpressify_settings');

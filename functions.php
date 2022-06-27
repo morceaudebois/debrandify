@@ -13,13 +13,3 @@ function replaceableString($field, $string) {
         }
     }
 }
-
-function getCheckedValue($value) {
-    $options = get_option('dewordpressify_settings');
-    return isset($options[$value]) ? 'checked' : '';
-}
-
-function getInputString($value) {
-    $options = get_option('dewordpressify_settings');
-    return $options[$value];
-}
