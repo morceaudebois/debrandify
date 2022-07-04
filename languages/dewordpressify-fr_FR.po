@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
-"POT-Creation-Date: 2022-07-04T10:11:04+00:00\n"
-"PO-Revision-Date: 2022-07-04 12:39+0200\n"
+"POT-Creation-Date: 2022-07-04T11:38:15+00:00\n"
+"PO-Revision-Date: 2022-07-04 13:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -57,8 +57,8 @@ msgid "Advanced"
 msgstr "Avancé"
 
 #: settings.php:77
-msgid "All Settings"
-msgstr ""
+msgid "General settings"
+msgstr "Réglages généraux"
 
 #: settings.php:84
 msgid "Hide thank you sentence in admin footer"
@@ -73,7 +73,7 @@ msgid "Hide WordPress admin bar logo"
 msgstr "Retirer le logo WordPress de la barre d’outils"
 
 #: settings.php:108
-msgid "Remove integrated emojis"
+msgid "Remove integrated smileys"
 msgstr "Retirer les smileys WordPress"
 
 #: settings.php:116
@@ -93,6 +93,10 @@ msgstr "Désactiver les commentaires"
 msgid "Login logo image"
 msgstr "Logo sur la page de connexion"
 
+#: settings.php:158
+msgid "Email Settings"
+msgstr "Réglages des emails"
+
 #: settings.php:165
 msgid "Change the \"From\" text of emails sent by your site."
 msgstr "Changer le champs “From” des emails envoyés par votre site."
@@ -103,30 +107,50 @@ msgstr ""
 "Changer la première partie de l’adresse avec lequel votre site envoie des "
 "emails."
 
+#: settings.php:188
+msgid "Advanced Settings"
+msgstr "Réglages avancés"
+
 #: settings.php:195
 msgid "Disable global inline styles"
 msgstr "Retirer le CSS à la ligne WordPress (global inline styles)"
 
 #: settings.php:203
 msgid "Remove unnecessary code in head tag"
-msgstr ""
+msgstr "Retirer du code superflu dans l’en-tête du site"
 
-#: settings.php:229 settings.php:241
+#: settings.php:216
+msgid ""
+"There settings may break your site. If you don't know what they do, you "
+"probably shouldn't tinker with them."
+msgstr ""
+"Ces réglages pourraient faire planter votre site. Si vous ne savez pas ce "
+"que vous faites, c’est mieux de ne pas y toucher."
+
+#: settings.php:233 settings.php:245
 msgid "Your own string"
 msgstr "Votre propre texte"
 
-#: settings.php:307
+#: settings.php:294
+msgid "From field"
+msgstr "Champs “from”"
+
+#: settings.php:301
+msgid "First part of email"
+msgstr "Première partie de l'email"
+
+#: settings.php:311
 msgid "Default WordPress logo"
 msgstr "Logo WordPress par défaut"
 
-#: settings.php:311
+#: settings.php:315
 msgid "Site logo (if there is one)"
 msgstr "Logo du site (s’il y en a un)"
 
-#: settings.php:315
+#: settings.php:319
 msgid "Site title"
 msgstr "Titre du site"
 
-#: settings.php:319
+#: settings.php:323
 msgid "Hide"
 msgstr "Cacher"

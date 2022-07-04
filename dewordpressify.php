@@ -176,7 +176,6 @@ function everywhere() {
         remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
         remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
 
-
         function disableRss() {
             wp_die( __( 'No feed available, please visit the <a href="'. esc_url( home_url( '/' ) ) .'">homepage</a>!' ) );
         }
@@ -212,8 +211,7 @@ function everywhere() {
 
         // Hide existing comments
         function df_disable_comments_hide_existing_comments($comments) {
-            $comments = array();
-            return $comments;
+            return array();
         }
         add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
 
@@ -226,6 +224,7 @@ function everywhere() {
         // Redirect any user trying to access comments page
         function df_disable_comments_admin_menu_redirect() {
             global $pagenow;
+            
             if ($pagenow === 'edit-comments.php') {
                 wp_redirect(admin_url()); exit;
             }

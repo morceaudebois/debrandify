@@ -155,7 +155,7 @@ class dwpifyOptions {
 
         add_settings_section(
             'email_section', // ID
-            'Email Settings', // Title
+            __('Email Settings', 'dewordpressify'), // Title
             array($this, 'print_section_info'), // Callback
             'dwpify_setting_email' // Page
         );  
@@ -185,8 +185,8 @@ class dwpifyOptions {
         );
         add_settings_section(
             'advanced_section', // ID
-            'Advanced Details', // Title
-            array($this, 'print_section_info'), // Callback
+            __('Advanced Settings', 'dewordpressify'), // Title
+            array($this, 'print_advanced_info'), // Callback
             'dwpify_setting_advanced' // Page
         );     
         
@@ -208,8 +208,12 @@ class dwpifyOptions {
     }
 
 
-	public function print_section_info(){
+	public function print_section_info() {
         //your code...
+	}
+
+    public function print_advanced_info() {
+        echo '<p>' . __('There settings may break your site. If you don\'t know what they do, you probably shouldn\'t tinker with them.', 'dewordpressify') . '</p>';
 	}
 
     public function adminbar_logo_callback() {
@@ -287,16 +291,16 @@ class dwpifyOptions {
 
     public function email_from_callback() {
         printf(
-            '<input type="checkbox" id="email_from" name="dwpify_email[email_from]" value="yes" %s />',
-            (isset($this->options_email['email_from']) && $this->options_email['email_from'] == 'yes') ? 'checked' : ''
-       );
+            '<input type="text" id="from_string" name="dwpify_email[from_string]" value="%s" placeholder="' . __('From field', 'dewordpressify') . '"/>',
+            isset($this->options_email['from_string']) ? esc_attr($this->options_email['from_string']) : ''
+        );
     }
 
     public function email_username_callback() {
         printf(
-            '<input type="checkbox" id="email_username" name="dwpify_email[email_username]" value="yes" %s />',
-            (isset($this->options_email['email_username']) && $this->options_email['email_username'] == 'yes') ? 'checked' : ''
-       );
+            '<input type="text" id="email_string" name="dwpify_email[email_string]" value="%s" placeholder="' . __('First part of email', 'dewordpressify') . '"/>',
+            isset($this->options_email['email_string']) ? esc_attr($this->options_email['email_string']) : ''
+        );
     }
 
     public function login_logo_callback() {
@@ -323,7 +327,7 @@ class dwpifyOptions {
 
    public function sanitize($input)  {
         $new_input = array();
-        $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'emojis', 'login_logo', 'dashboard_news');
+        $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'emojis', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
 
         foreach ($toBeVerified as &$value) {
             $new_input[$value] = sanitize_text_field($input[$value]);

@@ -14,7 +14,7 @@ DeWordPressify also has some advanced functions that let you easily disable buil
 - [ ] "You've been using DeWordPressify for a while" popup
 - [ ] Logo on settings page?
 - [ ] Animated logo (maybe)
-- [ ] Translation file + french translation
+- [x] Translation file + french translation
 - [ ] Publish on WordPress!
 
 ## 😮 Random things to know
