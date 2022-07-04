@@ -8,7 +8,7 @@ class dwpifyOptions {
 	
 	public function __construct() {
         add_action('admin_menu', array($this, 'add_plugin_page'));
-        add_action('admin_init', array($this, 'reg_settings'));
+        add_action('admin_init', array($this, 'register_settings'));
     }
 
     public function add_plugin_page(){
@@ -17,7 +17,7 @@ class dwpifyOptions {
             'DeWordPressify',
             'manage_options',
             'dewordpressify',
-            array($this,'settings_dom')
+            array($this, 'settings_dom')
        );
     }
 
@@ -30,12 +30,20 @@ class dwpifyOptions {
         $advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; ?>
        
         <div class="wrap">
-            <h1>DeWordPressify Settings</h1>
-
+            <h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
+            
             <h2 class="nav-tab-wrapper">
-				<a href="<?php echo admin_url('admin.php?page=dewordpressify'); ?>" class="nav-tab<?php if (! isset($_GET['action']) || isset($_GET['action']) && 'email' != $_GET['action']  && 'advanced' != $_GET['action']) echo ' nav-tab-active'; ?>"><?php esc_html_e('General'); ?></a>
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($email_Screen) echo ' nav-tab-active'; ?>"><?php esc_html_e('Email'); ?></a> 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($advanced_Screen) echo ' nav-tab-active'; ?>"><?php esc_html_e('Advanced'); ?></a>        
+				<a href="<?php echo admin_url('admin.php?page=dewordpressify'); ?>" class="nav-tab<?php if (! isset($_GET['action']) || isset($_GET['action']) && 'email' != $_GET['action']  && 'advanced' != $_GET['action']) echo ' nav-tab-active'; ?>">
+                    <?php esc_html_e('General', 'dewordpressify') ?>
+                </a>
+
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($email_Screen) echo ' nav-tab-active'; ?>">
+                    <?php esc_html_e('Email', 'dewordpressify') ?>
+                </a> 
+
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($advanced_Screen) echo ' nav-tab-active'; ?>">
+                    <?php esc_html_e('Advanced', 'dewordpressify') ?>
+                </a>        
 			</h2>
     
         	 <form method="post" action="options.php"><?php //   settings_fields('dwpify_general');
@@ -56,7 +64,7 @@ class dwpifyOptions {
         </div> <?php
 	}
 
-    public function reg_settings() { // register settings
+    public function register_settings() { // register settings
         // General settings
         register_setting(
             'dwpify_general', // Option group
@@ -64,16 +72,16 @@ class dwpifyOptions {
             array($this, 'sanitize') // Sanitize
         );
 
-        add_settings_section(
+        add_settings_section( // __() thingies are used for translation
             'general_section', // ID
-            'All Settings', // Title
+            __('General settings', 'dewordpressify'), // Title
             array($this, 'print_section_info'), // Callback
             'dwpify_setting_general' // Page
         ); 
 
         add_settings_field(
             'thank_you',
-            __('Hide thank you sentence in admin footer', 'wordpress'),
+            __('Hide thank you sentence in admin footer', 'dewordpressify'),
             array($this, 'thank_you_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -81,7 +89,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'footer_version',
-            __('Hide thank you sentence in admin footer', 'wordpress'),
+            __('Hide WordPress version in admin footer', 'dewordpressify'),
             array($this, 'footer_version_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -89,23 +97,23 @@ class dwpifyOptions {
 
         add_settings_field(
             'adminbar_logo',
-            __('Hide WordPress admin bar logo', 'wordpress'),
+            __('Hide WordPress admin bar logo', 'dewordpressify'),
             array($this, 'adminbar_logo_callback'), 
             'dwpify_setting_general',
             'general_section'
         );
 
         add_settings_field(
-            'emojis',
-            __('Remove integrated emojis', 'wordpress'),
-            array($this, 'emojis_callback'), 
+            'smileys',
+            __('Remove integrated smileys', 'dewordpressify'),
+            array($this, 'smileys_callback'), 
             'dwpify_setting_general',
             'general_section'
         );
 
         add_settings_field(
             'dashboard_news',
-            __('Disable news and events widget in dashboard', 'wordpress'),
+            __('Disable news and events widget in dashboard', 'dewordpressify'),
             array($this, 'dashboard_news_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -113,7 +121,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'rss',
-            __('Remove integrated RSS feed', 'wordpress'),
+            __('Remove integrated RSS feed', 'dewordpressify'),
             array($this, 'rss_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -121,7 +129,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'comments',
-            __('Disable comments', 'wordpress'),
+            __('Disable comments', 'dewordpressify'),
             array($this, 'comments_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -129,7 +137,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'login_logo',
-            __('Login logo image', 'wordpress'),
+            __('Login logo image', 'dewordpressify'),
             array($this, 'login_logo_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -144,6 +152,7 @@ class dwpifyOptions {
             'dwpify_email', // Option name
             array($this, 'sanitize') // Sanitize
         );
+
         add_settings_section(
             'email_section', // ID
             'Email Settings', // Title
@@ -153,7 +162,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'email_from',
-            __('Change the "From" text of emails sent by your site.', 'wordpress'),
+            __('Change the "From" text of emails sent by your site.', 'dewordpressify'),
             array($this, 'email_from_callback'), 
             'dwpify_setting_email',
             'email_section'
@@ -161,7 +170,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'email_username',
-            __('Change the first part of the email adress sent from your site.', 'wordpress'),
+            __('Change the first part of the email adress sent from your site.', 'dewordpressify'),
             array($this, 'email_username_callback'), 
             'dwpify_setting_email',
             'email_section'
@@ -183,7 +192,7 @@ class dwpifyOptions {
         
         add_settings_field(
             'css',
-            __('Disable global inline styles', 'wordpress'),
+            __('Disable global inline styles', 'dewordpressify'),
             array($this, 'css_callback'), 
             'dwpify_setting_advanced',
             'advanced_section'
@@ -191,7 +200,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'head',
-            __('Remove unnecessary code in head tag', 'wordpress'),
+            __('Remove unnecessary code in head tag', 'dewordpressify'),
             array($this, 'head_callback'), 
             'dwpify_setting_advanced',
             'advanced_section'
@@ -217,7 +226,7 @@ class dwpifyOptions {
         );
 
         printf(
-            '<input type="text" id="thankyou_string" name="dwpify_general[thankyou_string]" value="%s" />',
+            '<input type="text" id="thankyou_string" name="dwpify_general[thankyou_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
             isset($this->options_general['thankyou_string']) ? esc_attr($this->options_general['thankyou_string']) : ''
         );
     }
@@ -229,7 +238,7 @@ class dwpifyOptions {
         );
 
         printf(
-            '<input type="text" id="version_string" name="dwpify_general[version_string]" value="%s" />',
+            '<input type="text" id="version_string" name="dwpify_general[version_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
             isset($this->options_general['version_string']) ? esc_attr($this->options_general['version_string']) : ''
         );
     }
@@ -241,10 +250,10 @@ class dwpifyOptions {
        );
     }
 
-    public function emojis_callback() {
+    public function smileys_callback() {
         printf(
-            '<input type="checkbox" id="emojis" name="dwpify_general[emojis]" value="yes" %s />',
-            (isset($this->options_general['emojis']) && $this->options_general['emojis'] == 'yes') ? 'checked' : ''
+            '<input type="checkbox" id="smileys" name="dwpify_general[smileys]" value="yes" %s />',
+            (isset($this->options_general['smileys']) && $this->options_general['smileys'] == 'yes') ? 'checked' : ''
        );
     }
 
@@ -294,10 +303,21 @@ class dwpifyOptions {
        $options = $this->options_general['login_logo'];?>
 
         <select name="dwpify_general[login_logo]">
-            <option value="wp_logo" <?php selected($options, "wp_logo"); ?>>Default WordPress logo</option>
-            <option value="site_logo" <?php selected($options, "site_logo"); ?>>Site logo (if there is one)</option>
-            <option value="site_title" <?php selected($options, "site_title"); ?>>Site title</option>
-            <option value="none" <?php selected($options, "none"); ?>>Hide</option>
+            <option value="wp_logo" <?php selected($options, "wp_logo"); ?>>
+                <?php _e('Default WordPress logo', 'dewordpressify') ?>
+            </option>
+
+            <option value="site_logo" <?php selected($options, "site_logo"); ?>>
+                <?php _e('Site logo (if there is one)', 'dewordpressify') ?>
+            </option>
+
+            <option value="site_title" <?php selected($options, "site_title"); ?>>
+                <?php _e('Site title', 'dewordpressify') ?>
+            </option>
+
+            <option value="none" <?php selected($options, "none"); ?>>
+                <?php _e('Hide', 'dewordpressify') ?>
+            </option>
         </select>
     <?php }
 
@@ -315,7 +335,7 @@ class dwpifyOptions {
 
 // initalises settings page (probably?)
 if (is_admin()) $settings_page = new dwpifyOptions();
-    
+
 // adds script.js to settings page
 add_action('admin_enqueue_scripts', function($hook_suffix) {
     // if not settings page

@@ -5,13 +5,16 @@
  */
 /*
     Plugin Name: DeWordPressify
-    Plugin URI: https://tahoe.be
-    Description: DeWordPressify lets you remove WordPress' branding and replace it with your own!
     Version: 1.0
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
+    Plugin URI: https://github.com/morceaudebois/DeWordPressify
+    Domain Path: /languages
+    Description: DeWordPressify lets you remove WordPress' branding and replace it with your own!
+    
     License: GPL2
 */
+
 
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
@@ -21,6 +24,8 @@ add_action('admin_init', 'wp_admin'); // triggers in wp-admin
 add_action('login_init', 'loginPage'); // triggers on login page
 
 add_action('init', function() {
+    load_plugin_textdomain( 'dewordpressify', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    
     if (is_user_logged_in()) user_logged_in();
 }); // triggers when user logged in
 
