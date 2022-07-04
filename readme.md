@@ -8,7 +8,7 @@ DeWordPressify also has some advanced functions that let you easily disable buil
 
 ## 👨‍💻 Things to do
 
-- [ ] Delete data on uninstall
+- [x] Delete data on uninstall
 - [ ] Better multisite compatibility?
 - [ ] Installation popup
 - [ ] "You've been using DeWordPressify for a while" popup
