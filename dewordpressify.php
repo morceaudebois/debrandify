@@ -18,12 +18,12 @@
 // activation
 register_activation_hook(__FILE__, function($network_wide) {
   add_option('banner', 'toBeTriggered');
+  add_option('installDate', time());
 });
 
 
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
-
 
 
 add_action('init', function() {
@@ -37,26 +37,75 @@ add_action('init', function() {
     load_plugin_textdomain('dewordpressify', false, dirname(plugin_basename(__FILE__ )) . '/languages/');
 
     add_action('admin_init', function() {
+        
         // triggers right after activation
-        if (is_admin() && get_option('banner') == 'toBeTriggered') {
-            
-            add_action('admin_notices', function() { ?>
-                <div class="notice notice-success is-dismissible" style="display: flex; flex-direction: row; align-items: center;">
+        if (is_admin()) {
+            if (get_option('installBanner') == 'toBeTriggered') {
+                add_action('admin_notices', function() { ?>
+                    <div class="notice notice-success is-dismissible" style="display: flex; flex-direction: row; align-items: center;">
+        
+                        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
     
-                    <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
-    
-                    <p><?php echo __('Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress\' branding right away.', 'dewordpressify')?><br>
-                
-                    <a class="button" href="<?php menu_page_url('dewordpressify')?>" style="margin-top: 8px"><?php echo __('Visit settings page', 'dewordpressify') ?></a></p>
+                        <p><?php _e('Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress\' branding right away.', 'dewordpressify')?><br>
                     
-                </div> 
-            <?php });
+                        <a class="button" href="<?php menu_page_url('dewordpressify')?>" style="margin-top: 8px"><?php _e('Visit settings page', 'dewordpressify') ?></a></p>
+                        
+                    </div> 
+                <?php });
+        
+                update_option('installBanner', 'triggered');
+            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
+
+                add_action('admin_notices', function() { ?>
+
+                    <script type="text/javascript">
+                        window.addEventListener('DOMContentLoaded', () => {
+                            document.querySelector('#used_banner .notice-dismiss').onclick = function() {
+                                document.querySelector('#used_banner').remove();
+
+                                jQuery.ajax({
+                                    type:   'POST',
+                                    url:    'http://localhost/wordpress/wp-admin/admin-ajax.php',
+                                    data:   { action: 'used_notice' },
+                                    dataType: 'json'
+                                // }).done(function( json ) {
+                                //     if( json.success ) {
+                                //         alert( "Function executed successfully and returned: " + json.message );
+                                //     } else if( !json.success ) {
+                                //         alert( "Function failed and returned: " + json.message );
+                                //     }
+                                }).fail(function() {
+                                    console.log("The Ajax call itself failed.");
+                                });
+                            };
+
+                        })
+                        
+                    </script>
+
+                    <div class="notice" id="used_banner" style="display: flex; flex-direction: row; align-items: center; position: relative;">
+        
+                        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
     
-            update_option('banner', 'triggered');
+                        <p>
+                            <?php _e('You\'ve been using DeWordPressify for a while now, I hope you like it.', 'dewordpressify')?><br>
+                    
+                            <a class="button" href="#" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'dewordpressify') ?></a>
+                            <a class="button" href="#" style="margin-top: 8px"><?php _e('Donate', 'dewordpressify') ?></a>
+                        
+                        </p>
+
+                        <!-- added button manually instead of with 
+                        .is-dismissible otherwise onclick doesn't work -->
+                        <button type="button" class="notice-dismiss">
+                            <span class="screen-reader-text">Ignore this notification.</span>
+                        </button>
+                        
+                    </div> 
+                <?php });
+            }
         }
-    });
-    
-    
+    });    
 });
 
 function wp_admin() {
@@ -308,4 +357,13 @@ function everywhere() {
         remove_action('wp_head', 'wp_shortlink_wp_head', 10);
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
     }
+}
+
+
+add_action('wp_ajax_used_notice', 'addUsedNoticeOption');
+add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
+
+function addUsedNoticeOption() {
+    add_option('usedNotice', 'closed');
+    die (json_encode(array('success' => true, 'message' => 'added successfully.')));
 }

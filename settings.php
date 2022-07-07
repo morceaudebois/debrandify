@@ -304,7 +304,7 @@ class dwpifyOptions {
     }
 
     public function login_logo_callback() {
-       $options = $this->options_general['login_logo'];?>
+       $options = $this->options_general ? $this->options_general['login_logo'] : 'wp_logo' ?>
 
         <select name="dwpify_general[login_logo]">
             <option value="wp_logo" <?php selected($options, "wp_logo"); ?>>
