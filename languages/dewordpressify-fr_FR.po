@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
-"POT-Creation-Date: 2022-07-04T11:38:15+00:00\n"
-"PO-Revision-Date: 2022-07-04 13:38+0200\n"
+"POT-Creation-Date: 2022-07-07T10:41:14+00:00\n"
+"PO-Revision-Date: 2022-07-07 12:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -39,6 +39,18 @@ msgstr ""
 #. Author URI of the plugin
 msgid "https://tahoe.be"
 msgstr ""
+
+#: dewordpressify.php:32
+msgid ""
+"Thank you for installing <b>DeWordPressify</b>! You can start getting rid of "
+"WordPress' branding right away."
+msgstr ""
+"Merci d’avoir installé <b>DeWordPressify</b>! Vous pouvez commencer à vous "
+"en servir dès maintenant."
+
+#: dewordpressify.php:34
+msgid "Visit settings page"
+msgstr "Réglages de DeWordPressify"
 
 #: settings.php:33
 msgid "DeWordPressify Settings"
