@@ -15,6 +15,32 @@
     License: GPL2
 */
 
+// activation
+register_activation_hook(__FILE__, function($network_wide) {
+  add_option('banner', 'toBeTriggered');
+});
+
+add_action('admin_init', function() {
+    // triggers right after activation
+    if (is_admin() && get_option('banner') == 'toBeTriggered') {
+        
+		add_action('admin_notices', function() { ?>
+            <div class="notice notice-success is-dismissible dwpify" style="display: flex; flex-direction: row; align-items: center;">
+
+                <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
+
+                <p><?php __('Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress\' branding right away.', 'dewordpressify')?><br>
+            
+                <a class="button" href="#" style="margin-top: 8px"><?php __('Visit settings page', 'dewordpressify') ?></a></p>
+                
+            </div> 
+        <?php });
+
+        update_option('banner', 'triggered');
+	}
+});
+
+
 
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');

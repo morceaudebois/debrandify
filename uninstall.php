@@ -4,6 +4,7 @@
 if (!defined('WP_UNINSTALL_PLUGIN')) exit;
 
 $options = array(
+	'banner',
 	'dwpify_general',
 	'dwpify_email',
 	'dwpify_advanced',
