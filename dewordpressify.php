@@ -22,9 +22,9 @@ register_activation_hook(__FILE__, function($network_wide) {
 });
 
 
+
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
-
 
 add_action('init', function() {
     everywhere(); // triggers on whole site
@@ -54,7 +54,8 @@ add_action('init', function() {
                 <?php });
         
                 update_option('installBanner', 'triggered');
-            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
+            // change to +30 days to debug notice
+            } else if (get_option('installDate') < strtotime('+30 days') && !get_option('usedNotice')) {
 
                 add_action('admin_notices', function() { ?>
 
@@ -63,22 +64,15 @@ add_action('init', function() {
                             document.querySelector('#used_banner .notice-dismiss').onclick = function() {
                                 document.querySelector('#used_banner').remove();
 
-                                jQuery.ajax({
-                                    type:   'POST',
-                                    url:    'http://localhost/wordpress/wp-admin/admin-ajax.php',
-                                    data:   { action: 'used_notice' },
-                                    dataType: 'json'
-                                // }).done(function( json ) {
-                                //     if( json.success ) {
-                                //         alert( "Function executed successfully and returned: " + json.message );
-                                //     } else if( !json.success ) {
-                                //         alert( "Function failed and returned: " + json.message );
-                                //     }
-                                }).fail(function() {
-                                    console.log("The Ajax call itself failed.");
-                                });
-                            };
+                                fetch('http://localhost/wordpress/wp-admin/admin-ajax.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                                    },
+                                    body: 'action=used_notice'
+                                }).catch(console.error)
 
+                            };
                         })
                         
                     </script>
@@ -87,8 +81,8 @@ add_action('init', function() {
         
                         <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
     
-                        <p>
-                            <?php _e('You\'ve been using DeWordPressify for a while now, I hope you like it.', 'dewordpressify')?><br>
+                        <p style="margin-right: 10px">
+                            <?php _e('You\'ve been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊', 'dewordpressify')?><br>
                     
                             <a class="button" href="#" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'dewordpressify') ?></a>
                             <a class="button" href="#" style="margin-top: 8px"><?php _e('Donate', 'dewordpressify') ?></a>
@@ -365,5 +359,4 @@ add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
 
 function addUsedNoticeOption() {
     add_option('usedNotice', 'closed');
-    die (json_encode(array('success' => true, 'message' => 'added successfully.')));
 }
