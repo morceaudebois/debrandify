@@ -11,9 +11,10 @@ DeWordPressify also has some advanced functions that let you easily disable buil
 - [x] Delete data on uninstall
 - [ ] Better multisite compatibility?
 - [x] Installation banner
-- [ ] "You've been using DeWordPressify for a while" banner
-- [ ] Logo on settings page?
-- [ ] Animated logo (maybe)
+- [x] "You've been using DeWordPressify for a while" banner
+- [x] Logo on settings page?
+- [ ] Links for banners and stuff
+- [ ] Animated logo (mayyyyybe)
 - [x] Translation file + french translation
 - [ ] Publish on WordPress!
 

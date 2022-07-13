@@ -28,6 +28,16 @@ class dwpifyOptions {
 
         $email_Screen = (isset($_GET['action']) && 'email' == $_GET['action']) ? true : false;
         $advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; ?>
+
+        <style type="text/css">
+            #dwpify_banner {
+                max-width: 100%; max-height: 5em;
+            }
+
+            .form-table th {
+                width: 350px;
+            }
+        </style>
        
         <div class="wrap">
             <h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
@@ -46,8 +56,8 @@ class dwpifyOptions {
                 </a>        
 			</h2>
     
-        	 <form method="post" action="options.php"><?php //   settings_fields('dwpify_general');
-				if ($email_Screen) { 
+        	 <form method="post" action="options.php"> 
+                <?php if ($email_Screen) { //   settings_fields('dwpify_general');
 					settings_fields('dwpify_email');
 					do_settings_sections('dwpify_setting_email');
 					submit_button();
@@ -61,8 +71,19 @@ class dwpifyOptions {
 					submit_button(); 
 				} ?>
 			</form>
-        </div> <?php
-	}
+        </div>
+        
+        <br>
+        <hr><br><br>
+        
+        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+
+        <p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
+
+        <p><?php _e('If you like DeWordPressify, please consider ', 'dewordpressify') ?> <a href="#"><?php _e('giving it a review', 'dewordpressify') ?></a> <?php _e('or', 'dewordpressify') ?> <a href="#"><?php _e('donating', 'dewordpressify') ?></a>. <br>
+        <?php _e('This is what motivates me to keep it updated and create new projects as an indie developer 😊', 'dewordpressify') ?></p> 
+        
+    <?php }
 
     public function register_settings() { // register settings
         // General settings
