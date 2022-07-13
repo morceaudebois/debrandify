@@ -330,7 +330,7 @@ class dwpifyOptions {
         $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'emojis', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
 
         foreach ($toBeVerified as &$value) {
-            $new_input[$value] = sanitize_text_field($input[$value]);
+            if (isset($input[$value])) $new_input[$value] = sanitize_text_field($input[$value]);
         }
 
         return $new_input;
