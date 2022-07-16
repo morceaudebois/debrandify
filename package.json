@@ -1,0 +1,23 @@
+{
+  "name": "dewordpressify",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">   <a href=\"https://tahoe.be\"><img src=\"https://raw.githubusercontent.com/morceaudebois/dewordpressify/master/assets/dewordpressify.png\" width=\"80%\" alt=\"\"></a> </h1>",
+  "main": "script.js",
+  "scripts": {
+    "scss": "sass --watch --no-source-map style.scss style.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morceaudebois/DeWordPressify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morceaudebois/DeWordPressify/issues"
+  },
+  "homepage": "https://github.com/morceaudebois/DeWordPressify#readme",
+  "dependencies": {
+    "scss": "^0.2.4"
+  }
+}

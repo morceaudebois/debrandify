@@ -35,7 +35,7 @@ class dwpifyOptions {
             }
 
             .form-table th {
-                width: 350px;
+                width: 300px;
             }
         </style>
        
@@ -93,16 +93,24 @@ class dwpifyOptions {
             array($this, 'sanitize') // Sanitize
         );
 
-        add_settings_section( // __() thingies are used for translation
+        add_settings_section( // __() & _e() thingies are used for translation
             'general_section', // ID
             __('General settings', 'dewordpressify'), // Title
             array($this, 'print_section_info'), // Callback
             'dwpify_setting_general' // Page
-        ); 
+        );
+
+        add_settings_field(
+            'adminbar_logo',
+            __('WordPress admin bar logo', 'dewordpressify'),
+            array($this, 'adminbar_logo_callback'), 
+            'dwpify_setting_general',
+            'general_section'
+        );
 
         add_settings_field(
             'thank_you',
-            __('Hide thank you sentence in admin footer', 'dewordpressify'),
+            __('Thank you sentence in admin footer', 'dewordpressify'),
             array($this, 'thank_you_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -110,39 +118,31 @@ class dwpifyOptions {
 
         add_settings_field(
             'footer_version',
-            __('Hide WordPress version in admin footer', 'dewordpressify'),
+            __('WordPress version in admin footer', 'dewordpressify'),
             array($this, 'footer_version_callback'), 
             'dwpify_setting_general',
             'general_section'
         );
 
         add_settings_field(
-            'adminbar_logo',
-            __('Hide WordPress admin bar logo', 'dewordpressify'),
-            array($this, 'adminbar_logo_callback'), 
-            'dwpify_setting_general',
-            'general_section'
-        );
-
-        add_settings_field(
-            'smileys',
-            __('Remove integrated smileys', 'dewordpressify'),
-            array($this, 'smileys_callback'), 
-            'dwpify_setting_general',
-            'general_section'
-        );
-
-        add_settings_field(
             'dashboard_news',
-            __('Disable news and events widget in dashboard', 'dewordpressify'),
+            __('"News and events" widget on dashboard', 'dewordpressify'),
             array($this, 'dashboard_news_callback'), 
             'dwpify_setting_general',
             'general_section'
         );
 
         add_settings_field(
+            'smileys',
+            __('Integrated smileys', 'dewordpressify'),
+            array($this, 'smileys_callback'), 
+            'dwpify_setting_general',
+            'general_section'
+        );
+
+        add_settings_field(
             'rss',
-            __('Remove integrated RSS feed', 'dewordpressify'),
+            __('Integrated RSS feed', 'dewordpressify'),
             array($this, 'rss_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -150,7 +150,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'comments',
-            __('Disable comments', 'dewordpressify'),
+            __('Comments', 'dewordpressify'),
             array($this, 'comments_callback'), 
             'dwpify_setting_general',
             'general_section'
@@ -183,7 +183,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'email_from',
-            __('Change the "From" text of emails sent by your site.', 'dewordpressify'),
+            __('"From" text of emails sent by your site.', 'dewordpressify'),
             array($this, 'email_from_callback'), 
             'dwpify_setting_email',
             'email_section'
@@ -191,7 +191,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'email_username',
-            __('Change the first part of the email adress sent from your site.', 'dewordpressify'),
+            __('Username of the email adress that sends from your site.', 'dewordpressify'),
             array($this, 'email_username_callback'), 
             'dwpify_setting_email',
             'email_section'
@@ -213,7 +213,7 @@ class dwpifyOptions {
         
         add_settings_field(
             'css',
-            __('Disable global inline styles', 'dewordpressify'),
+            __('Global inline styles', 'dewordpressify'),
             array($this, 'css_callback'), 
             'dwpify_setting_advanced',
             'advanced_section'
@@ -221,7 +221,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'head',
-            __('Remove unnecessary code in head tag', 'dewordpressify'),
+            __('Unnecessary code in head tag', 'dewordpressify'),
             array($this, 'head_callback'), 
             'dwpify_setting_advanced',
             'advanced_section'
@@ -239,14 +239,22 @@ class dwpifyOptions {
 
     public function adminbar_logo_callback() {
         printf(
-            '<input type="checkbox" id="adminbar_logo" name="dwpify_general[adminbar_logo]" value="yes" %s />',
+            '<label class="switch">
+                <input id="adminbar_logo" name="dwpify_general[adminbar_logo]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+            
             (isset($this->options_general['adminbar_logo']) && $this->options_general['adminbar_logo'] == 'yes') ? 'checked' : ''
        );
     }
 
     public function thank_you_callback() { 
         printf(
-            '<input type="checkbox" id="thank_you" name="dwpify_general[thank_you]" value="yes" %s />',
+            '<label class="switch">
+                <input id="thank_you" name="dwpify_general[thank_you]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+            
             (isset($this->options_general['thank_you']) && $this->options_general['thank_you'] == 'yes') ? 'checked' : ''
         );
 
@@ -258,7 +266,11 @@ class dwpifyOptions {
 
     public function footer_version_callback() { 
         printf(
-            '<input type="checkbox" id="footer_version" name="dwpify_general[footer_version]" value="yes" %s />',
+            '<label class="switch">
+                <input id="footer_version" name="dwpify_general[footer_version]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+
             (isset($this->options_general['footer_version']) && $this->options_general['footer_version'] == 'yes') ? 'checked' : ''
         );
 
@@ -270,45 +282,70 @@ class dwpifyOptions {
 
     public function dashboard_news_callback() {
         printf(
-            '<input type="checkbox" id="dashboard_news" name="dwpify_general[dashboard_news]" value="yes" %s />',
+            '<label class="switch">
+                <input id="dashboard_news" name="dwpify_general[dashboard_news]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+
             (isset($this->options_general['dashboard_news']) && $this->options_general['dashboard_news'] == 'yes') ? 'checked' : ''
        );
     }
 
     public function smileys_callback() {
         printf(
-            '<input type="checkbox" id="smileys" name="dwpify_general[smileys]" value="yes" %s />',
+            '<label class="switch">
+                <input id="smileys" name="dwpify_general[smileys]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+
             (isset($this->options_general['smileys']) && $this->options_general['smileys'] == 'yes') ? 'checked' : ''
        );
     }
 
     public function rss_callback() {
         printf(
-            '<input type="checkbox" id="rss" name="dwpify_general[rss]" value="yes" %s />',
+            '<label class="switch">
+                <input id="rss" name="dwpify_general[rss]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+
             (isset($this->options_general['rss']) && $this->options_general['rss'] == 'yes') ? 'checked' : ''
        );
     }
 
     public function comments_callback() {
         printf(
-            '<input type="checkbox" id="comments" name="dwpify_general[comments]" value="yes" %s />',
+            '<label class="switch">
+                <input id="comments" name="dwpify_general[comments]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+            
             (isset($this->options_general['comments']) && $this->options_general['comments'] == 'yes') ? 'checked' : ''
        );
     }
 
-    public function css_callback() {
-        printf(
-            '<input type="checkbox" id="css" name="dwpify_advanced[css]" value="yes" %s />',
-            (isset($this->options_advanced['css']) && $this->options_advanced['css'] == 'yes') ? 'checked' : ''
-       );
-    }
+    public function login_logo_callback() {
+        $options = $this->options_general ? $this->options_general['login_logo'] : 'wp_logo' ?>
+ 
+         <select name="dwpify_general[login_logo]">
+             <option value="wp_logo" <?php selected($options, "wp_logo"); ?>>
+                 <?php _e('Default WordPress logo', 'dewordpressify') ?>
+             </option>
+ 
+             <option value="site_logo" <?php selected($options, "site_logo"); ?>>
+                 <?php _e('Site logo (if there is one)', 'dewordpressify') ?>
+             </option>
+ 
+             <option value="site_title" <?php selected($options, "site_title"); ?>>
+                 <?php _e('Site title', 'dewordpressify') ?>
+             </option>
+ 
+             <option value="none" <?php selected($options, "none"); ?>>
+                 <?php _e('Hide', 'dewordpressify') ?>
+             </option>
+         </select>
+     <?php }
 
-    public function head_callback() {
-        printf(
-            '<input type="checkbox" id="head" name="dwpify_advanced[head]" value="yes" %s />',
-            (isset($this->options_advanced['head']) && $this->options_advanced['head'] == 'yes') ? 'checked' : ''
-       );
-    }
 
     public function email_from_callback() {
         printf(
@@ -324,27 +361,29 @@ class dwpifyOptions {
         );
     }
 
-    public function login_logo_callback() {
-       $options = $this->options_general ? $this->options_general['login_logo'] : 'wp_logo' ?>
+    public function head_callback() {
+        printf(
+            '<label class="switch">
+                <input id="head" name="dwpify_advanced[head]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
 
-        <select name="dwpify_general[login_logo]">
-            <option value="wp_logo" <?php selected($options, "wp_logo"); ?>>
-                <?php _e('Default WordPress logo', 'dewordpressify') ?>
-            </option>
+            (isset($this->options_advanced['head']) && $this->options_advanced['head'] == 'yes') ? 'checked' : ''
+       );
+    }
 
-            <option value="site_logo" <?php selected($options, "site_logo"); ?>>
-                <?php _e('Site logo (if there is one)', 'dewordpressify') ?>
-            </option>
 
-            <option value="site_title" <?php selected($options, "site_title"); ?>>
-                <?php _e('Site title', 'dewordpressify') ?>
-            </option>
 
-            <option value="none" <?php selected($options, "none"); ?>>
-                <?php _e('Hide', 'dewordpressify') ?>
-            </option>
-        </select>
-    <?php }
+    public function css_callback() {
+        printf(
+            '<label class="switch">
+                <input id="css" name="dwpify_advanced[css]" value="yes" %s type="checkbox" />
+                <span class="slider round span"></span>
+            </label>',
+
+            (isset($this->options_advanced['css']) && $this->options_advanced['css'] == 'yes') ? 'checked' : ''
+    );
+    }
 
    public function sanitize($input)  {
         $new_input = array();
@@ -369,6 +408,8 @@ add_action('admin_enqueue_scripts', function($hook_suffix) {
     $handle = 'dewordpressify';
     wp_register_script($handle, plugin_dir_url(__FILE__) . '/script.js');
     wp_enqueue_script($handle);
+    wp_register_style($handle, plugin_dir_url(__FILE__) . '/style.css');
+    wp_enqueue_style($handle);
 });
 
 ?>
