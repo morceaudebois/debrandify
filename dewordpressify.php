@@ -21,7 +21,19 @@ register_activation_hook(__FILE__, function($network_wide) {
   add_option('installDate', time());
 });
 
+// $options = array(
+// 	'usedNotice',
+// 	'installDate',
+// 	'installBanner',
+// 	'dwpify_general',
+// 	'dwpify_email',
+// 	'dwpify_advanced',
+// );
 
+// // gets rid of all data
+// foreach ($options as $option) {
+// 	if (get_option($option)) delete_option($option);
+// }
 
 include(plugin_dir_path(__FILE__) . 'functions.php');
 include(plugin_dir_path(__FILE__) . 'settings.php');
@@ -134,14 +146,12 @@ function wp_admin() {
 
 function user_logged_in() {
     $options = get_option('dwpify_general');
-
-    if (isset($options['adminbar_logo']) && !empty($options['adminbar_logo'])) {
-        function admin_bar_remove_logo() {
+    
+    if (!isset($options['adminbar_logo'])) {
+        add_action('wp_before_admin_bar_render', function() {
             global $wp_admin_bar;
             $wp_admin_bar->remove_menu('wp-logo');
-        }
-    
-        add_action('wp_before_admin_bar_render', 'admin_bar_remove_logo', 0);
+        }, 0);
     }
 }
 

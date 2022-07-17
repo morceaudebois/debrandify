@@ -28,16 +28,6 @@ class dwpifyOptions {
 
         $email_Screen = (isset($_GET['action']) && 'email' == $_GET['action']) ? true : false;
         $advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; ?>
-
-        <style type="text/css">
-            #dwpify_banner {
-                max-width: 100%; max-height: 5em;
-            }
-
-            .form-table th {
-                width: 300px;
-            }
-        </style>
        
         <div class="wrap">
             <h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
