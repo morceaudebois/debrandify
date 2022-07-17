@@ -227,26 +227,26 @@ class dwpifyOptions {
         echo '<p>' . __('There settings may break your site. If you don\'t know what they do, you probably shouldn\'t tinker with them.', 'dewordpressify') . '</p>';
 	}
 
-    public function adminbar_logo_callback() {
+    public function printCheckbox($group, $key) {
+        $group_name = 'options_' . $group;
+        // var_dump($this->$group_name[$key]);
+        
         printf(
-            '<label class="switch">
-                <input id="adminbar_logo" name="dwpify_general[adminbar_logo]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
+            "<label class='switch'>
+                <input id='${key}' name='dwpify_${group}[${key}]' value='1' %s type='checkbox' />
+                <span class='slider round span'></span>
+            </label>",
             
-            (isset($this->options_general['adminbar_logo']) && $this->options_general['adminbar_logo'] == 'yes') ? 'checked' : ''
-       );
+            (!$this->$group_name || array_key_exists($key, $this->$group_name )) ? 'checked' : ''
+        );
     }
 
-    public function thank_you_callback() { 
-        printf(
-            '<label class="switch">
-                <input id="thank_you" name="dwpify_general[thank_you]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-            
-            (isset($this->options_general['thank_you']) && $this->options_general['thank_you'] == 'yes') ? 'checked' : ''
-        );
+    public function adminbar_logo_callback() {
+        $this->printCheckbox('general', 'adminbar_logo');
+    }
+
+    public function thank_you_callback() {
+        $this->printCheckbox('general', 'thank_you');
 
         printf(
             '<input type="text" id="thankyou_string" name="dwpify_general[thankyou_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
@@ -255,14 +255,7 @@ class dwpifyOptions {
     }
 
     public function footer_version_callback() { 
-        printf(
-            '<label class="switch">
-                <input id="footer_version" name="dwpify_general[footer_version]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-
-            (isset($this->options_general['footer_version']) && $this->options_general['footer_version'] == 'yes') ? 'checked' : ''
-        );
+        $this->printCheckbox('general', 'footer_version');
 
         printf(
             '<input type="text" id="version_string" name="dwpify_general[version_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
@@ -271,47 +264,19 @@ class dwpifyOptions {
     }
 
     public function dashboard_news_callback() {
-        printf(
-            '<label class="switch">
-                <input id="dashboard_news" name="dwpify_general[dashboard_news]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-
-            (isset($this->options_general['dashboard_news']) && $this->options_general['dashboard_news'] == 'yes') ? 'checked' : ''
-       );
+        $this->printCheckbox('general', 'dashboard_news');
     }
 
     public function smileys_callback() {
-        printf(
-            '<label class="switch">
-                <input id="smileys" name="dwpify_general[smileys]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-
-            (isset($this->options_general['smileys']) && $this->options_general['smileys'] == 'yes') ? 'checked' : ''
-       );
+        $this->printCheckbox('general', 'smileys');
     }
 
     public function rss_callback() {
-        printf(
-            '<label class="switch">
-                <input id="rss" name="dwpify_general[rss]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-
-            (isset($this->options_general['rss']) && $this->options_general['rss'] == 'yes') ? 'checked' : ''
-       );
+        $this->printCheckbox('general', 'rss');
     }
 
     public function comments_callback() {
-        printf(
-            '<label class="switch">
-                <input id="comments" name="dwpify_general[comments]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-            
-            (isset($this->options_general['comments']) && $this->options_general['comments'] == 'yes') ? 'checked' : ''
-       );
+        $this->printCheckbox('general', 'comments');
     }
 
     public function login_logo_callback() {
@@ -351,38 +316,27 @@ class dwpifyOptions {
         );
     }
 
-    public function head_callback() {
-        printf(
-            '<label class="switch">
-                <input id="head" name="dwpify_advanced[head]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-
-            (isset($this->options_advanced['head']) && $this->options_advanced['head'] == 'yes') ? 'checked' : ''
-       );
+    public function css_callback() {
+        $this->printCheckbox('advanced', 'css');
     }
 
-
-
-    public function css_callback() {
-        printf(
-            '<label class="switch">
-                <input id="css" name="dwpify_advanced[css]" value="yes" %s type="checkbox" />
-                <span class="slider round span"></span>
-            </label>',
-
-            (isset($this->options_advanced['css']) && $this->options_advanced['css'] == 'yes') ? 'checked' : ''
-    );
+    public function head_callback() {
+        $this->printCheckbox('advanced', 'head');
     }
 
    public function sanitize($input)  {
         $new_input = array();
-        $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'emojis', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
+        $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
 
         foreach ($toBeVerified as &$value) {
             if (isset($input[$value])) $new_input[$value] = sanitize_text_field($input[$value]);
+            // if (empty($input[$value])) {
+            //     $new_input[$value] = false;
+            // } else {
+            //     sanitize_text_field($input[$value]);
+            // }
         }
-
+        // error_log(print_r($new_input, true));
         return $new_input;
     }
 }
