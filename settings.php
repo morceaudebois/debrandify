@@ -173,7 +173,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'email_from',
-            __('"From" text of emails sent by your site.', 'dewordpressify'),
+            __('"From" text of emails sent by your site', 'dewordpressify'),
             array($this, 'email_from_callback'), 
             'dwpify_setting_email',
             'email_section'
@@ -181,7 +181,7 @@ class dwpifyOptions {
 
         add_settings_field(
             'email_username',
-            __('Username of the email adress that sends from your site.', 'dewordpressify'),
+            __('Username of the email adress that sends from your site', 'dewordpressify'),
             array($this, 'email_username_callback'), 
             'dwpify_setting_email',
             'email_section'
@@ -305,14 +305,14 @@ class dwpifyOptions {
 
     public function email_from_callback() {
         printf(
-            '<input type="text" id="from_string" name="dwpify_email[from_string]" value="%s" placeholder="' . __('From field', 'dewordpressify') . '"/>',
+            '<input type="text" id="from_string" name="dwpify_email[from_string]" value="%s" placeholder="' . __('Your site\'s name', 'dewordpressify') . '"/>',
             isset($this->options_email['from_string']) ? esc_attr($this->options_email['from_string']) : ''
         );
     }
 
     public function email_username_callback() {
         printf(
-            '<input type="text" id="email_string" name="dwpify_email[email_string]" value="%s" placeholder="' . __('First part of email', 'dewordpressify') . '"/>',
+            '<input type="text" id="email_string" name="dwpify_email[email_string]" value="%s" placeholder="' . __('First part of email', 'dewordpressify') . '"/><span> @' . $_SERVER['HTTP_HOST'] . '</span>',
             isset($this->options_email['email_string']) ? esc_attr($this->options_email['email_string']) : ''
         );
     }

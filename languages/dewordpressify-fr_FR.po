@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
-"POT-Creation-Date: 2022-07-18T13:51:11+00:00\n"
-"PO-Revision-Date: 2022-07-18 16:00+0200\n"
+"POT-Creation-Date: 2022-07-18T14:38:29+00:00\n"
+"PO-Revision-Date: 2022-07-18 16:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -86,7 +86,7 @@ msgstr "Avancé"
 
 #: settings.php:71
 msgid "Made in France with ❤️ by "
-msgstr "Fabriqué en France avec par ❤️ "
+msgstr "Fabriqué en France avec ❤️ par "
 
 #: settings.php:73
 msgid "If you like DeWordPressify, please consider "
@@ -142,7 +142,7 @@ msgstr "Flux RSS"
 
 #: settings.php:143
 msgid "Comments"
-msgstr ""
+msgstr "Commentaires"
 
 #: settings.php:151
 msgid "Login logo image"
@@ -153,12 +153,12 @@ msgid "Email Settings"
 msgstr "Réglages des emails"
 
 #: settings.php:176
-msgid "\"From\" text of emails sent by your site."
-msgstr "Champs “From” des emails envoyés par votre site."
+msgid "\"From\" text of emails sent by your site"
+msgstr "Champs “From” des emails envoyés par votre site"
 
 #: settings.php:184
-msgid "Username of the email adress that sends from your site."
-msgstr "Première partie de l’adresse avec lequel votre site envoie des emails."
+msgid "Username of the email adress that sends from your site"
+msgstr "Première partie de l’adresse avec lequel votre site envoie des emails"
 
 #: settings.php:199
 msgid "Advanced Settings"
@@ -201,12 +201,15 @@ msgid "Hide"
 msgstr "Cacher"
 
 #: settings.php:308
-msgid "From field"
-msgstr "Champs “from”"
+msgid "Your site's name"
+msgstr "Nom du site"
 
 #: settings.php:315
 msgid "First part of email"
 msgstr "Première partie de l'email"
+
+#~ msgid "From field"
+#~ msgstr "Champs “from”"
 
 #~ msgid "Disable comments"
 #~ msgstr "Désactiver les commentaires"

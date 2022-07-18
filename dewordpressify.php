@@ -263,6 +263,7 @@ function everywhere() {
     $options = get_option('dwpify_general');
 
     if ($options && !array_key_exists('smileys', $options)) {
+        // source https://gist.github.com/netmagik/88e004b17e4cc43d04b6#file-disable-emoji-in-wordpress
         remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
         remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
         remove_action( 'wp_print_styles', 'print_emoji_styles' );
@@ -274,10 +275,6 @@ function everywhere() {
         // Remove from TinyMCE
         add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
 
-
-        /**
-         * Filter out the tinymce emoji plugin.
-         */
         function disable_emojis_tinymce($plugins) {
             if (is_array($plugins)) {
                 return array_diff($plugins, array('wpemoji'));

@@ -16,4 +16,11 @@ function hideableInputs() {
 
 window.addEventListener('DOMContentLoaded', () => {
     hideableInputs()
+
+    const emailString = document.querySelector('#email_string');
+    if (emailString) { // prevents from adding spaces in email username 
+        emailString.addEventListener("keyup", function() {
+            this.value = this.value.replace(/[^A-Za-z]/g,'');
+        });
+    }
 });
