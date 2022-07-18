@@ -72,8 +72,8 @@ add_action('init', function() {
                 <?php });
         
                 update_option('installBanner', 'triggered');
-            // change to +30 days to debug notice
-            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
+            // change to -30 days to debug notice
+            } else if (get_option('installDate') < strtotime('+0 days') && !get_option('usedNotice')) {
 
                 add_action('admin_notices', function() { ?>
 
@@ -175,10 +175,9 @@ function loginPage() {
     $options = get_option('dwpify_general');
 
     if (isset($options['login_logo'])) {
-        
+       
         function remove_logo() {
             $options = get_option('dwpify_general'); 
-            
             // why does it need to be redeclared?????? ?>
 
             <style type="text/css">
@@ -259,12 +258,12 @@ function loginPage() {
 function everywhere() {
     $options = get_option('dwpify_general');
 
-    if (isset($options['emojis']) && !empty($options['emojis'])) {
+    if ($options && !array_key_exists('smileys', $options)) {
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('wp_print_styles', 'print_emoji_styles');
     }
 
-    if (isset($options['rss']) && !empty($options['rss'])) {
+    if ($options && !array_key_exists('rss', $options)) {
         remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
         remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
         remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -288,7 +287,7 @@ function everywhere() {
         add_action('do_feed_atom_comments', 'disableRss', 1);
     }
 
-    if (isset($options['comments']) && !empty($options['comments'])) {
+    if ($options && !array_key_exists('comments', $options)) {
         // Disable support for comments and trackbacks in post types
         function df_disable_comments_post_types_support() {
             $post_types = get_post_types();
@@ -347,14 +346,14 @@ function everywhere() {
 
     $options = get_option('dwpify_email');
     
-    if (isset($options['email_from']) and !empty($options['email_from'])) {
+    if ($options && !array_key_exists('email_from', $options)) {
         add_filter( 'wp_mail_from_name', function($original_email_from) {
             $options = get_option('dewordpressify_settings');
             return $options['email_from'];
         } );
     } 
 
-    if (isset($options['email_username']) and !empty($options['email_username'])) {
+    if ($options && !array_key_exists('email_username', $options)) {
         // Function to change email address
         add_filter('wp_mail_from', function() {
             $options = get_option('dewordpressify_settings');
@@ -364,12 +363,12 @@ function everywhere() {
 
     $options = get_option('dwpify_advanced');
 
-    if (isset($options['css']) && !empty($options['css'])) {
+    if ($options && !array_key_exists('css', $options)) {
         remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
         remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
     }
 
-    if (isset($options['head']) && !empty($options['head'])) {
+    if ($options && !array_key_exists('head', $options)) {
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
