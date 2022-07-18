@@ -15,20 +15,26 @@
     License: GPL2
 */
 
+// $options = array(
+// 	'usedNotice',
+// 	'installDate',
+// 	'installBanner',
+// 	'dwpify_general',
+// 	'dwpify_email',
+// 	'dwpify_advanced',
+// );
+
+// // gets rid of all data
+// foreach ($options as $option) {
+// 	if (get_option($option)) delete_option($option);
+// }
+
 // activation
-register_activation_hook(__FILE__, function($network_wide) {
-  add_option('banner', 'toBeTriggered');
-  add_option('installDate', time());
-});
+function init() {
+    if (!get_option('banner')) { add_option('banner', 'toBeTriggered'); }
+    if (!get_option('installDate')) { add_option('installDate', time()); }
 
-include(plugin_dir_path(__FILE__) . 'functions.php');
-include(plugin_dir_path(__FILE__) . 'settings.php');
-
-add_action('init', function() {
-    everywhere(); // triggers on whole site
-    add_action('admin_init', 'wp_admin'); // triggers in wp-admin
-    add_action('login_init', 'loginPage'); // triggers on login page
-
+    // adds default options if missing
     if (!get_option('dwpify_general')) {
         add_option('dwpify_general', array(
             'adminbar_logo' => 'yes',
@@ -48,6 +54,17 @@ add_action('init', function() {
             'css' => 'yes',
         ));
     }
+}
+
+include(plugin_dir_path(__FILE__) . 'functions.php');
+include(plugin_dir_path(__FILE__) . 'settings.php');
+
+add_action('init', function() {
+    init();
+
+    everywhere(); // triggers on whole site
+    add_action('admin_init', 'wp_admin'); // triggers in wp-admin
+    add_action('login_init', 'loginPage'); // triggers on login page
 
      // triggers when user logged in
     if (is_user_logged_in()) user_logged_in();
@@ -56,6 +73,7 @@ add_action('init', function() {
 
     add_action('admin_init', function() {
         
+
         // triggers right after activation
         if (is_admin()) {
             if (get_option('installBanner') == 'toBeTriggered') {
@@ -72,8 +90,8 @@ add_action('init', function() {
                 <?php });
         
                 update_option('installBanner', 'triggered');
-            // change to -30 days to debug notice
-            } else if (get_option('installDate') < strtotime('+0 days') && !get_option('usedNotice')) {
+            // change to +30 days to debug notice
+            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
 
                 add_action('admin_notices', function() { ?>
 
@@ -143,20 +161,6 @@ function wp_admin() {
         add_action('wp_dashboard_setup',         'rm_dahsboardnews', 20);
     }
 }
-
-// $options = array(
-// 	'usedNotice',
-// 	'installDate',
-// 	'installBanner',
-// 	'dwpify_general',
-// 	'dwpify_email',
-// 	'dwpify_advanced',
-// );
-
-// // gets rid of all data
-// foreach ($options as $option) {
-// 	if (get_option($option)) delete_option($option);
-// }
 
 function user_logged_in() {
     $options = get_option('dwpify_general');
@@ -259,8 +263,28 @@ function everywhere() {
     $options = get_option('dwpify_general');
 
     if ($options && !array_key_exists('smileys', $options)) {
-        remove_action('wp_head', 'print_emoji_detection_script', 7);
-        remove_action('wp_print_styles', 'print_emoji_styles');
+        remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+        remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+        remove_action( 'wp_print_styles', 'print_emoji_styles' );
+        remove_action( 'admin_print_styles', 'print_emoji_styles' );	
+        remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+        remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
+        remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+        
+        // Remove from TinyMCE
+        add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+
+
+        /**
+         * Filter out the tinymce emoji plugin.
+         */
+        function disable_emojis_tinymce($plugins) {
+            if (is_array($plugins)) {
+                return array_diff($plugins, array('wpemoji'));
+            } else {
+                return array();
+            }
+        }
     }
 
     if ($options && !array_key_exists('rss', $options)) {

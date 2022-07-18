@@ -250,7 +250,7 @@ class dwpifyOptions {
         $this->printCheckbox('general', 'thank_you');
 
         printf(
-            '<input type="text" id="thankyou_string" name="dwpify_general[thankyou_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
+            '<input type="text" id="thankyou_string" class="greyedOut" name="dwpify_general[thankyou_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
             isset($this->options_general['thankyou_string']) ? esc_attr($this->options_general['thankyou_string']) : ''
         );
     }
@@ -259,7 +259,7 @@ class dwpifyOptions {
         $this->printCheckbox('general', 'footer_version');
 
         printf(
-            '<input type="text" id="version_string" name="dwpify_general[version_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
+            '<input type="text" id="version_string" class="greyedOut" name="dwpify_general[version_string]" value="%s" placeholder="' . __('Your own string', 'dewordpressify') . '"/>',
             isset($this->options_general['version_string']) ? esc_attr($this->options_general['version_string']) : ''
         );
     }

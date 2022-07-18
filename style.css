@@ -7,6 +7,14 @@
   width: 300px;
 }
 
+input[type=text] {
+  transition: opacity 0.15s ease-in;
+}
+input[type=text].greyedOut {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 /* Switch */
 .switch {
   position: relative;

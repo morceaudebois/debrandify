@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-13T20:33:30+00:00\n"
+"POT-Creation-Date: 2022-07-18T13:51:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: dewordpressify\n"
@@ -34,155 +34,155 @@ msgstr ""
 msgid "https://tahoe.be"
 msgstr ""
 
-#: dewordpressify.php:49
+#: dewordpressify.php:85
 msgid "Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress' branding right away."
 msgstr ""
 
-#: dewordpressify.php:51
+#: dewordpressify.php:87
 msgid "Visit settings page"
 msgstr ""
 
-#: dewordpressify.php:85
+#: dewordpressify.php:121
 msgid "You've been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
 
-#: dewordpressify.php:87
+#: dewordpressify.php:123
 msgid "Review"
 msgstr ""
 
-#: dewordpressify.php:88
+#: dewordpressify.php:124
 msgid "Donate"
 msgstr ""
 
-#: settings.php:43
+#: settings.php:33
 msgid "DeWordPressify Settings"
 msgstr ""
 
-#: settings.php:47
+#: settings.php:37
 msgid "General"
 msgstr ""
 
-#: settings.php:51
+#: settings.php:41
 msgid "Email"
 msgstr ""
 
-#: settings.php:55
+#: settings.php:45
 msgid "Advanced"
 msgstr ""
 
-#: settings.php:81
+#: settings.php:71
 msgid "Made in France with ❤️ by "
 msgstr ""
 
-#: settings.php:83
+#: settings.php:73
 msgid "If you like DeWordPressify, please consider "
 msgstr ""
 
-#: settings.php:83
+#: settings.php:73
 msgid "giving it a review"
 msgstr ""
 
-#: settings.php:83
+#: settings.php:73
 msgid "or"
 msgstr ""
 
-#: settings.php:83
+#: settings.php:73
 msgid "donating"
 msgstr ""
 
-#: settings.php:84
+#: settings.php:74
 msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
 msgstr ""
 
-#: settings.php:98
+#: settings.php:88
 msgid "General settings"
 msgstr ""
 
-#: settings.php:105
-msgid "Hide thank you sentence in admin footer"
+#: settings.php:95
+msgid "WordPress admin bar logo"
 msgstr ""
 
-#: settings.php:113
-msgid "Hide WordPress version in admin footer"
+#: settings.php:103
+msgid "Thank you sentence in admin footer"
 msgstr ""
 
-#: settings.php:121
-msgid "Hide WordPress admin bar logo"
+#: settings.php:111
+msgid "WordPress version in admin footer"
 msgstr ""
 
-#: settings.php:129
-msgid "Remove integrated smileys"
+#: settings.php:119
+msgid "\"News and events\" widget on dashboard"
 msgstr ""
 
-#: settings.php:137
-msgid "Disable news and events widget in dashboard"
+#: settings.php:127
+msgid "Integrated smileys"
 msgstr ""
 
-#: settings.php:145
-msgid "Remove integrated RSS feed"
+#: settings.php:135
+msgid "Integrated RSS feed"
 msgstr ""
 
-#: settings.php:153
-msgid "Disable comments"
+#: settings.php:143
+msgid "Comments"
 msgstr ""
 
-#: settings.php:161
+#: settings.php:151
 msgid "Login logo image"
 msgstr ""
 
-#: settings.php:179
+#: settings.php:169
 msgid "Email Settings"
 msgstr ""
 
-#: settings.php:186
-msgid "Change the \"From\" text of emails sent by your site."
+#: settings.php:176
+msgid "\"From\" text of emails sent by your site."
 msgstr ""
 
-#: settings.php:194
-msgid "Change the first part of the email adress sent from your site."
+#: settings.php:184
+msgid "Username of the email adress that sends from your site."
 msgstr ""
 
-#: settings.php:209
+#: settings.php:199
 msgid "Advanced Settings"
 msgstr ""
 
-#: settings.php:216
-msgid "Disable global inline styles"
+#: settings.php:206
+msgid "Global inline styles"
 msgstr ""
 
-#: settings.php:224
-msgid "Remove unnecessary code in head tag"
+#: settings.php:214
+msgid "Unnecessary code in head tag"
 msgstr ""
 
-#: settings.php:237
+#: settings.php:227
 msgid "There settings may break your site. If you don't know what they do, you probably shouldn't tinker with them."
 msgstr ""
 
-#: settings.php:254
-#: settings.php:266
+#: settings.php:253
+#: settings.php:262
 msgid "Your own string"
 msgstr ""
 
-#: settings.php:315
-msgid "From field"
-msgstr ""
-
-#: settings.php:322
-msgid "First part of email"
-msgstr ""
-
-#: settings.php:332
+#: settings.php:288
 msgid "Default WordPress logo"
 msgstr ""
 
-#: settings.php:336
+#: settings.php:292
 msgid "Site logo (if there is one)"
 msgstr ""
 
-#: settings.php:340
+#: settings.php:296
 msgid "Site title"
 msgstr ""
 
-#: settings.php:344
+#: settings.php:300
 msgid "Hide"
+msgstr ""
+
+#: settings.php:308
+msgid "From field"
+msgstr ""
+
+#: settings.php:315
+msgid "First part of email"
 msgstr ""
