@@ -233,11 +233,12 @@ class dwpifyOptions {
         
         printf(
             "<label class='switch'>
-                <input id='${key}' name='dwpify_${group}[${key}]' value='1' %s type='checkbox' />
+                <input id='${key}' name='dwpify_${group}[${key}]' value='yes' %s type='checkbox' />
                 <span class='slider round span'></span>
             </label>",
             
-            (!$this->$group_name || array_key_exists($key, $this->$group_name )) ? 'checked' : ''
+            // (!$this->$group_name || array_key_exists($key, $this->$group_name )) ? 'checked' : ''
+            (isset($this->$group_name[$key]) && $this->$group_name[$key] == 'yes') ? 'checked' : ''
         );
     }
 

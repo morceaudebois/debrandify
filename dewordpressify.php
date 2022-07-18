@@ -29,6 +29,26 @@ add_action('init', function() {
     add_action('admin_init', 'wp_admin'); // triggers in wp-admin
     add_action('login_init', 'loginPage'); // triggers on login page
 
+    if (!get_option('dwpify_general')) {
+        add_option('dwpify_general', array(
+            'adminbar_logo' => 'yes',
+            'thank_you' => 'yes',
+            'thankyou_string' => '',
+            'footer_version' => 'yes',
+            'version_string' => '',
+            'comments' => 'yes',
+            'rss' => 'yes',
+            'smileys' => 'yes',
+            'login_logo' => 'wp_logo',
+            'dashboard_news' => 'yes'
+        ));
+
+        add_option('dwpify_advanced', array(
+            'head' => 'yes',
+            'css' => 'yes',
+        ));
+    }
+
      // triggers when user logged in
     if (is_user_logged_in()) user_logged_in();
     
@@ -104,22 +124,16 @@ function wp_admin() {
     $options = get_option('dwpify_general');
 
     add_filter('admin_footer_text', function($defaultString) {
-        if (!is_null(replaceableString('general', 'thank_you', 'thankyou_string'))) {
-            echo replaceableString('general', 'thank_you', 'thankyou_string');
-        } else {
-            echo $defaultString;
-        }
+        $theString = replaceableString('general', 'thank_you', 'thankyou_string');
+        echo $theString === false ? '' : (is_null($theString) ? $defaultString : $theString);
     }, 11);
 
     add_filter('update_footer', function($defaultString) {
-        if (!is_null(replaceableString('general', 'footer_version', 'version_string'))) {
-            echo replaceableString('general', 'footer_version', 'version_string');
-        } else {
-            echo $defaultString;
-        }
+        $theString = replaceableString('general', 'footer_version', 'version_string');
+        echo $theString === false ? '' : (is_null($theString) ? $defaultString : $theString);
     }, 11);
 
-    if (isset($options['dashboard_news']) && !empty($options['dashboard_news'])) {
+    if ($options && !array_key_exists('dashboard_news', $options)) {
         function rm_dahsboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
