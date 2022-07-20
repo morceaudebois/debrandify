@@ -123,6 +123,14 @@ class dwpifyOptions {
         );
 
         add_settings_field(
+            'login_logo',
+            __('Login logo image', 'dewordpressify'),
+            array($this, 'login_logo_callback'), 
+            'dwpify_setting_general',
+            'general_section'
+        );
+
+        add_settings_field(
             'smileys',
             __('Integrated smileys', 'dewordpressify'),
             array($this, 'smileys_callback'), 
@@ -142,14 +150,6 @@ class dwpifyOptions {
             'comments',
             __('Comments', 'dewordpressify'),
             array($this, 'comments_callback'), 
-            'dwpify_setting_general',
-            'general_section'
-        );
-
-        add_settings_field(
-            'login_logo',
-            __('Login logo image', 'dewordpressify'),
-            array($this, 'login_logo_callback'), 
             'dwpify_setting_general',
             'general_section'
         );
@@ -224,12 +224,11 @@ class dwpifyOptions {
 	}
 
     public function print_advanced_info() {
-        echo '<p>' . __('There settings may break your site. If you don\'t know what they do, you probably shouldn\'t tinker with them.', 'dewordpressify') . '</p>';
+        echo '<p>' . __('These settings may break your site. If you don\'t know what they do, you probably shouldn\'t tinker with them.', 'dewordpressify') . '</p>';
 	}
 
     public function printCheckbox($group, $key) {
         $group_name = 'options_' . $group;
-        // var_dump($this->$group_name[$key]);
         
         printf(
             "<label class='switch'>
@@ -237,7 +236,6 @@ class dwpifyOptions {
                 <span class='slider round span'></span>
             </label>",
             
-            // (!$this->$group_name || array_key_exists($key, $this->$group_name )) ? 'checked' : ''
             (isset($this->$group_name[$key]) && $this->$group_name[$key] == 'yes') ? 'checked' : ''
         );
     }
@@ -268,18 +266,6 @@ class dwpifyOptions {
         $this->printCheckbox('general', 'dashboard_news');
     }
 
-    public function smileys_callback() {
-        $this->printCheckbox('general', 'smileys');
-    }
-
-    public function rss_callback() {
-        $this->printCheckbox('general', 'rss');
-    }
-
-    public function comments_callback() {
-        $this->printCheckbox('general', 'comments');
-    }
-
     public function login_logo_callback() {
         $options = $this->options_general ? $this->options_general['login_logo'] : 'wp_logo' ?>
  
@@ -301,6 +287,18 @@ class dwpifyOptions {
              </option>
          </select>
      <?php }
+
+    public function smileys_callback() {
+        $this->printCheckbox('general', 'smileys');
+    }
+
+    public function rss_callback() {
+        $this->printCheckbox('general', 'rss');
+    }
+
+    public function comments_callback() {
+        $this->printCheckbox('general', 'comments');
+    }
 
 
     public function email_from_callback() {
@@ -330,15 +328,10 @@ class dwpifyOptions {
         $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
 
         foreach ($toBeVerified as &$value) {
-            if (isset($input[$value])) $new_input[$value] = sanitize_text_field($input[$value]);
-            // if (empty($input[$value])) {
-            //     $new_input[$value] = false;
-            // } else {
-            //     sanitize_text_field($input[$value]);
-            // }
-        }
-        // error_log(print_r($new_input, true));
-        return $new_input;
+            if (isset($input[$value])) {
+                $new_input[$value] = sanitize_text_field($input[$value]);
+            } 
+        } return $new_input;
     }
 }
 

@@ -15,23 +15,10 @@
     License: GPL2
 */
 
-// $options = array(
-// 	'usedNotice',
-// 	'installDate',
-// 	'installBanner',
-// 	'dwpify_general',
-// 	'dwpify_email',
-// 	'dwpify_advanced',
-// );
-
-// // gets rid of all data
-// foreach ($options as $option) {
-// 	if (get_option($option)) delete_option($option);
-// }
-
 // activation
 function init() {
-    if (!get_option('banner')) { add_option('banner', 'toBeTriggered'); }
+    if (!get_option('installBanner')) { add_option('installBanner', 'toBeTriggered'); }
+
     if (!get_option('installDate')) { add_option('installDate', time()); }
 
     // adds default options if missing
@@ -91,7 +78,7 @@ add_action('init', function() {
         
                 update_option('installBanner', 'triggered');
             // change to +30 days to debug notice
-            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
+            } else if (get_option('installDate') < strtotime('+30 days') && !get_option('usedNotice')) {
 
                 add_action('admin_notices', function() { ?>
 

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
-"POT-Creation-Date: 2022-07-18T14:38:29+00:00\n"
-"PO-Revision-Date: 2022-07-18 16:39+0200\n"
+"POT-Creation-Date: 2022-07-20T15:38:32+00:00\n"
+"PO-Revision-Date: 2022-07-20 17:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -30,7 +30,7 @@ msgid ""
 "own!"
 msgstr ""
 "DeWordPressify permet de retirer toutes mentions de WordPress de votre "
-"tableau de bord, et de les remplacer par votre propre marque."
+"tableau de bord, puis de les remplacer par vos propres textes et logos!"
 
 #. Author of the plugin
 msgid "Tahoe Beetschen"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "https://tahoe.be"
 msgstr ""
 
-#: dewordpressify.php:85
+#: dewordpressify.php:72
 msgid ""
 "Thank you for installing <b>DeWordPressify</b>! You can start getting rid of "
 "WordPress' branding right away."
@@ -48,23 +48,24 @@ msgstr ""
 "Merci d’avoir installé <b>DeWordPressify</b>! Vous pouvez commencer à vous "
 "en servir dès maintenant."
 
-#: dewordpressify.php:87
+#: dewordpressify.php:74
 msgid "Visit settings page"
 msgstr "Réglages de DeWordPressify"
 
-#: dewordpressify.php:121
+#: dewordpressify.php:108
 msgid ""
 "You've been using DeWordPressify for a while now, I hope you like it! If so, "
 "please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
 "Cela commence à faire longtemps que vous utilisez DeWordPressify, j’espère "
-"qu’il vous plaît ! "
+"qu’il vous plaît ! Si c’est le cas, n’hésitez pas à soutenir mon travail "
+"avec les boutons si dessous 😊"
 
-#: dewordpressify.php:123
+#: dewordpressify.php:110
 msgid "Review"
 msgstr "Noter"
 
-#: dewordpressify.php:124
+#: dewordpressify.php:111
 msgid "Donate"
 msgstr "Faire un don"
 
@@ -94,7 +95,7 @@ msgstr "Si vous aimez DeWordPressify, pensez à "
 
 #: settings.php:73
 msgid "giving it a review"
-msgstr "le noter "
+msgstr "le noter"
 
 #: settings.php:73
 msgid "or"
@@ -133,20 +134,20 @@ msgid "\"News and events\" widget on dashboard"
 msgstr "Widget “Évènements et nouveautés WordPress” du tableau de bord"
 
 #: settings.php:127
+msgid "Login logo image"
+msgstr "Logo sur la page de connexion"
+
+#: settings.php:135
 msgid "Integrated smileys"
 msgstr "Smileys WordPress"
 
-#: settings.php:135
+#: settings.php:143
 msgid "Integrated RSS feed"
 msgstr "Flux RSS"
 
-#: settings.php:143
+#: settings.php:151
 msgid "Comments"
 msgstr "Commentaires"
-
-#: settings.php:151
-msgid "Login logo image"
-msgstr "Logo sur la page de connexion"
 
 #: settings.php:169
 msgid "Email Settings"
@@ -174,37 +175,37 @@ msgstr "Code superflu dans l’en-tête du site"
 
 #: settings.php:227
 msgid ""
-"There settings may break your site. If you don't know what they do, you "
+"These settings may break your site. If you don't know what they do, you "
 "probably shouldn't tinker with them."
 msgstr ""
-"Ces réglages pourraient faire planter votre site. Si vous ne savez pas ce "
-"que vous faites, c’est mieux de ne pas y toucher."
+"Ces réglages pourraient faire planter votre site. Si vous n’êtes pas sûr de "
+"ce que vous faites, c’est mieux de ne pas y toucher."
 
-#: settings.php:253 settings.php:262
+#: settings.php:251 settings.php:260
 msgid "Your own string"
 msgstr "Votre propre texte"
 
-#: settings.php:288
+#: settings.php:274
 msgid "Default WordPress logo"
 msgstr "Logo WordPress par défaut"
 
-#: settings.php:292
+#: settings.php:278
 msgid "Site logo (if there is one)"
 msgstr "Logo du site (s’il y en a un)"
 
-#: settings.php:296
+#: settings.php:282
 msgid "Site title"
 msgstr "Titre du site"
 
-#: settings.php:300
+#: settings.php:286
 msgid "Hide"
 msgstr "Cacher"
 
-#: settings.php:308
+#: settings.php:306
 msgid "Your site's name"
 msgstr "Nom du site"
 
-#: settings.php:315
+#: settings.php:313
 msgid "First part of email"
 msgstr "Première partie de l'email"
 
