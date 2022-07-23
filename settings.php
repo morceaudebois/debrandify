@@ -7,8 +7,8 @@ class dwpifyOptions {
     private $options_advanced;
 	
 	public function __construct() {
-        add_action('admin_menu', array($this, 'add_plugin_page'));
-        add_action('admin_init', array($this, 'register_settings'));
+        // add_action('admin_menu', array($this, 'add_plugin_page'));
+        // add_action('admin_init', array($this, 'register_settings'));
     }
 
     public function add_plugin_page(){
@@ -21,60 +21,6 @@ class dwpifyOptions {
        );
     }
 
-    public function settings_dom() {
-        $this->options_general = get_option('dwpify_general');
-		$this->options_email = get_option('dwpify_email');
-		$this->options_advanced = get_option('dwpify_advanced');
-
-        $email_Screen = (isset($_GET['action']) && 'email' == $_GET['action']) ? true : false;
-        $advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; ?>
-       
-        <div class="wrap">
-            <h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
-            
-            <h2 class="nav-tab-wrapper">
-				<a href="<?php echo admin_url('admin.php?page=dewordpressify'); ?>" class="nav-tab<?php if (! isset($_GET['action']) || isset($_GET['action']) && 'email' != $_GET['action']  && 'advanced' != $_GET['action']) echo ' nav-tab-active'; ?>">
-                    <?php esc_html_e('General', 'dewordpressify') ?>
-                </a>
-
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($email_Screen) echo ' nav-tab-active'; ?>">
-                    <?php esc_html_e('Email', 'dewordpressify') ?>
-                </a> 
-
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($advanced_Screen) echo ' nav-tab-active'; ?>">
-                    <?php esc_html_e('Advanced', 'dewordpressify') ?>
-                </a>        
-			</h2>
-    
-        	 <form method="post" action="options.php"> 
-                <?php if ($email_Screen) { //   settings_fields('dwpify_general');
-					settings_fields('dwpify_email');
-					do_settings_sections('dwpify_setting_email');
-					submit_button();
-				} elseif($advanced_Screen) {
-					settings_fields('dwpify_advanced');
-					do_settings_sections('dwpify_setting_advanced');
-					submit_button();
-				} else { 
-					settings_fields('dwpify_general');
-					do_settings_sections('dwpify_setting_general');
-					submit_button(); 
-				} ?>
-			</form>
-        </div>
-        
-        <br>
-        <hr><br><br>
-        
-        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
-
-        <p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
-
-        <p><?php _e('If you like DeWordPressify, please consider ', 'dewordpressify') ?> <a href="#"><?php _e('giving it a review', 'dewordpressify') ?></a> <?php _e('or', 'dewordpressify') ?> <a href="#"><?php _e('donating', 'dewordpressify') ?></a>. <br>
-        <?php _e('This is what motivates me to keep it updated and create new projects as an indie developer 😊', 'dewordpressify') ?></p> 
-        
-    <?php }
-
     public function register_settings() { // register settings
         // General settings
         register_setting(
@@ -86,7 +32,7 @@ class dwpifyOptions {
         add_settings_section( // __() & _e() thingies are used for translation
             'general_section', // ID
             __('General settings', 'dewordpressify'), // Title
-            array($this, 'print_section_info'), // Callback
+            array($this, 'print_general_info'), // Callback
             'dwpify_setting_general' // Page
         );
 
@@ -167,7 +113,7 @@ class dwpifyOptions {
         add_settings_section(
             'email_section', // ID
             __('Email Settings', 'dewordpressify'), // Title
-            array($this, 'print_section_info'), // Callback
+            array($this, 'print_general_info'), // Callback
             'dwpify_setting_email' // Page
         );  
 
@@ -218,10 +164,60 @@ class dwpifyOptions {
         );
     }
 
+    public function settings_dom() {
+        $this->options_general = get_option('dwpify_general');
+        $this->options_email = get_option('dwpify_email');
+        $this->options_advanced = get_option('dwpify_advanced');
+    
+        $email_Screen = (isset($_GET['action']) && 'email' == $_GET['action']) ? true : false;
+        $advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; ?>
+       
+        <div class="wrap">
+            <h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
+            
+            <h2 class="nav-tab-wrapper">
+                <a href="<?php echo admin_url('admin.php?page=dewordpressify'); ?>" class="nav-tab<?php if (! isset($_GET['action']) || isset($_GET['action']) && 'email' != $_GET['action']  && 'advanced' != $_GET['action']) echo ' nav-tab-active'; ?>">
+                    <?php esc_html_e('General', 'dewordpressify') ?>
+                </a>
+    
+                <a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($email_Screen) echo ' nav-tab-active'; ?>">
+                    <?php esc_html_e('Email', 'dewordpressify') ?>
+                </a> 
+    
+                <a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), admin_url('admin.php?page=dewordpressify'))); ?>" class="nav-tab<?php if ($advanced_Screen) echo ' nav-tab-active'; ?>">
+                    <?php esc_html_e('Advanced', 'dewordpressify') ?>
+                </a>        
+            </h2>
+    
+             <form method="post" action="options.php"> 
+                <?php if ($email_Screen) { //   settings_fields('dwpify_general');
+                    settings_fields('dwpify_email');
+                    do_settings_sections('dwpify_setting_email');
+                } elseif($advanced_Screen) {
+                    settings_fields('dwpify_advanced');
+                    do_settings_sections('dwpify_setting_advanced');
+                } else { 
+                    settings_fields('dwpify_general');
+                    do_settings_sections('dwpify_setting_general');
+                } 
+                
+                submit_button(); ?>
+            </form>
+        </div>
+        
+        <br>
+        <hr><br><br>
+        
+        <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+    
+        <p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
+    
+        <p><?php _e('If you like DeWordPressify, please consider ', 'dewordpressify') ?> <a href="#"><?php _e('giving it a review', 'dewordpressify') ?></a> <?php _e('or', 'dewordpressify') ?> <a href="#"><?php _e('donating', 'dewordpressify') ?></a>. <br>
+        <?php _e('This is what motivates me to keep it updated and create new projects as an indie developer 😊', 'dewordpressify') ?></p> 
+        
+    <?php }
 
-	public function print_section_info() {
-        //your code...
-	}
+	public function print_general_info() {}
 
     public function print_advanced_info() {
         echo '<p>' . __('These settings may break your site. If you don\'t know what they do, you probably shouldn\'t tinker with them.', 'dewordpressify') . '</p>';
@@ -300,7 +296,6 @@ class dwpifyOptions {
         $this->printCheckbox('general', 'comments');
     }
 
-
     public function email_from_callback() {
         printf(
             '<input type="text" id="from_string" name="dwpify_email[from_string]" value="%s" placeholder="' . __('Your site\'s name', 'dewordpressify') . '"/>',
@@ -334,6 +329,9 @@ class dwpifyOptions {
         } return $new_input;
     }
 }
+
+
+include(plugin_dir_path(__FILE__) . 'multisite_settings.php');
 
 // initalises settings page (probably?)
 if (is_admin()) $settings_page = new dwpifyOptions();

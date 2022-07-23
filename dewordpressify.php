@@ -78,7 +78,7 @@ add_action('init', function() {
         
                 update_option('installBanner', 'triggered');
             // change to +30 days to debug notice
-            } else if (get_option('installDate') < strtotime('+30 days') && !get_option('usedNotice')) {
+            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
 
                 add_action('admin_notices', function() { ?>
 
