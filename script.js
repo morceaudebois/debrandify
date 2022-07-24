@@ -14,8 +14,20 @@ function hideableInputs() {
     })
 }
 
+function prioritise() {
+    const prioCheckbox = document.getElementById('prioritise');
+    const tbody = document.querySelector('.form-table tbody');
+
+    if (!prioCheckbox.checked) tbody.classList.add('greyedOut'); // init
+
+    prioCheckbox.addEventListener('change', function() {
+        tbody.classList.toggle('greyedOut');
+    });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     hideableInputs()
+    prioritise()
 
     const emailString = document.querySelector('#email_string');
     if (emailString) { // prevents from adding spaces in email username 

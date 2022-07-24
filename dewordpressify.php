@@ -22,23 +22,25 @@ function init() {
     if (!get_option('installDate')) { add_option('installDate', time()); }
 
     // adds default options if missing
-    if (!get_option('dwpify_general')) {
+    if (!get_option('dwpify_adminbar_logo')) {
         add_option('dwpify_general', array(
-            'adminbar_logo' => 'yes',
-            'thank_you' => 'yes',
-            'thankyou_string' => '',
-            'footer_version' => 'yes',
-            'version_string' => '',
-            'comments' => 'yes',
-            'rss' => 'yes',
-            'smileys' => 'yes',
-            'login_logo' => 'wp_logo',
-            'dashboard_news' => 'yes'
-        ));
+            'dwpify_adminbar_logo' => 'yes',
+            'dwpify_thank_you' => 'yes',
+            'dwpify_thank_you_string' => '',
+            'dwpify_footer_version' => 'yes',
+            'dwpify_footer_version_string' => '',
+            'dwpify_login_logo' => 'wp_logo',
+            'dwpify_dashboard_news' => 'yes',
+            'dwpify_smileys' => 'yes',
+            'dwpify_rss' => 'yes',
+            'dwpify_comments' => 'yes',
+            'dwpify_svg' => 'no',
 
-        add_option('dwpify_advanced', array(
-            'head' => 'yes',
-            'css' => 'yes',
+            'dwpify_css' => 'yes',
+            'dwpify_head' => 'yes',
+            'dwpify_wp_embed' => 'yes',
+            'dwpify_block_library' => 'yes',
+            'dwpify_wp_themes' => 'yes',
         ));
     }
 }

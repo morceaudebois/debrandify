@@ -63,3 +63,11 @@ input[type=text].greyedOut {
   background: #b4b6b9;
   transition: background-color 0.1s;
 }
+
+table tbody tr {
+  transition: opacity 0.15s ease-in;
+}
+table tbody.greyedOut tr:not(tr:first-child) {
+  opacity: 0.4;
+  pointer-events: none;
+}

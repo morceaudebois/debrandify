@@ -1,17 +1,7 @@
 <?php class dwpifyOptions {
 
-	public function tabsUrl() {
-		$tabsUrl = '.php?page=dewordpressify';
-		if (nw()) { return network_admin_url('settings' . $tabsUrl);
-		} else { return admin_url('admin' . $tabsUrl); }
-	} 
-
-	public function getCurrentTab() {
-		return !isset($_GET['action']) ? 'general' : $_GET['action'];
-	}
-
 	public function printCheckbox($key, $title, $text = false) {
-		$isChecked = checked('yes', get_site_option('dwpify_' . $key), false); ?>
+		$isChecked = checked('yes', getOption('dwpify_' . $key), false); ?>
 
 		<tr>
 			<th scope="row"><?php echo $title ?></th>
@@ -25,7 +15,7 @@
 
 				<?php if ($text) { 
 					$stringKey = $key . '_string';
-					$value = get_site_option('dwpify_' . $stringKey);
+					$value = getOption('dwpify_' . $stringKey);
 					$placeholder = __($text, 'dewordpressify');
 
 					echo "<input type='text' id='${stringKey}' class='greyedOut' name='dwpify_${stringKey}' value='${value}' placeholder='${placeholder}' />";
@@ -35,7 +25,7 @@
 	<?php }
 
 	public function printTextField($key, $title, $placeholder) { 
-		$value = get_site_option('dwpify_' . $key) ? get_site_option('dwpify_' . $key) : ''; ?>
+		$value = getOption('dwpify_' . $key) ? getOption('dwpify_' . $key) : ''; ?>
 		<tr>
 			<th scope="row"><?php echo $title; ?></th>
 			<td><?php echo "<input type='text' id='${key}' name='dwpify_${key}' value='${value}' placeholder='${placeholder}' />" ?></td>
@@ -46,34 +36,44 @@
 		$settingsUrl = nw() ? 'edit' : 'admin-post'; ?>
 		
 		<div class="wrap">
-			<h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
+			<h1>
+				<?php _e(nw() ? 'DeWordPressify multisite settings' : 'DeWordPressify Settings', 'dewordpressify') ?>
+			</h1>
+
+			<?php if (nw()) {
+				echo "<span>" . __('These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the DeWordPressify settings of its dashboard.', 'dewordpressify') . "</span>";
+			} ?>
 				
 			<h2 class="nav-tab-wrapper">
-				<a href="<?php echo $this->tabsUrl(); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo tabsUrl(); ?>" class="nav-tab <?php if (getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('General', 'dewordpressify') ?>
 				</a>
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), $this->tabsUrl())); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'email') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'email') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Email', 'dewordpressify') ?>
 				</a> 
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), $this->tabsUrl())); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'advanced') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'advanced') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Advanced', 'dewordpressify') ?>
 				</a>
 			</h2>
 
-			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo $this->getCurrentTab()?>">
+			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo getCurrentTab()?>">
 				<?php wp_nonce_field('dwpify-validate'); ?>
 
 				<table class="form-table">
 					<?php 
-						switch($this->getCurrentTab()) {
+						if (!nw()) {
+							$this->printCheckbox('prioritise', __('Prioritise these settings', 'dewordpressify'));
+						} ?>
+
+						<?php switch(getCurrentTab()) {
 							case 'general':
 								$this->printCheckbox('adminbar_logo', __('WordPress admin bar logo', 'dewordpressify'));
 								$this->printCheckbox('thank_you', __('Thank you sentence in admin footer', 'dewordpressify'), __('Your own string', 'dewordpressify'));
 								$this->printCheckbox('footer_version', __('WordPress version in admin footer', 'dewordpressify'), __('Your own string', 'dewordpressify'));
 
-								$options = get_site_option('dwpify_login_logo') ? get_site_option('dwpify_login_logo') : 'wp_logo' ?>
+								$options = getOption('dwpify_login_logo') ? getOption('dwpify_login_logo') : 'wp_logo' ?>
 								<tr><th scope="row"><?php _e('Login logo image', 'dewordpressify'); ?></th>
 									<td>
 										<select name="dwpify_login_logo">
@@ -134,6 +134,8 @@
 	public function save() {
 		check_admin_referer('dwpify-validate'); // Nonce security check
 
+		error_log(print_r($_POST, true) );
+
 		function rediUrl() {
 			if (nw()) { return network_admin_url('settings.php?action=' . $_GET['tab']);
 			} else { return admin_url('options-general.php?page=dewordpressify&action=' . $_GET['tab']); }
@@ -141,7 +143,7 @@
 
         foreach ($_POST as $key => $value) {
             if (substr($key, 0, 7) === "dwpify_") { // checks if starts with dwpify_
-                update_site_option($key, sanitize_text_field($value));
+				updateOption($key, sanitize_text_field($value));
             }
         }
 

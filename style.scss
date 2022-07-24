@@ -70,3 +70,12 @@ input[type="text"] {
 		}
 	}
 }
+
+table tbody {
+	tr { transition: opacity .15s ease-in; }
+
+	&.greyedOut tr:not(tr:first-child) {
+		opacity: .4;
+		pointer-events: none;
+	}
+}
