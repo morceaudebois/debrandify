@@ -7,23 +7,17 @@ class dwpifyOptionsBis {
 		} else { return admin_url('admin' . $tabsUrl); }
 	} 
 
-	public function printCheckbox($group, $key, $title) {
-		$group_name = 'options_' . $group; 
-
-		$isChecked = checked('yes', get_site_option($group_name[$key]), false);
-		?>
+	public function printCheckbox($key, $title) {
+		$isChecked = checked('yes', get_site_option('dwpify_' . $key), false);
+		// var_dump(get_site_option('dwpify_general')['adminbar_logo']); ?>
 
 		<tr>
 			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
-			<td><label><input name="dwpify_<?php echo $group_name[$key]; ?>" type="checkbox" value="yes" > Yes, check this checkbox</label></td>
+			<td><label><input name="dwpify_<?php echo $key; ?>" <?php echo $isChecked ?>type="checkbox" value="yes"></label></td>
 		</tr>
 	<?php }
 
 	public function misha_settings_page_1() {
-		$options_general = get_option('dwpify_general');
-		$options_email = get_option('dwpify_email');
-		$options_advanced = get_option('dwpify_advanced');
-
 		$email_Screen = (isset($_GET['action']) && 'email' == $_GET['action']) ? true : false;
 		$advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; 
 		
@@ -50,7 +44,7 @@ class dwpifyOptionsBis {
 				<?php wp_nonce_field( 'misha-validate' ); ?>
 
 				<table class="form-table">
-						<?php $this->printCheckbox('general', 'adminbar_logo', 'WordPress admin bar logo'); ?>
+						<?php $this->printCheckbox('adminbar_logo', 'WordPress admin bar logo'); ?>
 				</table>
 
 				<?php submit_button(); ?>
@@ -80,10 +74,11 @@ class dwpifyOptionsBis {
 			} else { return admin_url('options-general.php?page=dewordpressify'); }
 		}
 
+		error_log(print_r($_POST, true));
 		$allInputs = array('adminbar_logo');
 
 		foreach ($allInputs as $input) {
-			update_site_option($input, sanitize_text_field($_POST[$input]));
+			update_site_option('dwpify_' . $input, sanitize_text_field($_POST['dwpify_' . $input]));
 		}
 
 		wp_redirect(add_query_arg(array( 'page' => 'dewordpressify', 'updated' => true),

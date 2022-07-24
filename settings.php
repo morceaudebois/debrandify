@@ -7,8 +7,8 @@ class dwpifyOptions {
     private $options_advanced;
 	
 	public function __construct() {
-        // add_action('admin_menu', array($this, 'add_plugin_page'));
-        // add_action('admin_init', array($this, 'register_settings'));
+        add_action('admin_menu', array($this, 'add_plugin_page'));
+        add_action('admin_init', array($this, 'register_settings'));
     }
 
     public function add_plugin_page(){
@@ -322,6 +322,8 @@ class dwpifyOptions {
         $new_input = array();
         $toBeVerified = array('adminbar_logo', 'thank_you', 'thankyou_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
 
+        error_log(print_r($input, true));
+
         foreach ($toBeVerified as &$value) {
             if (isset($input[$value])) {
                 $new_input[$value] = sanitize_text_field($input[$value]);
@@ -332,9 +334,6 @@ class dwpifyOptions {
 
 
 include(plugin_dir_path(__FILE__) . 'multisite_settings.php');
-
-// initalises settings page (probably?)
-// if (is_admin()) $settings_page = new dwpifyOptions();
 
 // adds script.js to settings page
 add_action('admin_enqueue_scripts', function($hook_suffix) {
@@ -348,4 +347,5 @@ add_action('admin_enqueue_scripts', function($hook_suffix) {
     wp_enqueue_style($handle);
 });
 
+// if (is_admin()) $settings_page = new dwpifyOptions(); // init class
 ?>
