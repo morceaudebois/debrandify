@@ -11,7 +11,7 @@ class dwpifyOptionsBis {
 		return !isset($_GET['action']) ? 'general' : $_GET['action'];
 	}
 
-	public function printCheckbox($key, $title) {
+	public function printCheckbox($key, $title, $text = false) {
 		$isChecked = checked('yes', get_site_option('dwpify_' . $key), false); ?>
 
 		<tr>
@@ -21,6 +21,14 @@ class dwpifyOptionsBis {
 					<input id="<?php echo $key ?>" name="dwpify_<?php echo $key; ?>" <?php echo $isChecked ?>type="checkbox" value="yes">
 					<span class='slider round span'></span>
 				</label>
+
+				<?php if ($text) { 
+					$stringKey = $key . '_string';
+					$value = get_site_option('dwpify_' . $stringKey);
+					$placeholder = __($text, 'dewordpressify');
+
+					echo "<input type='text' id='${stringKey}' class='greyedOut' name='dwpify_${stringKey}' value='${value}' placeholder='${placeholder}' />";
+				} ?>
 			</td>
 		</tr>
 	<?php }
@@ -47,13 +55,16 @@ class dwpifyOptionsBis {
 			</h2>
 
 			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=mishaaction&tab=<?php echo $this->getCurrentTab()?>">
-				<?php wp_nonce_field( 'misha-validate' ); ?>
+				<?php wp_nonce_field('misha-validate'); ?>
 
 				<table class="form-table">
 					<?php 
 						switch($this->getCurrentTab()) {
 							case 'general':
 								$this->printCheckbox('adminbar_logo', 'WordPress admin bar logo');
+								$this->printCheckbox(
+									'thank_you', 'Thank you sentence in admin footer', 'Your own string'
+								);
 								break;
 							case 'email':
 								$this->printCheckbox('email_username', 'Username of the email adress that sends from your site');
@@ -91,7 +102,7 @@ class dwpifyOptionsBis {
 		}
 
 		error_log(print_r($_POST, true));
-		$allInputs = array('adminbar_logo', 'email_username');
+		$allInputs = array('adminbar_logo', 'thank_you', 'thank_you_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
 
 		foreach ($allInputs as $input) {
 			$key = 'dwpify_' . $input;
@@ -143,8 +154,6 @@ class dwpifyOptionsBis {
 			}
 		});
 	}
-
-
 }
 
 if (is_admin()) $settings_page = new dwpifyOptionsBis();
