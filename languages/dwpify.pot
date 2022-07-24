@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-20T15:38:32+00:00\n"
+"POT-Creation-Date: 2022-07-24T15:39:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: dewordpressify\n"
@@ -54,135 +54,150 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
-#: settings.php:33
+#: multisite_settings.php:51
+#: settings.php:176
 msgid "DeWordPressify Settings"
 msgstr ""
 
-#: settings.php:37
+#: multisite_settings.php:56
+#: settings.php:180
 msgid "General"
 msgstr ""
 
-#: settings.php:41
+#: multisite_settings.php:60
+#: settings.php:184
 msgid "Email"
 msgstr ""
 
-#: settings.php:45
+#: multisite_settings.php:64
+#: settings.php:188
 msgid "Advanced"
 msgstr ""
 
-#: settings.php:71
-msgid "Made in France with ❤️ by "
-msgstr ""
-
+#: multisite_settings.php:80
 #: settings.php:73
-msgid "If you like DeWordPressify, please consider "
-msgstr ""
-
-#: settings.php:73
-msgid "giving it a review"
-msgstr ""
-
-#: settings.php:73
-msgid "or"
-msgstr ""
-
-#: settings.php:73
-msgid "donating"
-msgstr ""
-
-#: settings.php:74
-msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
-msgstr ""
-
-#: settings.php:88
-msgid "General settings"
-msgstr ""
-
-#: settings.php:95
-msgid "WordPress admin bar logo"
-msgstr ""
-
-#: settings.php:103
-msgid "Thank you sentence in admin footer"
-msgstr ""
-
-#: settings.php:111
-msgid "WordPress version in admin footer"
-msgstr ""
-
-#: settings.php:119
-msgid "\"News and events\" widget on dashboard"
-msgstr ""
-
-#: settings.php:127
 msgid "Login logo image"
 msgstr ""
 
-#: settings.php:135
-msgid "Integrated smileys"
-msgstr ""
-
-#: settings.php:143
-msgid "Integrated RSS feed"
-msgstr ""
-
-#: settings.php:151
-msgid "Comments"
-msgstr ""
-
-#: settings.php:169
-msgid "Email Settings"
-msgstr ""
-
-#: settings.php:176
-msgid "\"From\" text of emails sent by your site"
-msgstr ""
-
-#: settings.php:184
-msgid "Username of the email adress that sends from your site"
-msgstr ""
-
-#: settings.php:199
-msgid "Advanced Settings"
-msgstr ""
-
-#: settings.php:206
-msgid "Global inline styles"
-msgstr ""
-
-#: settings.php:214
-msgid "Unnecessary code in head tag"
-msgstr ""
-
-#: settings.php:227
-msgid "These settings may break your site. If you don't know what they do, you probably shouldn't tinker with them."
-msgstr ""
-
-#: settings.php:251
-#: settings.php:260
-msgid "Your own string"
-msgstr ""
-
-#: settings.php:274
+#: multisite_settings.php:84
+#: settings.php:270
 msgid "Default WordPress logo"
 msgstr ""
 
-#: settings.php:278
+#: multisite_settings.php:88
+#: settings.php:274
 msgid "Site logo (if there is one)"
 msgstr ""
 
-#: settings.php:282
+#: multisite_settings.php:92
+#: settings.php:278
 msgid "Site title"
 msgstr ""
 
-#: settings.php:286
+#: multisite_settings.php:96
+#: settings.php:282
 msgid "Hide"
 msgstr ""
 
-#: settings.php:306
+#: multisite_settings.php:127
+#: settings.php:213
+msgid "Made in France with ❤️ by "
+msgstr ""
+
+#: multisite_settings.php:129
+#: settings.php:215
+msgid "If you like DeWordPressify, please consider "
+msgstr ""
+
+#: multisite_settings.php:129
+#: settings.php:215
+msgid "giving it a review"
+msgstr ""
+
+#: multisite_settings.php:129
+#: settings.php:215
+msgid "or"
+msgstr ""
+
+#: multisite_settings.php:129
+#: settings.php:215
+msgid "donating"
+msgstr ""
+
+#: multisite_settings.php:130
+#: settings.php:216
+msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
+msgstr ""
+
+#: settings.php:34
+msgid "General settings"
+msgstr ""
+
+#: settings.php:41
+msgid "WordPress admin bar logo"
+msgstr ""
+
+#: settings.php:49
+msgid "Thank you sentence in admin footer"
+msgstr ""
+
+#: settings.php:57
+msgid "WordPress version in admin footer"
+msgstr ""
+
+#: settings.php:65
+msgid "\"News and events\" widget on dashboard"
+msgstr ""
+
+#: settings.php:81
+msgid "Integrated smileys"
+msgstr ""
+
+#: settings.php:89
+msgid "Integrated RSS feed"
+msgstr ""
+
+#: settings.php:97
+msgid "Comments"
+msgstr ""
+
+#: settings.php:115
+msgid "Email Settings"
+msgstr ""
+
+#: settings.php:122
+msgid "\"From\" text of emails sent by your site"
+msgstr ""
+
+#: settings.php:130
+msgid "Username of the email adress that sends from your site"
+msgstr ""
+
+#: settings.php:145
+msgid "Advanced Settings"
+msgstr ""
+
+#: settings.php:152
+msgid "Global inline styles"
+msgstr ""
+
+#: settings.php:160
+msgid "Unnecessary code in head tag"
+msgstr ""
+
+#: settings.php:223
+msgid "These settings may break your site. If you don't know what they do, you probably shouldn't tinker with them."
+msgstr ""
+
+#: settings.php:247
+#: settings.php:256
+msgid "Your own string"
+msgstr ""
+
+#: settings.php:301
 msgid "Your site's name"
 msgstr ""
 
-#: settings.php:313
+#: settings.php:308
 msgid "First part of email"
 msgstr ""

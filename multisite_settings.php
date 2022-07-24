@@ -18,6 +18,8 @@ class dwpifyOptionsBis {
 			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
 			<td>
 				<label class='switch'>
+					<!-- hidden checkbox to return no when unchecked -->
+					<input name="dwpify_<?php echo $key; ?>" <?php echo $isChecked ?> type="hidden" value="no">
 					<input id="<?php echo $key ?>" name="dwpify_<?php echo $key; ?>" <?php echo $isChecked ?>type="checkbox" value="yes">
 					<span class='slider round span'></span>
 				</label>
@@ -30,6 +32,15 @@ class dwpifyOptionsBis {
 					echo "<input type='text' id='${stringKey}' class='greyedOut' name='dwpify_${stringKey}' value='${value}' placeholder='${placeholder}' />";
 				} ?>
 			</td>
+		</tr>
+	<?php }
+
+	public function printTextField($key, $title, $placeholder) { 
+		$value = get_site_option('dwpify_' . $key) ? get_site_option('dwpify_' . $key) : '';
+		$placeholder = __($placeholder, 'dewordpressify') ?>
+		<tr>
+			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
+			<td><?php echo "<input type='text' id='${key}' name='dwpify_${key}' value='${value}' placeholder='${placeholder}' />" ?></td>
 		</tr>
 	<?php }
 
@@ -62,14 +73,44 @@ class dwpifyOptionsBis {
 						switch($this->getCurrentTab()) {
 							case 'general':
 								$this->printCheckbox('adminbar_logo', 'WordPress admin bar logo');
-								$this->printCheckbox(
-									'thank_you', 'Thank you sentence in admin footer', 'Your own string'
-								);
+								$this->printCheckbox('thank_you', 'Thank you sentence in admin footer', 'Your own string');
+								$this->printCheckbox('footer_version', 'WordPress version in admin footer', 'Your own string');
+
+								$options = get_site_option('dwpify_login_logo') ? get_site_option('dwpify_login_logo') : 'wp_logo' ?>
+								<tr><th scope="row"><?php echo __('Login logo image', 'dewordpressify'); ?></th>
+									<td>
+										<select name="dwpify_login_logo">
+											<option value="wp_logo" <?php selected($options, "wp_logo"); ?>>
+												<?php _e('Default WordPress logo', 'dewordpressify') ?>
+											</option>
+								
+											<option value="site_logo" <?php selected($options, "site_logo"); ?>>
+												<?php _e('Site logo (if there is one)', 'dewordpressify') ?>
+											</option>
+								
+											<option value="site_title" <?php selected($options, "site_title"); ?>>
+												<?php _e('Site title', 'dewordpressify') ?>
+											</option>
+								
+											<option value="none" <?php selected($options, "none"); ?>>
+												<?php _e('Hide', 'dewordpressify') ?>
+											</option>
+										</select>
+									</td>
+								</tr><?php 
+
+								$this->printCheckbox('dashboard_news', '"News and events" widget on dashboard');
+								$this->printCheckbox('smileys', 'Integrated smileys');
+								$this->printCheckbox('rss', 'Integrated RSS feed');
+								$this->printCheckbox('comments', 'Comments');
 								break;
 							case 'email':
-								$this->printCheckbox('email_username', 'Username of the email adress that sends from your site');
+								$this->printTextField('email_from', '"From" text of emails sent by your site', 'Your site\'s name');
+								$this->printTextField('email_username', 'Username of the email adress that sends from your site', 'First part of email');
 								break;
 							case 'advanced':
+								$this->printCheckbox('css', 'Global inline styles');
+								$this->printCheckbox('head', 'Unnecessary code in head tag');
 								break;
 						}
 					?>
@@ -102,15 +143,19 @@ class dwpifyOptionsBis {
 		}
 
 		error_log(print_r($_POST, true));
-		$allInputs = array('adminbar_logo', 'thank_you', 'thank_you_string', 'footer_version', 'version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
+
+		$allInputs = array('adminbar_logo', 'thank_you', 'thank_you_string', 'footer_version', 'footer_version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
+
+
 
 		foreach ($allInputs as $input) {
 			$key = 'dwpify_' . $input;
-			$toUpdate = isset($_POST[$key]) ? $_POST[$key] : false;
-
-			update_site_option(
-				$key, sanitize_text_field($toUpdate ? $toUpdate : '')
-			);
+			
+			if (isset($_POST[$key])) {
+				update_site_option(
+					$key, sanitize_text_field($_POST[$key])
+				);
+			}
 		}
 
 		wp_redirect(add_query_arg(array( 'page' => 'dewordpressify', 'updated' => true),
