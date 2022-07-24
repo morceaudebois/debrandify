@@ -1,6 +1,4 @@
-<?php
-
-class dwpifyOptions {
+<?php class dwpifyOptions {
 
 	public function tabsUrl() {
 		$tabsUrl = '.php?page=dewordpressify';
@@ -52,8 +50,7 @@ class dwpifyOptions {
 			<h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
 				
 			<h2 class="nav-tab-wrapper">
-				<a href="<?php echo $this->tabsUrl(); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'general') echo 'nav-tab-active'; ?>"
-				>
+				<a href="<?php echo $this->tabsUrl(); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('General', 'dewordpressify') ?>
 				</a>
 
@@ -98,8 +95,8 @@ class dwpifyOptions {
 											</option>
 										</select>
 									</td>
-								</tr><?php 
-
+								</tr>
+                                <?php 
 								$this->printCheckbox('dashboard_news', '"News and events" widget on dashboard');
 								$this->printCheckbox('smileys', 'Integrated smileys');
 								$this->printCheckbox('rss', 'Integrated RSS feed');
@@ -116,9 +113,7 @@ class dwpifyOptions {
 						}
 					?>
 				</table>
-
 				<?php submit_button(); ?>
-
 			</form>
 
 			<br><hr><br><br>
@@ -130,9 +125,7 @@ class dwpifyOptions {
 			<p><?php _e('If you like DeWordPressify, please consider ', 'dewordpressify') ?> <a href="#"><?php _e('giving it a review', 'dewordpressify') ?></a> <?php _e('or', 'dewordpressify') ?> <a href="#"><?php _e('donating', 'dewordpressify') ?></a>. <br>
 			<?php _e('This is what motivates me to keep it updated and create new projects as an indie developer 😊', 'dewordpressify') ?></p> 
 		</div>
-
 	<?php }
-
 
 	public function save() {
 		check_admin_referer('dwpify-validate'); // Nonce security check
@@ -142,25 +135,15 @@ class dwpifyOptions {
 			} else { return admin_url('options-general.php?page=dewordpressify&action=' . $_GET['tab']); }
 		}
 
-		error_log(print_r($_POST, true));
-
-		$allInputs = array('adminbar_logo', 'thank_you', 'thank_you_string', 'footer_version', 'footer_version_string', 'email_username', 'email_from', 'head', 'css', 'comments', 'rss', 'smileys', 'login_logo', 'dashboard_news', 'from_string', 'email_string');
-
-		foreach ($allInputs as $input) {
-			$key = 'dwpify_' . $input;
-			
-			if (isset($_POST[$key])) {
-				update_site_option(
-					$key, sanitize_text_field($_POST[$key])
-				);
-			}
-		}
+        foreach ($_POST as $key => $value) {
+            if (substr($key, 0, 7) === "dwpify_") { // checks if starts with dwpify_
+                update_site_option($key, sanitize_text_field($value));
+            }
+        }
 
 		wp_redirect(add_query_arg(array( 'page' => 'dewordpressify', 'updated' => true),
 			rediUrl()
-		));
-
-		exit;
+		)); exit;
 	}
 
 	// init stuff
@@ -193,7 +176,7 @@ class dwpifyOptions {
 
 		add_action( 'network_admin_notices', function() {
 			if(isset($_GET['page']) && $_GET['page'] == 'dewordpressify' && isset( $_GET['updated'])) {
-				echo '<div id="message" class="updated notice is-dismissible"><p>Settings updated. You\'re the best!</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+				echo '<div id="message" class="updated notice is-dismissible"><p>Settings updated.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
 			}
 		});
 	}
