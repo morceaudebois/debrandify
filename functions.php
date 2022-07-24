@@ -7,3 +7,5 @@ function replaceableString($section, $input, $string) {
         if ($options[$string]) return $options[$string]; // return value if exists
     } else { return false; } // false if unchecked
 }
+
+function nw() { return is_network_admin(); }

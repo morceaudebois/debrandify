@@ -334,7 +334,7 @@ class dwpifyOptions {
 include(plugin_dir_path(__FILE__) . 'multisite_settings.php');
 
 // initalises settings page (probably?)
-if (is_admin()) $settings_page = new dwpifyOptions();
+// if (is_admin()) $settings_page = new dwpifyOptions();
 
 // adds script.js to settings page
 add_action('admin_enqueue_scripts', function($hook_suffix) {
