@@ -16,7 +16,12 @@ class dwpifyOptionsBis {
 
 		<tr>
 			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
-			<td><label><input name="dwpify_<?php echo $key; ?>" <?php echo $isChecked ?>type="checkbox" value="yes"></label></td>
+			<td>
+				<label class='switch'>
+					<input id="<?php echo $key ?>" name="dwpify_<?php echo $key; ?>" <?php echo $isChecked ?>type="checkbox" value="yes">
+					<span class='slider round span'></span>
+				</label>
+			</td>
 		</tr>
 	<?php }
 
@@ -63,8 +68,7 @@ class dwpifyOptionsBis {
 
 			</form>
 
-			<br>
-			<hr><br><br>
+			<br><hr><br><br>
 
 			<img src="<?php echo plugin_dir_url(__FILE__) . 'assets/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
 		
@@ -82,7 +86,7 @@ class dwpifyOptionsBis {
 		check_admin_referer('misha-validate'); // Nonce security check
 
 		function rediUrl() {
-			if (nw()) { return network_admin_url('settings.php');
+			if (nw()) { return network_admin_url('settings.php?action=' . $_GET['tab']);
 			} else { return admin_url('options-general.php?page=dewordpressify&action=' . $_GET['tab']); }
 		}
 
