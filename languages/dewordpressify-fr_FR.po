@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
-"POT-Creation-Date: 2022-07-24T15:39:37+00:00\n"
-"PO-Revision-Date: 2022-07-24 17:41+0200\n"
+"POT-Creation-Date: 2022-07-24T16:42:20+00:00\n"
+"PO-Revision-Date: 2022-07-24 18:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -69,63 +69,135 @@ msgstr "Noter"
 msgid "Donate"
 msgstr "Faire un don"
 
-#: multisite_settings.php:51 settings.php:176
+#: settings.php:49
 msgid "DeWordPressify Settings"
 msgstr "Réglages de DeWordPressify"
 
-#: multisite_settings.php:56 settings.php:180
+#: settings.php:53
 msgid "General"
 msgstr "Général"
 
-#: multisite_settings.php:60 settings.php:184
+#: settings.php:57
 msgid "Email"
 msgstr ""
 
-#: multisite_settings.php:64 settings.php:188
+#: settings.php:61
 msgid "Advanced"
 msgstr "Avancé"
 
-#: multisite_settings.php:80 settings.php:73
+#: settings.php:72
+msgid "WordPress admin bar logo"
+msgstr "Logo WordPress dans la barre d’outils"
+
+#: settings.php:73
+msgid "Thank you sentence in admin footer"
+msgstr "Phrase de remerciement de pied de page du tableau de bord"
+
+#: settings.php:73 settings.php:74
+msgid "Your own string"
+msgstr "Votre propre texte"
+
+#: settings.php:74
+msgid "WordPress version in admin footer"
+msgstr "Version WordPress de pied de page du tableau de bord"
+
+#: settings.php:77
 msgid "Login logo image"
 msgstr "Logo sur la page de connexion"
 
-#: multisite_settings.php:84 settings.php:270
+#: settings.php:81
 msgid "Default WordPress logo"
 msgstr "Logo WordPress par défaut"
 
-#: multisite_settings.php:88 settings.php:274
+#: settings.php:85
 msgid "Site logo (if there is one)"
 msgstr "Logo du site (s’il y en a un)"
 
-#: multisite_settings.php:92 settings.php:278
+#: settings.php:89
 msgid "Site title"
 msgstr "Titre du site"
 
-#: multisite_settings.php:96 settings.php:282
+#: settings.php:93
 msgid "Hide"
 msgstr "Cacher"
 
-#: multisite_settings.php:127 settings.php:213
+#: settings.php:100
+msgid "\"News and events\" widget on dashboard"
+msgstr "Widget “Évènements et nouveautés WordPress” du tableau de bord"
+
+#: settings.php:101
+msgid "Integrated smileys"
+msgstr "Smileys WordPress"
+
+#: settings.php:102
+msgid "Integrated RSS feed"
+msgstr "Flux RSS"
+
+#: settings.php:103
+msgid "Comments"
+msgstr "Commentaires"
+
+#: settings.php:104
+msgid "SVG upload"
+msgstr "Téléversement de SVG"
+
+#: settings.php:107
+msgid "\"From\" text of emails sent by your site"
+msgstr "Champs “From” des emails envoyés par votre site"
+
+#: settings.php:107
+msgid "Your site's name"
+msgstr "Nom du site"
+
+#: settings.php:108
+msgid "Username of the email adress that sends from your site"
+msgstr "Première partie de l’adresse avec lequel votre site envoie des emails"
+
+#: settings.php:108
+msgid "First part of email"
+msgstr "Première partie de l&#8217;email"
+
+#: settings.php:111
+msgid "Global inline styles"
+msgstr "CSS à la ligne WordPress (global inline styles)"
+
+#: settings.php:112
+msgid "Unnecessary code in head tag"
+msgstr "Code superflu dans l’en-tête du site"
+
+#: settings.php:113
+msgid "Embeds"
+msgstr "Intégration de liens"
+
+#: settings.php:114
+msgid "Block library"
+msgstr "Bibliothèque de blocs WordPress (Block Library)"
+
+#: settings.php:115
+msgid "Automatically download new WordPress themes"
+msgstr "Téléchargement automatique des nouveaux thèmes WordPress"
+
+#: settings.php:127
 msgid "Made in France with ❤️ by "
 msgstr "Fabriqué en France avec ❤️ par "
 
-#: multisite_settings.php:129 settings.php:215
+#: settings.php:129
 msgid "If you like DeWordPressify, please consider "
 msgstr "Si vous aimez DeWordPressify, pensez à "
 
-#: multisite_settings.php:129 settings.php:215
+#: settings.php:129
 msgid "giving it a review"
 msgstr "le noter"
 
-#: multisite_settings.php:129 settings.php:215
+#: settings.php:129
 msgid "or"
 msgstr "ou"
 
-#: multisite_settings.php:129 settings.php:215
+#: settings.php:129
 msgid "donating"
 msgstr "faire un don"
 
-#: multisite_settings.php:130 settings.php:216
+#: settings.php:130
 msgid ""
 "This is what motivates me to keep it updated and create new projects as an "
 "indie developer 😊"
@@ -133,81 +205,21 @@ msgstr ""
 "C’est ce qui me motive à garder ce projet à jour et à en créer de nouveaux "
 "en tant que développeur indépendant 😊"
 
-#: settings.php:34
-msgid "General settings"
-msgstr "Réglages généraux"
+#~ msgid "General settings"
+#~ msgstr "Réglages généraux"
 
-#: settings.php:41
-msgid "WordPress admin bar logo"
-msgstr "Logo WordPress dans la barre d’outils"
+#~ msgid "Email Settings"
+#~ msgstr "Réglages des emails"
 
-#: settings.php:49
-msgid "Thank you sentence in admin footer"
-msgstr "Phrase de remerciement de pied de page du tableau de bord"
+#~ msgid "Advanced Settings"
+#~ msgstr "Réglages avancés"
 
-#: settings.php:57
-msgid "WordPress version in admin footer"
-msgstr "Version WordPress de pied de page du tableau de bord"
-
-#: settings.php:65
-msgid "\"News and events\" widget on dashboard"
-msgstr "Widget “Évènements et nouveautés WordPress” du tableau de bord"
-
-#: settings.php:81
-msgid "Integrated smileys"
-msgstr "Smileys WordPress"
-
-#: settings.php:89
-msgid "Integrated RSS feed"
-msgstr "Flux RSS"
-
-#: settings.php:97
-msgid "Comments"
-msgstr "Commentaires"
-
-#: settings.php:115
-msgid "Email Settings"
-msgstr "Réglages des emails"
-
-#: settings.php:122
-msgid "\"From\" text of emails sent by your site"
-msgstr "Champs “From” des emails envoyés par votre site"
-
-#: settings.php:130
-msgid "Username of the email adress that sends from your site"
-msgstr "Première partie de l’adresse avec lequel votre site envoie des emails"
-
-#: settings.php:145
-msgid "Advanced Settings"
-msgstr "Réglages avancés"
-
-#: settings.php:152
-msgid "Global inline styles"
-msgstr "CSS à la ligne WordPress (global inline styles)"
-
-#: settings.php:160
-msgid "Unnecessary code in head tag"
-msgstr "Code superflu dans l’en-tête du site"
-
-#: settings.php:223
-msgid ""
-"These settings may break your site. If you don't know what they do, you "
-"probably shouldn't tinker with them."
-msgstr ""
-"Ces réglages pourraient faire planter votre site. Si vous n’êtes pas sûr de "
-"ce que vous faites, c’est mieux de ne pas y toucher."
-
-#: settings.php:247 settings.php:256
-msgid "Your own string"
-msgstr "Votre propre texte"
-
-#: settings.php:301
-msgid "Your site's name"
-msgstr "Nom du site"
-
-#: settings.php:308
-msgid "First part of email"
-msgstr "Première partie de l&#8217;email"
+#~ msgid ""
+#~ "These settings may break your site. If you don't know what they do, you "
+#~ "probably shouldn't tinker with them."
+#~ msgstr ""
+#~ "Ces réglages pourraient faire planter votre site. Si vous n’êtes pas sûr "
+#~ "de ce que vous faites, c’est mieux de ne pas y toucher."
 
 #~ msgid "From field"
 #~ msgstr "Champs “from”"

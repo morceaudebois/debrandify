@@ -14,7 +14,7 @@
 		$isChecked = checked('yes', get_site_option('dwpify_' . $key), false); ?>
 
 		<tr>
-			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
+			<th scope="row"><?php echo $title ?></th>
 			<td>
 				<label class='switch'>
 					<!-- hidden checkbox to return no when unchecked -->
@@ -35,10 +35,9 @@
 	<?php }
 
 	public function printTextField($key, $title, $placeholder) { 
-		$value = get_site_option('dwpify_' . $key) ? get_site_option('dwpify_' . $key) : '';
-		$placeholder = __($placeholder, 'dewordpressify') ?>
+		$value = get_site_option('dwpify_' . $key) ? get_site_option('dwpify_' . $key) : ''; ?>
 		<tr>
-			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
+			<th scope="row"><?php echo $title; ?></th>
 			<td><?php echo "<input type='text' id='${key}' name='dwpify_${key}' value='${value}' placeholder='${placeholder}' />" ?></td>
 		</tr>
 	<?php }
@@ -70,12 +69,12 @@
 					<?php 
 						switch($this->getCurrentTab()) {
 							case 'general':
-								$this->printCheckbox('adminbar_logo', 'WordPress admin bar logo');
-								$this->printCheckbox('thank_you', 'Thank you sentence in admin footer', 'Your own string');
-								$this->printCheckbox('footer_version', 'WordPress version in admin footer', 'Your own string');
+								$this->printCheckbox('adminbar_logo', __('WordPress admin bar logo', 'dewordpressify'));
+								$this->printCheckbox('thank_you', __('Thank you sentence in admin footer', 'dewordpressify'), __('Your own string', 'dewordpressify'));
+								$this->printCheckbox('footer_version', __('WordPress version in admin footer', 'dewordpressify'), __('Your own string', 'dewordpressify'));
 
 								$options = get_site_option('dwpify_login_logo') ? get_site_option('dwpify_login_logo') : 'wp_logo' ?>
-								<tr><th scope="row"><?php echo __('Login logo image', 'dewordpressify'); ?></th>
+								<tr><th scope="row"><?php _e('Login logo image', 'dewordpressify'); ?></th>
 									<td>
 										<select name="dwpify_login_logo">
 											<option value="wp_logo" <?php selected($options, "wp_logo"); ?>>
@@ -96,19 +95,24 @@
 										</select>
 									</td>
 								</tr>
+
                                 <?php 
-								$this->printCheckbox('dashboard_news', '"News and events" widget on dashboard');
-								$this->printCheckbox('smileys', 'Integrated smileys');
-								$this->printCheckbox('rss', 'Integrated RSS feed');
-								$this->printCheckbox('comments', 'Comments');
+								$this->printCheckbox('dashboard_news', __('"News and events" widget on dashboard', 'dewordpressify'));
+								$this->printCheckbox('smileys', __('Integrated smileys', 'dewordpressify'));
+								$this->printCheckbox('rss', __('Integrated RSS feed', 'dewordpressify'));
+								$this->printCheckbox('comments', __('Comments', 'dewordpressify'));
+                                $this->printCheckbox('svg', __('SVG upload', 'dewordpressify'));
 								break;
 							case 'email':
-								$this->printTextField('email_from', '"From" text of emails sent by your site', 'Your site\'s name');
-								$this->printTextField('email_username', 'Username of the email adress that sends from your site', 'First part of email');
+								$this->printTextField('email_from', __('"From" text of emails sent by your site', 'dewordpressify'), __('Your site\'s name', 'dewordpressify'));
+								$this->printTextField('email_username', __('Username of the email adress that sends from your site', 'dewordpressify'), __('First part of email', 'dewordpressify'));
 								break;
 							case 'advanced':
-								$this->printCheckbox('css', 'Global inline styles');
-								$this->printCheckbox('head', 'Unnecessary code in head tag');
+								$this->printCheckbox('css', __('Global inline styles', 'dewordpressify'));
+								$this->printCheckbox('head', __('Unnecessary code in head tag', 'dewordpressify'));
+                                $this->printCheckbox('wp_embed', __('Embeds', 'dewordpressify'));
+                                $this->printCheckbox('block_library', __('Block library', 'dewordpressify'));
+                                $this->printCheckbox('wp_themes', __('Automatically download new WordPress themes', 'dewordpressify'));
 								break;
 						}
 					?>
@@ -141,7 +145,7 @@
             }
         }
 
-		wp_redirect(add_query_arg(array( 'page' => 'dewordpressify', 'updated' => true),
+		wp_redirect(add_query_arg(array('page' => 'dewordpressify', 'updated' => true),
 			rediUrl()
 		)); exit;
 	}
@@ -172,10 +176,10 @@
 		});
 
 		add_action('network_admin_edit_dwifyAction', function() { $this->save(); });
-		add_action( 'admin_post_dwifyAction', function() { $this->save(); });
+		add_action('admin_post_dwifyAction', function() { $this->save(); });
 
-		add_action( 'network_admin_notices', function() {
-			if(isset($_GET['page']) && $_GET['page'] == 'dewordpressify' && isset( $_GET['updated'])) {
+		add_action('network_admin_notices', function() {
+			if (isset($_GET['page']) && $_GET['page'] == 'dewordpressify' && isset( $_GET['updated'])) {
 				echo '<div id="message" class="updated notice is-dismissible"><p>Settings updated.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
 			}
 		});

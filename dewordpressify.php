@@ -352,6 +352,13 @@ function everywhere() {
         add_action('init', 'df_disable_comments_admin_bar');
     }
 
+    if ($options && !array_key_exists('svg', $options)) {
+        add_filter('upload_mimes', function() {
+            $mimes['svg'] = 'image/svg+xml';
+            return $mimes;
+        });
+    }
+
     $options = get_option('dwpify_email');
     
     if ($options && !array_key_exists('email_from', $options)) {
@@ -383,6 +390,25 @@ function everywhere() {
         remove_action('wp_head', 'wp_generator');
         remove_action('wp_head', 'wp_shortlink_wp_head', 10);
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    }
+
+    if ($options && !array_key_exists('wp_embed', $options)) {
+        add_action('wp_footer', function() {
+            wp_dequeue_script('wp-embed');
+        });
+    }
+
+    if ($options && !array_key_exists('block_library', $options)) {
+        add_action('wp_enqueue_scripts', function() {
+            // // remove block library css
+            wp_dequeue_style('wp-block-library');
+            // // remove comment reply JS
+            wp_dequeue_script('comment-reply');
+        });
+    }
+
+    if ($options && !array_key_exists('wp_themes', $options)) {
+        define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
     }
 }
 

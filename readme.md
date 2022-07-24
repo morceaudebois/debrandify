@@ -10,10 +10,10 @@ DeWordPressify also has some advanced functions that let you easily disable buil
 
 - [x] Delete data on uninstall
 - [ ] Better multisite compatibility?
-- [ ] WP Embed toggle
-- [ ] Block library toggle
-- [ ] Don't download new WP themes toggle
-- [ ] Allow SVGs upload toggle
+- [x] WP Embed toggle
+- [x] Block library toggle
+- [x] Don't download new WP themes toggle
+- [x] Allow SVGs upload toggle
 - [x] Installation banner
 - [x] "You've been using DeWordPressify for a while" banner
 - [x] Logo on settings page?
