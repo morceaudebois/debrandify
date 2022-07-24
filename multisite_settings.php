@@ -7,9 +7,12 @@ class dwpifyOptionsBis {
 		} else { return admin_url('admin' . $tabsUrl); }
 	} 
 
+	public function getCurrentTab() {
+		return !isset($_GET['action']) ? 'general' : $_GET['action'];
+	}
+
 	public function printCheckbox($key, $title) {
-		$isChecked = checked('yes', get_site_option('dwpify_' . $key), false);
-		// var_dump(get_site_option('dwpify_general')['adminbar_logo']); ?>
+		$isChecked = checked('yes', get_site_option('dwpify_' . $key), false); ?>
 
 		<tr>
 			<th scope="row"><?php echo __($title, 'dewordpressify'); ?></th>
@@ -18,33 +21,42 @@ class dwpifyOptionsBis {
 	<?php }
 
 	public function misha_settings_page_1() {
-		$email_Screen = (isset($_GET['action']) && 'email' == $_GET['action']) ? true : false;
-		$advanced_Screen = (isset($_GET['action']) && 'advanced' == $_GET['action']) ? true : false; 
-		
 		$settingsUrl = nw() ? 'edit' : 'admin-post'; ?>
 		
 		<div class="wrap">
 			<h1><?php _e('DeWordPressify Settings', 'dewordpressify') ?></h1>
 				
 			<h2 class="nav-tab-wrapper">
-				<a href="<?php echo $this->tabsUrl(); ?>" class="nav-tab<?php if (! isset($_GET['action']) || isset($_GET['action']) && 'email' != $_GET['action']  && 'advanced' != $_GET['action']) echo ' nav-tab-active'; ?>">
+				<a href="<?php echo $this->tabsUrl(); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'general') echo 'nav-tab-active'; ?>"
+				>
 					<?php esc_html_e('General', 'dewordpressify') ?>
 				</a>
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), $this->tabsUrl())); ?>" class="nav-tab<?php if ($email_Screen) echo ' nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), $this->tabsUrl())); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'email') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Email', 'dewordpressify') ?>
 				</a> 
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), $this->tabsUrl())); ?>" class="nav-tab<?php if ($advanced_Screen) echo ' nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), $this->tabsUrl())); ?>" class="nav-tab <?php if ($this->getCurrentTab() == 'advanced') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Advanced', 'dewordpressify') ?>
 				</a>
 			</h2>
 
-			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=mishaaction">
+			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=mishaaction&tab=<?php echo $this->getCurrentTab()?>">
 				<?php wp_nonce_field( 'misha-validate' ); ?>
 
 				<table class="form-table">
-						<?php $this->printCheckbox('adminbar_logo', 'WordPress admin bar logo'); ?>
+					<?php 
+						switch($this->getCurrentTab()) {
+							case 'general':
+								$this->printCheckbox('adminbar_logo', 'WordPress admin bar logo');
+								break;
+							case 'email':
+								$this->printCheckbox('email_username', 'Username of the email adress that sends from your site');
+								break;
+							case 'advanced':
+								break;
+						}
+					?>
 				</table>
 
 				<?php submit_button(); ?>
@@ -71,14 +83,19 @@ class dwpifyOptionsBis {
 
 		function rediUrl() {
 			if (nw()) { return network_admin_url('settings.php');
-			} else { return admin_url('options-general.php?page=dewordpressify'); }
+			} else { return admin_url('options-general.php?page=dewordpressify&action=' . $_GET['tab']); }
 		}
 
 		error_log(print_r($_POST, true));
-		$allInputs = array('adminbar_logo');
+		$allInputs = array('adminbar_logo', 'email_username');
 
 		foreach ($allInputs as $input) {
-			update_site_option('dwpify_' . $input, sanitize_text_field($_POST['dwpify_' . $input]));
+			$key = 'dwpify_' . $input;
+			$toUpdate = isset($_POST[$key]) ? $_POST[$key] : false;
+
+			update_site_option(
+				$key, sanitize_text_field($toUpdate ? $toUpdate : '')
+			);
 		}
 
 		wp_redirect(add_query_arg(array( 'page' => 'dewordpressify', 'updated' => true),
