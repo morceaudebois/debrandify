@@ -58,10 +58,23 @@ function getDefaultOptions() {
     return $dwpifyDefaults;
 }
 
-function checkOption($key) {
+function checkOption($key, $string = false) {
     $key = 'dwpify_' . $key;
+
     // checks if per network option has priority
     if (is_multisite() && get_option('dwpify_prioritise') == 'no') {
-        return get_site_option($key) == 'yes' ? true : false;
-    } return get_option($key) == 'yes' ? true : false; // else just returns normal option
+        if (!$string) return get_site_option($key) == 'yes' ? true : false;
+        return get_site_option($key); // when string output
+    } 
+    
+    if (!$string) return get_option($key) == 'yes' ? true : false; // else just returns normal option
+    return get_option($key); // when string output
 }
+
+
+
+
+
+
+
+

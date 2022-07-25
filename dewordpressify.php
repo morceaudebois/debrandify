@@ -149,84 +149,76 @@ function user_logged_in() {
 }
 
 function loginPage() {
-    if (isset($options['login_logo'])) {
-        function remove_logo() {
-            $options = get_option('dwpify_general'); 
-            // why does it need to be redeclared?????? ?>
+    add_action('login_head', function() { ?>
+        <style type="text/css">
+            <?php
+                switch(checkOption('login_logo', true)) {
+                    case 'site_logo':
+                        add_filter('login_headerurl', function() {
+                            return get_bloginfo('url');
+                        });
 
-            <style type="text/css">
-                <?php
+                        add_filter('login_headertext', function() {
+                            return get_bloginfo('name');
+                        }); ?>
 
-                    switch($options['login_logo']) {
-                        case 'site_logo':
-                            add_filter('login_headerurl', function() {
-                                return get_bloginfo('url');
-                            });
+                        .login h1 a { 
+                            overflow: visible;
+                            padding: unset;
+                            background-size: contain;
+                            background-position: center;
+                            width: 85%;
+                            background-image: url('<?php echo esc_url(wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'full' )[0]) ?>')
+                        } /* changes logo */
 
-                            add_filter('login_headertext', function() {
-                                return get_bloginfo('name');
-                            }); ?>
+                    <?php break;
+                    case 'site_title':
+                        add_filter('login_headerurl', function() {
+                            return get_bloginfo('url'); // changes URL
+                        });
 
-                            .login h1 a { 
-                                overflow: visible;
-                                padding: unset;
-                                background-size: contain;
-                                background-position: center;
-                                width: 85%;
-                                background-image: url('<?php echo esc_url(wp_get_attachment_image_src(get_theme_mod('custom_logo'), 'full' )[0]) ?>')
-                            } /* changes logo */
+                        add_filter('login_headertext', function() {
+                            return get_bloginfo('name'); // changes link content
+                        }); ?>
 
-                        <?php break;
-                        case 'site_title':
-                            add_filter('login_headerurl', function() {
-                                return get_bloginfo('url'); // changes URL
-                            });
+                        .login h1 a { 
+                            background: unset;
+                            text-indent: unset;
+                            height: unset;
+                            overflow: visible;
+                            padding: unset;
+                            width: 80%;
+                            font-size: 24px;
+                        } /* Makes link visible */
+                        
+                    <?php break;
+                    case 'none': ?>
+                        .login h1 a { display: none }
+                    <?php break;
+                }
+            ?>
 
-                            add_filter('login_headertext', function() {
-                                return get_bloginfo('name'); // changes link content
-                            }); ?>
-
-                            .login h1 a { 
-                                background: unset;
-                                text-indent: unset;
-                                height: unset;
-                                overflow: visible;
-                                padding: unset;
-                                width: 80%;
-                                font-size: 24px;
-                            } /* Makes link visible */
-                            
-                        <?php break;
-                        case 'none': ?>
-                            .login h1 a { display: none }
-                        <?php break;
-                    }
-                ?>
-
-                /* better centered login form */
-                @media screen and (min-height: 550px) {
-                    body {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        flex-direction: column;
-                    }
-
-                    #login {
-                        padding: 20px 0;
-                        margin: unset;
-                    }
-
-                    .login form {
-                        margin-top: unset;
-                    }
+            /* better centered login form */
+            @media screen and (min-height: 550px) {
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
                 }
 
-            </style>
-        <?php }
-            
-        add_action('login_head', 'remove_logo');
-    }
+                #login {
+                    padding: 20px 0;
+                    margin: unset;
+                }
+
+                .login form {
+                    margin-top: unset;
+                }
+            }
+
+        </style>
+    <?php });
 }
 
 function everywhere() {
@@ -276,7 +268,7 @@ function everywhere() {
 
     if (!checkOption('comments')) {
         // Disable support for comments and trackbacks in post types
-        function df_disable_comments_post_types_support() {
+        add_action('admin_init', function() {
             $post_types = get_post_types();
             foreach ($post_types as $post_type) {
                 if(post_type_supports($post_type, 'comments')) {
@@ -284,54 +276,45 @@ function everywhere() {
                     remove_post_type_support($post_type, 'trackbacks');
                 }
             }
-        }
-        add_action('admin_init', 'df_disable_comments_post_types_support');
+        });
 
         // Close comments on the front-end
-        function df_disable_comments_status() {
-            return false;
-        }
+        function df_disable_comments_status() { return false; }
         add_filter('comments_open', 'df_disable_comments_status', 20, 2);
         add_filter('pings_open', 'df_disable_comments_status', 20, 2);
 
         // Hide existing comments
-        function df_disable_comments_hide_existing_comments($comments) {
+        add_filter('comments_array', function() {
             return array();
-        }
-        add_filter('comments_array', 'df_disable_comments_hide_existing_comments', 10, 2);
+        }, 10, 2);
 
         // Remove comments page in menu
-        function df_disable_comments_admin_menu() {
+        add_action('admin_menu', function() {
             remove_menu_page('edit-comments.php');
-        }
-        add_action('admin_menu', 'df_disable_comments_admin_menu');
+        });
 
         // Redirect any user trying to access comments page
-        function df_disable_comments_admin_menu_redirect() {
+        add_action('admin_init', function() {
             global $pagenow;
             
             if ($pagenow === 'edit-comments.php') {
                 wp_redirect(admin_url()); exit;
             }
-        }
-        add_action('admin_init', 'df_disable_comments_admin_menu_redirect');
+        });
 
         // Remove comments metabox from dashboard
-        function df_disable_comments_dashboard() {
+        add_action('admin_init', function() {
             remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
-        }
-        add_action('admin_init', 'df_disable_comments_dashboard');
+        });
 
         // Remove comments links from admin bar
-        function df_disable_comments_admin_bar() {
+        add_action('init', function() {
             if (is_admin_bar_showing()) {
                 remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
             }
-        }
-        add_action('init', 'df_disable_comments_admin_bar');
+        });
     }
 
-    
     if (!checkOption('svg')) {
         add_filter('upload_mimes', function() {
             $mimes['svg'] = 'image/svg+xml';
@@ -391,7 +374,6 @@ function everywhere() {
         define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
     }
 }
-
 
 add_action('wp_ajax_used_notice', 'addUsedNoticeOption');
 add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
