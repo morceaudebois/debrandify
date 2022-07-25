@@ -4,7 +4,14 @@
 		$isChecked = checked('yes', getOption('dwpify_' . $key), false); ?>
 
 		<tr>
-			<th scope="row"><?php echo $title ?></th>
+			<th scope="row">
+				<?php echo $title;
+				 if ($key === 'prioritise') {
+					echo "<p class='desc'>" . __('Your site uses WordPress Multisite, which means DeWordPressify options are set up ', 'dewordpressify') . "<a href='" . network_admin_url('settings.php?page=dewordpressify') . "'>" . __('on the network level', 'dewordpressify') . "</a>" . __('. You can prioritise this specific site\'s settings by toggling this option.', 'dewordpressify') . "</p>";
+				 }
+				?>
+				
+			</th>
 			<td>
 				<label class='switch'>
 					<!-- hidden checkbox to return no when unchecked -->

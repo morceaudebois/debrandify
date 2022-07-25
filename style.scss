@@ -10,7 +10,7 @@ input[type="text"] {
 	transition: opacity .15s ease-in;
 
 	&.greyedOut {
-		opacity: .4;
+		opacity: .3;
 		pointer-events: none;
 	}
 }
@@ -72,10 +72,16 @@ input[type="text"] {
 }
 
 table tbody {
+	.desc {
+		font-weight: 400;
+		margin-top: unset;
+		font-style: italic;
+	}
+	
 	tr { transition: opacity .15s ease-in; }
 
 	&.greyedOut tr:not(tr:first-child) {
-		opacity: .4;
+		opacity: .3;
 		pointer-events: none;
 	}
 }

@@ -11,7 +11,7 @@ input[type=text] {
   transition: opacity 0.15s ease-in;
 }
 input[type=text].greyedOut {
-  opacity: 0.4;
+  opacity: 0.3;
   pointer-events: none;
 }
 
@@ -64,10 +64,15 @@ input[type=text].greyedOut {
   transition: background-color 0.1s;
 }
 
+table tbody .desc {
+  font-weight: 400;
+  margin-top: unset;
+  font-style: italic;
+}
 table tbody tr {
   transition: opacity 0.15s ease-in;
 }
 table tbody.greyedOut tr:not(tr:first-child) {
-  opacity: 0.4;
+  opacity: 0.3;
   pointer-events: none;
 }
