@@ -9,7 +9,7 @@ DeWordPressify also has some advanced functions that let you easily disable buil
 ## 👨‍💻 Things to do
 
 - [x] Delete data on uninstall
-- [ ] Better multisite compatibility?
+- [x] Better multisite compatibility?
 - [ ] Hook for overriding default init settings
 - [x] WP Embed toggle
 - [x] Block library toggle

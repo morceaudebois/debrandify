@@ -55,8 +55,9 @@ add_action('init', function() {
         
         // triggers right after activation
         if (is_admin()) {
-            if (get_option('installBanner') == 'toBeTriggered') {
-                add_action('admin_notices', function() { ?>
+
+            if (get_option('dwpify_installBanner') == 'toBeTriggered') {
+                add_action('dwpify_admin_notices', function() { ?>
                     <div class="notice notice-success is-dismissible" style="display: flex; flex-direction: row; align-items: center;">
         
                         <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
@@ -69,6 +70,7 @@ add_action('init', function() {
                 <?php });
         
                 update_option('installBanner', 'triggered');
+
             // change to +30 days to debug notice
             } else if (get_option('dwpify_installDate') < strtotime('-30 days') && !get_option('dwpify_usedNotice')) {
 
@@ -375,6 +377,4 @@ function everywhere() {
 add_action('wp_ajax_used_notice', 'addUsedNoticeOption');
 add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
 
-function addUsedNoticeOption() {
-    add_option('dwpify_usedNotice', 'closed');
-}
+function addUsedNoticeOption() { add_option('dwpify_usedNotice', 'closed'); }
