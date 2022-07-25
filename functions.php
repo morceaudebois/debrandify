@@ -11,7 +11,7 @@ function replaceableString($section, $input, $string) {
 function nw() { return is_network_admin(); }
 
 function updateOption($key, $value) {
-    if (nw()) { update_site_option($key, $value);
+    if (nw()) { return update_site_option($key, $value);
     } else { return update_option($key, $value); }
 }
 
@@ -31,11 +31,11 @@ function getCurrentTab() {
 
 function getDefaultOptions() {
     $dwpifyDefaults = array(
-        'installDate' => false,
-        'installBanner' => false,
-        'usedNotice' => false,
+        'dwpify_installDate' => false,
+        'dwpify_installBanner' => false,
+        'dwpify_usedNotice' => false,
 
-        'prioritise' => 'no',
+        'dwpify_prioritise' => 'no',
         'dwpify_adminbar_logo' => 'yes',
         'dwpify_thank_you' => 'yes',
         'dwpify_thank_you_string' => '',
@@ -56,4 +56,12 @@ function getDefaultOptions() {
     );
 
     return $dwpifyDefaults;
+}
+
+function checkOption($key) {
+    $key = 'dwpify_' . $key;
+    // checks if per network option has priority
+    if (is_multisite() && get_option('dwpify_prioritise') == 'no') {
+        return get_site_option($key) == 'yes' ? true : false;
+    } return get_option($key) == 'yes' ? true : false; // else just returns normal option
 }

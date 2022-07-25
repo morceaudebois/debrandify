@@ -17,8 +17,6 @@
 
 // activation
 function init() {
-
-
     // adds default options if missing
     if (!get_option('dwpify_adminbar_logo')) {
         foreach (getDefaultOptions() as $key => $value) {
@@ -34,8 +32,8 @@ function init() {
     }
 
     // to know when to trigger notices
-    if (!get_option('installBanner')) { update_option('installBanner', 'toBeTriggered'); }
-    if (!get_option('installDate')) { update_option('installDate', time()); }
+    if (!get_option('dwpify_installBanner')) { update_option('dwpify_installBanner', 'toBeTriggered'); }
+    if (!get_option('dwpify_installDate')) { update_option('dwpify_installDate', time()); }
 }
 
 include(plugin_dir_path(__FILE__) . 'functions.php');
@@ -55,7 +53,6 @@ add_action('init', function() {
 
     add_action('admin_init', function() {
         
-
         // triggers right after activation
         if (is_admin()) {
             if (get_option('installBanner') == 'toBeTriggered') {
@@ -73,7 +70,7 @@ add_action('init', function() {
         
                 update_option('installBanner', 'triggered');
             // change to +30 days to debug notice
-            } else if (get_option('installDate') < strtotime('-30 days') && !get_option('usedNotice')) {
+            } else if (get_option('dwpify_installDate') < strtotime('-30 days') && !get_option('dwpify_usedNotice')) {
 
                 add_action('admin_notices', function() { ?>
 
@@ -121,19 +118,17 @@ add_action('init', function() {
 });
 
 function wp_admin() {
-    $options = get_option('dwpify_general');
-
     add_filter('admin_footer_text', function($defaultString) {
         $theString = replaceableString('general', 'thank_you', 'thankyou_string');
         echo $theString === false ? '' : (is_null($theString) ? $defaultString : $theString);
     }, 11);
-
+    
     add_filter('update_footer', function($defaultString) {
         $theString = replaceableString('general', 'footer_version', 'version_string');
         echo $theString === false ? '' : (is_null($theString) ? $defaultString : $theString);
     }, 11);
 
-    if ($options && !array_key_exists('dashboard_news', $options)) {
+    if (!checkOption('dashboard_news')) {
         function rm_dahsboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
@@ -145,23 +140,16 @@ function wp_admin() {
 }
 
 function user_logged_in() {
-    $options = get_option('dwpify_general');
-    
-    if ($options && !array_key_exists('adminbar_logo', $options)) {
-
+    if (!checkOption('adminbar_logo')) {
         add_action('wp_before_admin_bar_render', function() {
             global $wp_admin_bar;
             $wp_admin_bar->remove_menu('wp-logo');
         }, 0);
-
     }
 }
 
 function loginPage() {
-    $options = get_option('dwpify_general');
-
     if (isset($options['login_logo'])) {
-       
         function remove_logo() {
             $options = get_option('dwpify_general'); 
             // why does it need to be redeclared?????? ?>
@@ -242,9 +230,8 @@ function loginPage() {
 }
 
 function everywhere() {
-    $options = get_option('dwpify_general');
 
-    if ($options && !array_key_exists('smileys', $options)) {
+    if (!checkOption('smileys')) {
         // source https://gist.github.com/netmagik/88e004b17e4cc43d04b6#file-disable-emoji-in-wordpress
         remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
         remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -258,15 +245,12 @@ function everywhere() {
         add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
 
         function disable_emojis_tinymce($plugins) {
-            if (is_array($plugins)) {
-                return array_diff($plugins, array('wpemoji'));
-            } else {
-                return array();
-            }
+            if (is_array($plugins)) return array_diff($plugins, array('wpemoji'));
+            return array();
         }
     }
 
-    if ($options && !array_key_exists('rss', $options)) {
+    if (!checkOption('rss')) {
         remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
         remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
         remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -290,7 +274,7 @@ function everywhere() {
         add_action('do_feed_atom_comments', 'disableRss', 1);
     }
 
-    if ($options && !array_key_exists('comments', $options)) {
+    if (!checkOption('comments')) {
         // Disable support for comments and trackbacks in post types
         function df_disable_comments_post_types_support() {
             $post_types = get_post_types();
@@ -347,7 +331,8 @@ function everywhere() {
         add_action('init', 'df_disable_comments_admin_bar');
     }
 
-    if ($options && !array_key_exists('svg', $options)) {
+    
+    if (!checkOption('svg')) {
         add_filter('upload_mimes', function() {
             $mimes['svg'] = 'image/svg+xml';
             return $mimes;
@@ -356,14 +341,14 @@ function everywhere() {
 
     $options = get_option('dwpify_email');
     
-    if ($options && !array_key_exists('email_from', $options)) {
+    if (!checkOption('email_from')) {
         add_filter( 'wp_mail_from_name', function($original_email_from) {
             $options = get_option('dewordpressify_settings');
             return $options['email_from'];
         } );
     } 
 
-    if ($options && !array_key_exists('email_username', $options)) {
+    if (!checkOption('email_username')) {
         // Function to change email address
         add_filter('wp_mail_from', function() {
             $options = get_option('dewordpressify_settings');
@@ -373,12 +358,12 @@ function everywhere() {
 
     $options = get_option('dwpify_advanced');
 
-    if ($options && !array_key_exists('css', $options)) {
+    if (!checkOption('css')) {
         remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
         remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
     }
 
-    if ($options && !array_key_exists('head', $options)) {
+    if (!checkOption('head')) {
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
@@ -387,13 +372,13 @@ function everywhere() {
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
     }
 
-    if ($options && !array_key_exists('wp_embed', $options)) {
+    if (!checkOption('wp_embed')) {
         add_action('wp_footer', function() {
             wp_dequeue_script('wp-embed');
         });
     }
 
-    if ($options && !array_key_exists('block_library', $options)) {
+    if (!checkOption('block_library')) {
         add_action('wp_enqueue_scripts', function() {
             // // remove block library css
             wp_dequeue_style('wp-block-library');
@@ -402,7 +387,7 @@ function everywhere() {
         });
     }
 
-    if ($options && !array_key_exists('wp_themes', $options)) {
+    if (!checkOption('wp_themes')) {
         define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
     }
 }
@@ -412,5 +397,5 @@ add_action('wp_ajax_used_notice', 'addUsedNoticeOption');
 add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
 
 function addUsedNoticeOption() {
-    add_option('usedNotice', 'closed');
+    add_option('dwpify_usedNotice', 'closed');
 }

@@ -141,8 +141,6 @@
 	public function save() {
 		check_admin_referer('dwpify-validate'); // Nonce security check
 
-		error_log(print_r($_POST, true) );
-
 		function rediUrl() {
 			if (nw()) { return network_admin_url('settings.php?action=' . $_GET['tab']);
 			} else { return admin_url('options-general.php?page=dewordpressify&action=' . $_GET['tab']); }
