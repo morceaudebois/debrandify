@@ -3,16 +3,12 @@
 // exit if uninstall constant is not defined
 if (!defined('WP_UNINSTALL_PLUGIN')) exit;
 
-$options = array(
-	'usedNotice',
-	'installDate',
-	'installBanner',
-	'dwpify_general',
-	'dwpify_email',
-	'dwpify_advanced',
-);
+include(plugin_dir_path(__FILE__) . 'functions.php');
+
+$allOptions = getDefaultOptions();
 
 // gets rid of all data
-foreach ($options as $option) {
-	if (get_option($option)) delete_option($option);
+foreach ($allOptions as $key => $value) {
+	if (get_option($key)) delete_option($key);
+	if (get_site_option($key)) delete_site_option($key);
 }

@@ -17,32 +17,25 @@
 
 // activation
 function init() {
-    if (!get_option('installBanner')) { add_option('installBanner', 'toBeTriggered'); }
 
-    if (!get_option('installDate')) { add_option('installDate', time()); }
 
     // adds default options if missing
     if (!get_option('dwpify_adminbar_logo')) {
-        add_option('dwpify_general', array(
-            'dwpify_adminbar_logo' => 'yes',
-            'dwpify_thank_you' => 'yes',
-            'dwpify_thank_you_string' => '',
-            'dwpify_footer_version' => 'yes',
-            'dwpify_footer_version_string' => '',
-            'dwpify_login_logo' => 'wp_logo',
-            'dwpify_dashboard_news' => 'yes',
-            'dwpify_smileys' => 'yes',
-            'dwpify_rss' => 'yes',
-            'dwpify_comments' => 'yes',
-            'dwpify_svg' => 'no',
-
-            'dwpify_css' => 'yes',
-            'dwpify_head' => 'yes',
-            'dwpify_wp_embed' => 'yes',
-            'dwpify_block_library' => 'yes',
-            'dwpify_wp_themes' => 'yes',
-        ));
+        foreach (getDefaultOptions() as $key => $value) {
+            add_option($key, $value);
+        }
     }
+
+    // same but for global multisite options 
+    if (is_multisite() && !get_site_option('dwpify_adminbar_logo')) {
+        foreach (getDefaultOptions() as $key => $value) {
+            add_site_option($key, $value);
+        }
+    }
+
+    // to know when to trigger notices
+    if (!get_option('installBanner')) { update_option('installBanner', 'toBeTriggered'); }
+    if (!get_option('installDate')) { update_option('installDate', time()); }
 }
 
 include(plugin_dir_path(__FILE__) . 'functions.php');
