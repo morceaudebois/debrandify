@@ -11,7 +11,7 @@
     Plugin URI: https://github.com/morceaudebois/DeWordPressify
     Domain Path: /languages
     Description: DeWordPressify lets you remove WordPress' branding and replace it with your own!
-    
+
     License: GPL2
 */
 
@@ -119,13 +119,17 @@ add_action('init', function() {
 
 function wp_admin() {
     add_filter('admin_footer_text', function($defaultString) {
-        $theString = replaceableString('general', 'thank_you', 'thankyou_string');
-        echo $theString === false ? '' : (is_null($theString) ? $defaultString : $theString);
+        if (checkOption('thank_you')) {
+            $theString = checkOption('thank_you_string', true);
+            echo $theString ? $theString : $defaultString;
+        }
     }, 11);
     
     add_filter('update_footer', function($defaultString) {
-        $theString = replaceableString('general', 'footer_version', 'version_string');
-        echo $theString === false ? '' : (is_null($theString) ? $defaultString : $theString);
+        if (checkOption('footer_version')) {
+            $theString = checkOption('footer_version_string', true);
+            echo $theString ? $theString : $defaultString;
+        }
     }, 11);
 
     if (!checkOption('dashboard_news')) {
@@ -322,24 +326,17 @@ function everywhere() {
         });
     }
 
-    $options = get_option('dwpify_email');
-    
-    if (!checkOption('email_from')) {
-        add_filter( 'wp_mail_from_name', function($original_email_from) {
-            $options = get_option('dewordpressify_settings');
-            return $options['email_from'];
+    if (!is_null(checkOption('email_from', true))) {
+        add_filter( 'wp_mail_from_name', function() {
+            return checkOption('email_from', true);
         } );
     } 
 
-    if (!checkOption('email_username')) {
-        // Function to change email address
-        add_filter('wp_mail_from', function() {
-            $options = get_option('dewordpressify_settings');
-            return $options['email_username'] . parse_url(get_site_url(), PHP_URL_HOST);
+    if (!is_null(checkOption('email_username', true))) {
+        add_filter('wp_mail_from', function() { // Function to change email address
+            return checkOption('email_username', true) . parse_url(get_site_url(), PHP_URL_HOST);
         });
     }
-
-    $options = get_option('dwpify_advanced');
 
     if (!checkOption('css')) {
         remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );

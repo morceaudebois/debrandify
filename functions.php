@@ -1,13 +1,5 @@
 <?php 
 
-function replaceableString($section, $input, $string) {
-    $options = get_option('dwpify_' . $section);
-
-    if (!empty($options[$input])) { // if checked
-        if ($options[$string]) return $options[$string]; // return value if exists
-    } else { return false; } // false if unchecked
-}
-
 function nw() { return is_network_admin(); }
 
 function updateOption($key, $value) {
@@ -48,6 +40,9 @@ function getDefaultOptions() {
         'dwpify_comments' => 'yes',
         'dwpify_svg' => 'no',
 
+        'dwpify_email_from' => '',
+        'dwpify_email_username' => '',
+
         'dwpify_css' => 'yes',
         'dwpify_head' => 'yes',
         'dwpify_wp_embed' => 'yes',
@@ -64,17 +59,9 @@ function checkOption($key, $string = false) {
     // checks if per network option has priority
     if (is_multisite() && get_option('dwpify_prioritise') == 'no') {
         if (!$string) return get_site_option($key) == 'yes' ? true : false;
-        return get_site_option($key); // when string output
+        return get_site_option($key); // when string output (select)
     } 
     
     if (!$string) return get_option($key) == 'yes' ? true : false; // else just returns normal option
     return get_option($key); // when string output
 }
-
-
-
-
-
-
-
-
