@@ -70,7 +70,7 @@
 
 				<table class="form-table">
 					<?php 
-						if (!nw()) {
+						if (is_multisite() && !nw()) {
 							$this->printCheckbox('prioritise', __('Prioritise these settings', 'dewordpressify'));
 						} ?>
 

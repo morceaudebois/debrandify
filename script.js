@@ -18,11 +18,14 @@ function prioritise() {
     const prioCheckbox = document.getElementById('prioritise');
     const tbody = document.querySelector('.form-table tbody');
 
-    if (!prioCheckbox.checked) tbody.classList.add('greyedOut'); // init
+    if (prioCheckbox) {
+        if (!prioCheckbox.checked) tbody.classList.add('greyedOut'); // init
 
-    prioCheckbox.addEventListener('change', function() {
-        tbody.classList.toggle('greyedOut');
-    });
+        prioCheckbox.addEventListener('change', function() {
+            tbody.classList.toggle('greyedOut');
+        });
+    }
+
 }
 
 window.addEventListener('DOMContentLoaded', () => {

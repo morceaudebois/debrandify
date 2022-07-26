@@ -15,6 +15,9 @@
     License: GPL2
 */
 
+include(plugin_dir_path(__FILE__) . 'functions.php');
+include(plugin_dir_path(__FILE__) . 'settings.php');
+
 // activation
 function init() {
     // adds default options if missing
@@ -36,8 +39,7 @@ function init() {
     if (!get_option('dwpify_installDate')) { update_option('dwpify_installDate', time()); }
 }
 
-include(plugin_dir_path(__FILE__) . 'functions.php');
-include(plugin_dir_path(__FILE__) . 'settings.php');
+
 
 add_action('init', function() {
     init();
@@ -55,9 +57,9 @@ add_action('init', function() {
         
         // triggers right after activation
         if (is_admin()) {
-
+            
             if (get_option('dwpify_installBanner') == 'toBeTriggered') {
-                add_action('dwpify_admin_notices', function() { ?>
+                add_action('admin_notices', function() { ?>
                     <div class="notice notice-success is-dismissible" style="display: flex; flex-direction: row; align-items: center;">
         
                         <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
@@ -69,10 +71,10 @@ add_action('init', function() {
                     </div> 
                 <?php });
         
-                update_option('installBanner', 'triggered');
+                update_option('dwpify_installBanner', 'triggered');
 
             // change to +30 days to debug notice
-            } else if (get_option('dwpify_installDate') < strtotime('-30 days') && !get_option('dwpify_usedNotice')) {
+            } else if (get_option('dwpify_installDate') < strtotime('-30 days') && empty(get_option('dwpify_usedNotice'))) {
 
                 add_action('admin_notices', function() { ?>
 
@@ -81,7 +83,7 @@ add_action('init', function() {
                             document.querySelector('#used_banner .notice-dismiss').onclick = function() {
                                 document.querySelector('#used_banner').remove();
 
-                                fetch('http://localhost/wordpress/wp-admin/admin-ajax.php', {
+                                fetch('/wp-admin/admin-ajax.php', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -91,7 +93,6 @@ add_action('init', function() {
 
                             };
                         })
-                        
                     </script>
 
                     <div class="notice" id="used_banner" style="display: flex; flex-direction: row; align-items: center; position: relative;">
@@ -321,22 +322,48 @@ function everywhere() {
         });
     }
 
-    if (!checkOption('svg')) {
-        add_filter('upload_mimes', function() {
+    if (checkOption('svg')) {
+        // Shamelessly stolen here https://wpengine.com/resources/enable-svg-wordpress/
+        
+        // Allow SVG
+        add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+            global $wp_version;
+
+            if ($wp_version !== '4.7.1') return $data;
+        
+            $filetype = wp_check_filetype($filename, $mimes);
+        
+            return [
+                'ext'             => $filetype['ext'],
+                'type'            => $filetype['type'],
+                'proper_filename' => $data['proper_filename']
+            ];
+        }, 10, 4);
+        
+        add_filter( 'upload_mimes', function($mimes) {
             $mimes['svg'] = 'image/svg+xml';
             return $mimes;
         });
+        
+        add_action( 'admin_head', function() {
+            echo '<style type="text/css">
+                .attachment-266x266, .thumbnail img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+                </style>';
+        });
     }
 
-    if (!is_null(checkOption('email_from', true))) {
-        add_filter( 'wp_mail_from_name', function() {
+    if (!empty(checkOption('email_from', true))) {
+        add_filter('wp_mail_from_name', function() {
             return checkOption('email_from', true);
         } );
     } 
 
-    if (!is_null(checkOption('email_username', true))) {
+    if (!empty(checkOption('email_username', true))) {
         add_filter('wp_mail_from', function() { // Function to change email address
-            return checkOption('email_username', true) . parse_url(get_site_url(), PHP_URL_HOST);
+            return checkOption('email_username', true) . '@' . parse_url(get_site_url(), PHP_URL_HOST);
         });
     }
 
@@ -377,4 +404,4 @@ function everywhere() {
 add_action('wp_ajax_used_notice', 'addUsedNoticeOption');
 add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
 
-function addUsedNoticeOption() { add_option('dwpify_usedNotice', 'closed'); }
+function addUsedNoticeOption() { update_option('dwpify_usedNotice', 'closed'); }
