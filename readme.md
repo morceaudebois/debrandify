@@ -25,6 +25,4 @@ DeWordPressify also has some advanced functions that let you easily disable buil
 
 ## 😮 Random things to know
 
-- When installed, DeWordPressify also takes care of centering the WordPress form on the login page.
-
 - If strings are edited in the main file, you can regenerate the pot file by installing wp-cli and running `wp i18n make-pot . languages/dwpify.pot`.

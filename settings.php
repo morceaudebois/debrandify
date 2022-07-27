@@ -63,6 +63,10 @@
 				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'advanced') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Advanced', 'dewordpressify') ?>
 				</a>
+
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'bonus'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'bonus') echo 'nav-tab-active'; ?>">
+					<?php esc_html_e('Bonus features!', 'dewordpressify') ?>
+				</a>
 			</h2>
 
 			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo getCurrentTab()?>">
@@ -108,7 +112,6 @@
 								$this->printCheckbox('smileys', __('Integrated smileys', 'dewordpressify'));
 								$this->printCheckbox('rss', __('Integrated RSS feed', 'dewordpressify'));
 								$this->printCheckbox('comments', __('Comments', 'dewordpressify'));
-                                $this->printCheckbox('svg', __('SVG upload', 'dewordpressify'));
 								break;
 							case 'email':
 								$this->printTextField('email_from', __('"From" text of emails sent by your site', 'dewordpressify'), __('Your site\'s name', 'dewordpressify'));
@@ -120,6 +123,10 @@
                                 $this->printCheckbox('wp_embed', __('Embeds', 'dewordpressify'));
                                 $this->printCheckbox('block_library', __('Block library', 'dewordpressify'));
                                 $this->printCheckbox('wp_themes', __('Automatically download new WordPress themes', 'dewordpressify'));
+								break;
+							case 'bonus':
+								$this->printCheckbox('svg', __('SVG upload', 'dewordpressify'));
+								$this->printCheckbox('centerLogin', __('Center login form vertically', 'dewordpressify'));
 								break;
 						}
 					?>

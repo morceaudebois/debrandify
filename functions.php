@@ -23,31 +23,39 @@ function getCurrentTab() {
 
 function getDefaultOptions() {
     $dwpifyDefaults = array(
-        'dwpify_installDate' => false,
-        'dwpify_installBanner' => false,
-        'dwpify_usedNotice' => false,
+        'installDate' => false,
+        'installBanner' => false,
+        'usedNotice' => false,
 
-        'dwpify_prioritise' => 'no',
-        'dwpify_adminbar_logo' => 'yes',
-        'dwpify_thank_you' => 'yes',
-        'dwpify_thank_you_string' => '',
-        'dwpify_footer_version' => 'yes',
-        'dwpify_footer_version_string' => '',
-        'dwpify_login_logo' => 'wp_logo',
-        'dwpify_dashboard_news' => 'yes',
-        'dwpify_smileys' => 'yes',
-        'dwpify_rss' => 'yes',
-        'dwpify_comments' => 'yes',
-        'dwpify_svg' => 'no',
+        'prioritise' => 'no',
+        'adminbar_logo' => 'yes',
+        'thank_you' => 'yes',
+        'thank_you_string' => '',
+        'footer_version' => 'yes',
+        'footer_version_string' => '',
+        'login_logo' => 'wp_logo',
+        'dashboard_news' => 'yes',
+        'smileys' => 'yes',
+        'rss' => 'yes',
+        'comments' => 'yes',
 
-        'dwpify_email_from' => '',
-        'dwpify_email_username' => '',
+        'email_from' => '',
+        'email_username' => '',
 
-        'dwpify_css' => 'yes',
-        'dwpify_head' => 'yes',
-        'dwpify_wp_embed' => 'yes',
-        'dwpify_block_library' => 'yes',
-        'dwpify_wp_themes' => 'yes',
+        'css' => 'yes',
+        'head' => 'yes',
+        'wp_embed' => 'yes',
+        'block_library' => 'yes',
+        'wp_themes' => 'yes',
+
+        'svg' => 'no',
+        'centerLogin' => 'no',
+    );
+
+    // add dwpify_ prefix to all keys
+    $dwpifyDefaults = array_combine(
+        array_map(function($k) { return 'dwpify_' . $k; },
+        array_keys($dwpifyDefaults)), $dwpifyDefaults
     );
 
     return $dwpifyDefaults;

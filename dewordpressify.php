@@ -204,26 +204,6 @@ function loginPage() {
                     <?php break;
                 }
             ?>
-
-            /* better centered login form */
-            @media screen and (min-height: 550px) {
-                body {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                }
-
-                #login {
-                    padding: 20px 0;
-                    margin: unset;
-                }
-
-                .login form {
-                    margin-top: unset;
-                }
-            }
-
         </style>
     <?php });
 }
@@ -322,39 +302,6 @@ function everywhere() {
         });
     }
 
-    if (checkOption('svg')) {
-        // Shamelessly stolen here https://wpengine.com/resources/enable-svg-wordpress/
-        
-        // Allow SVG
-        add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
-            global $wp_version;
-
-            if ($wp_version !== '4.7.1') return $data;
-        
-            $filetype = wp_check_filetype($filename, $mimes);
-        
-            return [
-                'ext'             => $filetype['ext'],
-                'type'            => $filetype['type'],
-                'proper_filename' => $data['proper_filename']
-            ];
-        }, 10, 4);
-        
-        add_filter( 'upload_mimes', function($mimes) {
-            $mimes['svg'] = 'image/svg+xml';
-            return $mimes;
-        });
-        
-        add_action( 'admin_head', function() {
-            echo '<style type="text/css">
-                .attachment-266x266, .thumbnail img {
-                    width: 100% !important;
-                    height: auto !important;
-                }
-                </style>';
-        });
-    }
-
     if (!empty(checkOption('email_from', true))) {
         add_filter('wp_mail_from_name', function() {
             return checkOption('email_from', true);
@@ -398,6 +345,64 @@ function everywhere() {
 
     if (!checkOption('wp_themes')) {
         define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
+    }
+
+    if (checkOption('svg')) {
+        // Shamelessly stolen here https://wpengine.com/resources/enable-svg-wordpress/
+        
+        // Allow SVG
+        add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+            global $wp_version;
+
+            if ($wp_version !== '4.7.1') return $data;
+        
+            $filetype = wp_check_filetype($filename, $mimes);
+        
+            return [
+                'ext'             => $filetype['ext'],
+                'type'            => $filetype['type'],
+                'proper_filename' => $data['proper_filename']
+            ];
+        }, 10, 4);
+        
+        add_filter( 'upload_mimes', function($mimes) {
+            $mimes['svg'] = 'image/svg+xml';
+            return $mimes;
+        });
+        
+        add_action( 'admin_head', function() {
+            echo '<style type="text/css">
+                .attachment-266x266, .thumbnail img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+                </style>';
+        });
+    }
+
+    if (checkOption('centerLogin')) {
+        add_action('login_head', function() { ?>
+            <style type="text/css">
+                /* better centered login form */
+                @media screen and (min-height: 550px) {
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                    }
+    
+                    #login {
+                        padding: 20px 0;
+                        margin: unset;
+                    }
+    
+                    .login form {
+                        margin-top: unset;
+                    }
+                }
+            </style>
+        <?php });
     }
 }
 
