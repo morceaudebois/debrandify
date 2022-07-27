@@ -318,7 +318,7 @@ function everywhere() {
         remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
         remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
     }
-
+    
     if (!checkOption('head')) {
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
@@ -403,6 +403,18 @@ function everywhere() {
                 }
             </style>
         <?php });
+    }
+
+    if (!checkOption('restAPI')) {
+        add_filter('rest_authentication_errors', function() {
+            return new WP_Error( 'rest_disabled', __('The WordPress REST API has been disabled.'), array( 'status' => rest_authorization_required_code()));
+        });
+    }
+
+    if (!checkOption('jquery')) {
+        if (!is_login_form() && !is_admin()) {
+            wp_deregister_script('jquery');
+        }
     }
 }
 

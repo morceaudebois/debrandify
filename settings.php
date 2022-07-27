@@ -127,6 +127,8 @@
 							case 'bonus':
 								$this->printCheckbox('svg', __('SVG upload', 'dewordpressify'));
 								$this->printCheckbox('centerLogin', __('Center login form vertically', 'dewordpressify'));
+								$this->printCheckbox('restAPI', __('REST API', 'dewordpressify'));
+								$this->printCheckbox('jquery', __('jQuery (if possible)', 'dewordpressify'));
 								break;
 						}
 					?>
