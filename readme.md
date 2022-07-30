@@ -6,6 +6,8 @@ DeWordPressify is an extension for WordPress that lets you hide all of WordPress
 
 DeWordPressify also has some advanced functions that let you easily disable built-in features of WordPress you might not be using, like comments, emojis, RSS feed and more, thus making your site lighter.
 
+<img src="https://raw.githubusercontent.com/morceaudebois/dewordpressify/master/assets/screenshot.png" width="70%" alt="What DeWordPressify looks like">
+
 ## 👨‍💻 Things to do
 
 - [x] Delete data on uninstall
