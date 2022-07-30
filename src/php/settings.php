@@ -12,6 +12,7 @@
 				?>
 				
 			</th>
+			
 			<td>
 				<label class='switch'>
 					<!-- hidden checkbox to return no when unchecked -->
@@ -138,7 +139,7 @@
 
 			<br><hr><br><br>
 
-			<img src="<?php echo plugin_dir_url(__FILE__) . 'assets/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+			<img src="<?php echo plugin_dir_url(__FILE__) . 'src/images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
 		
 			<p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
 		
@@ -195,7 +196,7 @@
 		add_action('admin_post_dwifyAction', function() { $this->save(); });
 
 		add_action('network_admin_notices', function() {
-			if (isset($_GET['page']) && $_GET['page'] == 'dewordpressify' && isset( $_GET['updated'])) {
+			if (isset($_GET['page']) && $_GET['page'] == 'dewordpressify' && isset($_GET['updated'])) {
 				echo '<div id="message" class="updated notice is-dismissible"><p>Settings updated.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
 			}
 		});
@@ -207,9 +208,9 @@ add_action('admin_enqueue_scripts', function($hook_suffix) {
     if ($hook_suffix != 'settings_page_dewordpressify') return;
 
     $handle = 'dewordpressify';
-    wp_register_script($handle, plugin_dir_url(__FILE__) . '/script.js');
+    wp_register_script($handle, plugin_dir_url(__FILE__) . 'src/js/script.js');
     wp_enqueue_script($handle);
-    wp_register_style($handle, plugin_dir_url(__FILE__) . '/style.css');
+    wp_register_style($handle, plugin_dir_url(__FILE__) . 'src/css/style.css');
     wp_enqueue_style($handle);
 });
 

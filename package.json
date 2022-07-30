@@ -1,7 +1,7 @@
 {
   "name": "dewordpressify",
   "version": "1.0.0",
-  "description": "<h1 align=\"center\">   <a href=\"https://tahoe.be\"><img src=\"https://raw.githubusercontent.com/morceaudebois/dewordpressify/master/assets/dewordpressify.png\" width=\"80%\" alt=\"\"></a> </h1>",
+  "description": "<h1 align=\"center\">   <a href=\"https://tahoe.be\"><img src=\"https://raw.githubusercontent.com/morceaudebois/dewordpressify/master/src/images/dewordpressify.png\" width=\"80%\" alt=\"\"></a> </h1>",
   "main": "script.js",
   "scripts": {
     "scss": "sass --watch --no-source-map style.scss style.css",

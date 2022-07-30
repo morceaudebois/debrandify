@@ -3,7 +3,7 @@
 // exit if uninstall constant is not defined
 if (!defined('WP_UNINSTALL_PLUGIN')) exit;
 
-include(plugin_dir_path(__FILE__) . 'functions.php');
+include(plugin_dir_path(__FILE__) . 'src/php/functions.php');
 
 $allOptions = getDefaultOptions();
 
