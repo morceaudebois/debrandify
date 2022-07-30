@@ -10,7 +10,7 @@
     Author URI: https://tahoe.be
     Plugin URI: https://github.com/morceaudebois/DeWordPressify
     Domain Path: /languages
-    Description: DeWordPressify lets you remove WordPress' branding and replace it with your own!
+    Description: DeWordPressify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter.
 
     License: GPL2
 */
@@ -159,12 +159,10 @@ function everywhere() {
         remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
         
         // Remove from TinyMCE
-        add_filter('tiny_mce_plugins', 'disable_emojis_tinymce');
-
-        function disable_emojis_tinymce($plugins) {
+        add_filter('tiny_mce_plugins', function() {
             if (is_array($plugins)) return array_diff($plugins, array('wpemoji'));
             return array();
-        }
+        });
     }
 
     if (!checkOption('rss')) {
@@ -321,7 +319,7 @@ function everywhere() {
     if (checkOption('centerLogin')) {
         add_action('login_head', function() { ?>
             <style type="text/css">
-                /* better centered login form */
+                /* centered login form */
                 @media screen and (min-height: 550px) {
                     body {
                         display: flex;

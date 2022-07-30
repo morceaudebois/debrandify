@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-24T16:42:20+00:00\n"
+"POT-Creation-Date: 2022-07-30T14:16:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: dewordpressify\n"
@@ -23,7 +23,7 @@ msgid "https://github.com/morceaudebois/DeWordPressify"
 msgstr ""
 
 #. Description of the plugin
-msgid "DeWordPressify lets you remove WordPress' branding and replace it with your own!"
+msgid "DeWordPressify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter."
 msgstr ""
 
 #. Author of the plugin
@@ -34,155 +34,195 @@ msgstr ""
 msgid "https://tahoe.be"
 msgstr ""
 
-#: dewordpressify.php:72
+#: src/php/notices.php:40
 msgid "Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress' branding right away."
 msgstr ""
 
-#: dewordpressify.php:74
+#: src/php/notices.php:42
 msgid "Visit settings page"
 msgstr ""
 
-#: dewordpressify.php:108
+#: src/php/notices.php:75
 msgid "You've been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
 
-#: dewordpressify.php:110
+#: src/php/notices.php:77
 msgid "Review"
 msgstr ""
 
-#: dewordpressify.php:111
+#: src/php/notices.php:78
 msgid "Donate"
 msgstr ""
 
-#: settings.php:49
+#: src/php/settings.php:10
+msgid "Your site uses WordPress Multisite, which means DeWordPressify options are set up "
+msgstr ""
+
+#: src/php/settings.php:10
+msgid "on the network level"
+msgstr ""
+
+#: src/php/settings.php:10
+msgid ". You can prioritise this specific site's settings by toggling this option."
+msgstr ""
+
+#: src/php/settings.php:48
+msgid "DeWordPressify multisite settings"
+msgstr ""
+
+#: src/php/settings.php:49
 msgid "DeWordPressify Settings"
 msgstr ""
 
-#: settings.php:53
+#: src/php/settings.php:53
+msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the DeWordPressify settings of its dashboard."
+msgstr ""
+
+#: src/php/settings.php:58
 msgid "General"
 msgstr ""
 
-#: settings.php:57
+#: src/php/settings.php:62
 msgid "Email"
 msgstr ""
 
-#: settings.php:61
+#: src/php/settings.php:66
 msgid "Advanced"
 msgstr ""
 
-#: settings.php:72
+#: src/php/settings.php:70
+msgid "Bonus features!"
+msgstr ""
+
+#: src/php/settings.php:80
+msgid "Prioritise these settings"
+msgstr ""
+
+#: src/php/settings.php:85
 msgid "WordPress admin bar logo"
 msgstr ""
 
-#: settings.php:73
+#: src/php/settings.php:86
 msgid "Thank you sentence in admin footer"
 msgstr ""
 
-#: settings.php:73
-#: settings.php:74
-msgid "Your own string"
+#: src/php/settings.php:86
+#: src/php/settings.php:87
+msgid "Your own text"
 msgstr ""
 
-#: settings.php:74
+#: src/php/settings.php:87
 msgid "WordPress version in admin footer"
 msgstr ""
 
-#: settings.php:77
+#: src/php/settings.php:90
 msgid "Login logo image"
 msgstr ""
 
-#: settings.php:81
+#: src/php/settings.php:94
 msgid "Default WordPress logo"
 msgstr ""
 
-#: settings.php:85
+#: src/php/settings.php:98
 msgid "Site logo (if there is one)"
 msgstr ""
 
-#: settings.php:89
+#: src/php/settings.php:102
 msgid "Site title"
 msgstr ""
 
-#: settings.php:93
+#: src/php/settings.php:106
 msgid "Hide"
 msgstr ""
 
-#: settings.php:100
+#: src/php/settings.php:113
 msgid "\"News and events\" widget on dashboard"
 msgstr ""
 
-#: settings.php:101
+#: src/php/settings.php:114
 msgid "Integrated smileys"
 msgstr ""
 
-#: settings.php:102
+#: src/php/settings.php:115
 msgid "Integrated RSS feed"
 msgstr ""
 
-#: settings.php:103
+#: src/php/settings.php:116
 msgid "Comments"
 msgstr ""
 
-#: settings.php:104
-msgid "SVG upload"
-msgstr ""
-
-#: settings.php:107
+#: src/php/settings.php:119
 msgid "\"From\" text of emails sent by your site"
 msgstr ""
 
-#: settings.php:107
+#: src/php/settings.php:119
 msgid "Your site's name"
 msgstr ""
 
-#: settings.php:108
+#: src/php/settings.php:120
 msgid "Username of the email adress that sends from your site"
 msgstr ""
 
-#: settings.php:108
+#: src/php/settings.php:120
 msgid "First part of email"
 msgstr ""
 
-#: settings.php:111
+#: src/php/settings.php:123
 msgid "Global inline styles"
 msgstr ""
 
-#: settings.php:112
+#: src/php/settings.php:124
 msgid "Unnecessary code in head tag"
 msgstr ""
 
-#: settings.php:113
+#: src/php/settings.php:125
 msgid "Embeds"
 msgstr ""
 
-#: settings.php:114
+#: src/php/settings.php:126
 msgid "Block library"
 msgstr ""
 
-#: settings.php:115
+#: src/php/settings.php:127
 msgid "Automatically download new WordPress themes"
 msgstr ""
 
-#: settings.php:127
+#: src/php/settings.php:130
+msgid "SVG upload"
+msgstr ""
+
+#: src/php/settings.php:131
+msgid "Center login form vertically"
+msgstr ""
+
+#: src/php/settings.php:132
+msgid "REST API"
+msgstr ""
+
+#: src/php/settings.php:133
+msgid "jQuery (if possible)"
+msgstr ""
+
+#: src/php/settings.php:145
 msgid "Made in France with ❤️ by "
 msgstr ""
 
-#: settings.php:129
+#: src/php/settings.php:147
 msgid "If you like DeWordPressify, please consider "
 msgstr ""
 
-#: settings.php:129
+#: src/php/settings.php:147
 msgid "giving it a review"
 msgstr ""
 
-#: settings.php:129
+#: src/php/settings.php:147
 msgid "or"
 msgstr ""
 
-#: settings.php:129
+#: src/php/settings.php:147
 msgid "donating"
 msgstr ""
 
-#: settings.php:130
+#: src/php/settings.php:148
 msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
 msgstr ""

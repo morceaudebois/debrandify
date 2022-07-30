@@ -45,7 +45,8 @@
 		
 		<div class="wrap">
 			<h1>
-				<?php _e(nw() ? 'DeWordPressify multisite settings' : 'DeWordPressify Settings', 'dewordpressify') ?>
+				<?php if (nw()) { _e('DeWordPressify multisite settings', 'dewordpressify'); }
+				else { _e('DeWordPressify Settings', 'dewordpressify'); } ?>
 			</h1>
 
 			<?php if (nw()) {
@@ -66,7 +67,7 @@
 				</a>
 
 				<a href="<?php echo esc_url(add_query_arg(array('action' => 'bonus'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'bonus') echo 'nav-tab-active'; ?>">
-					<?php esc_html_e('Bonus features!', 'dewordpressify') ?>
+					<?php esc_html_e('Bonus features!', 'dewordpressify') ?> 🎊
 				</a>
 			</h2>
 
@@ -82,8 +83,8 @@
 						<?php switch(getCurrentTab()) {
 							case 'general':
 								$this->printCheckbox('adminbar_logo', __('WordPress admin bar logo', 'dewordpressify'));
-								$this->printCheckbox('thank_you', __('Thank you sentence in admin footer', 'dewordpressify'), __('Your own string', 'dewordpressify'));
-								$this->printCheckbox('footer_version', __('WordPress version in admin footer', 'dewordpressify'), __('Your own string', 'dewordpressify'));
+								$this->printCheckbox('thank_you', __('Thank you sentence in admin footer', 'dewordpressify'), __('Your own text', 'dewordpressify'));
+								$this->printCheckbox('footer_version', __('WordPress version in admin footer', 'dewordpressify'), __('Your own text', 'dewordpressify'));
 
 								$options = getOption('dwpify_login_logo') ? getOption('dwpify_login_logo') : 'wp_logo' ?>
 								<tr><th scope="row"><?php _e('Login logo image', 'dewordpressify'); ?></th>
@@ -139,7 +140,7 @@
 
 			<br><hr><br><br>
 
-			<img src="<?php echo plugin_dir_url(__FILE__) . 'src/images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+			<img src="<?php echo plugin_dir_url(__DIR__ ) . 'images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
 		
 			<p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
 		
@@ -208,9 +209,9 @@ add_action('admin_enqueue_scripts', function($hook_suffix) {
     if ($hook_suffix != 'settings_page_dewordpressify') return;
 
     $handle = 'dewordpressify';
-    wp_register_script($handle, plugin_dir_url(__FILE__) . 'src/js/script.js');
+    wp_register_script($handle, plugin_dir_url(__DIR__) . 'js/script.js');
     wp_enqueue_script($handle);
-    wp_register_style($handle, plugin_dir_url(__FILE__) . 'src/css/style.css');
+    wp_register_style($handle, plugin_dir_url(__DIR__) . 'css/style.css');
     wp_enqueue_style($handle);
 });
 
