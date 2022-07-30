@@ -23,7 +23,7 @@ add_filter('plugin_row_meta', function($plugin_meta, $plugin_file, $plugin_data)
 
         $plugin_meta['dwpify-donate'] = sprintf(
             '<a href="%s" target="_blank" class="dewordpressify-donation-button"> ✨ %s</a>', 
-            '#', esc_html__('Make a donation', 'dewordpressifyi')
+            'https://ko-fi.com/tahoe', esc_html__('Make a donation', 'dewordpressifyi')
         );
         
         unset($plugin_meta[2]);
@@ -75,7 +75,7 @@ if (get_option('dwpify_installBanner') == 'toBeTriggered') {
                 <?php _e('You\'ve been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊', 'dewordpressify')?><br>
         
                 <a class="button" href="#" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'dewordpressify') ?></a>
-                <a class="button" href="#" style="margin-top: 8px"><?php _e('Donate', 'dewordpressify') ?></a>
+                <a class="button" href="https://ko-fi.com/tahoe" style="margin-top: 8px"><?php _e('Donate', 'dewordpressify') ?></a>
             </p>
 
             <!-- added button manually instead of with 
