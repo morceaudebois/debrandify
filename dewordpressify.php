@@ -182,6 +182,9 @@ function everywhere() {
         remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // Display relational links for the posts adjacent to the current post.
         remove_action('wp_head', 'wp_generator'); // Display the XHTML generator that is generated on the wp_head hook, WP version
 
+        add_action('feed_links_show_posts_feed', '__return_false', - 1);
+        add_action('feed_links_show_comments_feed', '__return_false', - 1);
+
         function disableRss() {
             wp_die(__('No feed available, please visit the <a href="'. esc_url(home_url('/')) .'">homepage</a>!'));
         }

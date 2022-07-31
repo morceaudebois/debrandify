@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
 "POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
-"PO-Revision-Date: 2022-07-31 13:07+0200\n"
+"PO-Revision-Date: 2022-07-31 16:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -210,7 +210,7 @@ msgstr "Code superflu dans l’en-tête du site"
 
 #: src/php/settings.php:131
 msgid "Embeds"
-msgstr "Intégration de liens"
+msgstr "Intégration de liens (WP Embeds)"
 
 #: src/php/settings.php:132
 msgid "Block library"
