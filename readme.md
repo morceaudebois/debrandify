@@ -2,7 +2,7 @@
   <a href="https://tahoe.be"><img src="https://raw.githubusercontent.com/morceaudebois/dewordpressify/master/src/images/dewordpressify.png" width="80%" alt=""></a>
 </h1>
 
-DeWordPressify is a toolkit plugin that adds plenty of settings to disable and customise WordPress. You'll be able to remove WordPress' branding and replace it with your own as well as remove some of the bloat that comes built-in. Here's some key features:
+DeWordPressify is a toolkit plugin that adds plenty of settings to customise and improve WordPress. You'll be able to remove WordPress' branding and replace it with your own as well as get rid of some of the bloat that comes built-in. Here's the key features:
 
 - ✨ Customise the WordPress dashboard and emails with your own branding instead of WordPress'. Remove or replace WordPress logos and texts
 - 🗑 Disable WordPress features such as comments, RSS feeds, emojis, REST API, WP Embeds and much more
@@ -16,7 +16,7 @@ DeWordPressify is a toolkit plugin that adds plenty of settings to disable and c
 
 <br>
 
-## 📚 User guide
+## 📚 User guide 
 
 ### How to install DeWordPressify with custom default settings
 
