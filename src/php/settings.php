@@ -112,6 +112,11 @@
 
                                 <?php 
 								$this->printCheckbox('dashboard_news', __('"News and events" widget on dashboard', 'dewordpressify'));
+
+								if (is_plugin_active('elementor/elementor.php')) {
+									$this->printCheckbox('elementor_overview', __('"Elementor overview" widget on dashboard', 'dewordpressify'));
+								}
+
 								$this->printCheckbox('smileys', __('Integrated smileys', 'dewordpressify'));
 								$this->printCheckbox('rss', __('Integrated RSS feed', 'dewordpressify'));
 								$this->printCheckbox('comments', __('Comments', 'dewordpressify'));
@@ -147,7 +152,7 @@
 		
 			<p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
 		
-			<p><?php _e('If you like DeWordPressify, please consider ', 'dewordpressify') ?> <a href="#"><?php _e('giving it a review', 'dewordpressify') ?></a> <?php _e('or', 'dewordpressify') ?> <a href="https://wordpress.org/plugins/dewordpressify/#reviews"><?php _e('donating', 'dewordpressify') ?></a>. <br>
+			<p><?php _e('If you like DeWordPressify, please consider ', 'dewordpressify') ?> <a href="https://wordpress.org/plugins/dewordpressify/#reviews"><?php _e('giving it a review', 'dewordpressify') ?></a> <?php _e('or', 'dewordpressify') ?> <a href="https://ko-fi.com/tahoe"><?php _e('donating', 'dewordpressify') ?></a>. <br>
 			<?php _e('This is what motivates me to keep it updated and create new projects as an indie developer 😊', 'dewordpressify') ?></p> 
 		</div>
 	<?php }

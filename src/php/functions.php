@@ -12,6 +12,7 @@ function getDefaultOptions() {
         'footer_version_string' => '',
         'login_logo' => 'wp_logo',
         'dashboard_news' => 'yes',
+        'elementor_overview' => 'yes',
         'smileys' => 'yes',
         'rss' => 'yes',
         'comments' => 'yes',

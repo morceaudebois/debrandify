@@ -82,6 +82,12 @@ function wp_admin() {
         add_action('wp_user_dashboard_setup',    'rm_dahsboardnews', 20);
         add_action('wp_dashboard_setup',         'rm_dahsboardnews', 20);
     }
+
+    if (is_plugin_active('elementor/elementor.php') && !checkOption('elementor_overview')) {
+        add_action('wp_dashboard_setup', function() {
+            remove_meta_box( 'e-dashboard-overview', 'dashboard', 'normal');
+        }, 40);
+    }
 }
 
 function user_logged_in() {
@@ -214,6 +220,7 @@ function everywhere() {
         // Remove comments page in menu
         add_action('admin_menu', function() {
             remove_menu_page('edit-comments.php');
+            remove_submenu_page('options-general.php', 'options-discussion.php');
         });
 
         // Redirect any user trying to access comments page
@@ -235,6 +242,11 @@ function everywhere() {
             if (is_admin_bar_showing()) {
                 remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
             }
+        });
+
+        add_action('wp_before_admin_bar_render', function() {
+            global $wp_admin_bar;
+            $wp_admin_bar->remove_menu('comments');
         });
     }
 

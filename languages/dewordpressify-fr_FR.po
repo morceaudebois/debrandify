@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeWordPressify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
-"POT-Creation-Date: 2022-07-31T09:50:07+00:00\n"
-"PO-Revision-Date: 2022-07-31 11:51+0200\n"
+"POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
+"PO-Revision-Date: 2022-07-31 13:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -167,91 +167,96 @@ msgstr "Cacher"
 msgid "\"News and events\" widget on dashboard"
 msgstr "Widget “Évènements et nouveautés WordPress” du tableau de bord"
 
-#: src/php/settings.php:115
+#: src/php/settings.php:117
+msgid "\"Elementor overview\" widget on dashboard"
+msgstr "Widget “Vue d’ensemble Elementor” du tableau de bord"
+
+#: src/php/settings.php:120
 msgid "Integrated smileys"
 msgstr "Smileys WordPress"
 
-#: src/php/settings.php:116
+#: src/php/settings.php:121
 msgid "Integrated RSS feed"
 msgstr "Flux RSS"
 
-#: src/php/settings.php:117
+#: src/php/settings.php:122
 msgid "Comments"
 msgstr "Commentaires"
 
-#: src/php/settings.php:120
+#: src/php/settings.php:125
 msgid "\"From\" text of emails sent by your site"
 msgstr "Champs “From” des emails envoyés par votre site"
 
-#: src/php/settings.php:120
+#: src/php/settings.php:125
 msgid "Your site's name"
 msgstr "Nom du site"
 
-#: src/php/settings.php:121
+#: src/php/settings.php:126
 msgid "Username of the email adress that sends from your site"
-msgstr "Première partie de l’adresse avec lequel votre site envoie des emails"
+msgstr ""
+"Première partie de l’adresse avec laquelle votre site envoie des emails"
 
-#: src/php/settings.php:121
+#: src/php/settings.php:126
 msgid "First part of email"
 msgstr "Première partie de l&#8217;email"
 
-#: src/php/settings.php:124
+#: src/php/settings.php:129
 msgid "Global inline styles"
 msgstr "CSS à la ligne WordPress (global inline styles)"
 
-#: src/php/settings.php:125
+#: src/php/settings.php:130
 msgid "Unnecessary code in head tag"
 msgstr "Code superflu dans l’en-tête du site"
 
-#: src/php/settings.php:126
+#: src/php/settings.php:131
 msgid "Embeds"
 msgstr "Intégration de liens"
 
-#: src/php/settings.php:127
+#: src/php/settings.php:132
 msgid "Block library"
 msgstr "Bibliothèque de blocs WordPress (Block Library)"
 
-#: src/php/settings.php:128
+#: src/php/settings.php:133
 msgid "Automatically download new WordPress themes"
 msgstr "Téléchargement automatique des nouveaux thèmes WordPress"
 
-#: src/php/settings.php:131
+#: src/php/settings.php:136
 msgid "SVG upload"
 msgstr "Téléversement de SVG"
 
-#: src/php/settings.php:132
+#: src/php/settings.php:137
 msgid "Center login form vertically"
 msgstr "Centrer verticalement le formulaire de connexion"
 
-#: src/php/settings.php:133
+#: src/php/settings.php:138
 msgid "REST API"
 msgstr ""
 
-#: src/php/settings.php:134
+#: src/php/settings.php:139
 msgid "jQuery (if possible)"
 msgstr "jQuery (si possible)"
 
-#: src/php/settings.php:148
+#: src/php/settings.php:153
 msgid "Made in France with ❤️ by "
 msgstr "Fabriqué en France avec ❤️ par "
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "If you like DeWordPressify, please consider "
 msgstr "Si vous aimez DeWordPressify, pensez à "
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "giving it a review"
 msgstr "le noter"
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "or"
 msgstr "ou"
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "donating"
 msgstr "faire un don"
 
-#: src/php/settings.php:151
+#: src/php/settings.php:156
 msgid ""
 "This is what motivates me to keep it updated and create new projects as an "
 "indie developer 😊"

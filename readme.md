@@ -48,18 +48,9 @@ I love making high quality open source software! My goal is to become a full tim
 
 ## 👨‍💻 Things to do
 
-- [x] Delete data on uninstall
-- [x] Better multisite compatibility?
 - [x] ~~Hook for overriding default init settings~~ Guide to edit the default settings
-- [x] Links in plugins page
 - [x] WP Embed toggle
 - [x] Block library toggle
-- [x] Don't download new WP themes toggle
-- [x] Allow SVGs upload toggle
-- [x] Installation banner
-- [x] "You've been using DeWordPressify for a while" banner
-- [x] Logo on settings page?
-- [x] Links for banners and stuff
 - [ ] Animated logo (mayyyyybe)
 - [x] Translation file + french translation
 - [ ] Publish on WordPress!

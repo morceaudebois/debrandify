@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-31T09:50:07+00:00\n"
+"POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: dewordpressify\n"
@@ -140,90 +140,94 @@ msgstr ""
 msgid "\"News and events\" widget on dashboard"
 msgstr ""
 
-#: src/php/settings.php:115
+#: src/php/settings.php:117
+msgid "\"Elementor overview\" widget on dashboard"
+msgstr ""
+
+#: src/php/settings.php:120
 msgid "Integrated smileys"
 msgstr ""
 
-#: src/php/settings.php:116
+#: src/php/settings.php:121
 msgid "Integrated RSS feed"
 msgstr ""
 
-#: src/php/settings.php:117
+#: src/php/settings.php:122
 msgid "Comments"
 msgstr ""
 
-#: src/php/settings.php:120
+#: src/php/settings.php:125
 msgid "\"From\" text of emails sent by your site"
 msgstr ""
 
-#: src/php/settings.php:120
+#: src/php/settings.php:125
 msgid "Your site's name"
 msgstr ""
 
-#: src/php/settings.php:121
+#: src/php/settings.php:126
 msgid "Username of the email adress that sends from your site"
 msgstr ""
 
-#: src/php/settings.php:121
+#: src/php/settings.php:126
 msgid "First part of email"
 msgstr ""
 
-#: src/php/settings.php:124
+#: src/php/settings.php:129
 msgid "Global inline styles"
 msgstr ""
 
-#: src/php/settings.php:125
+#: src/php/settings.php:130
 msgid "Unnecessary code in head tag"
 msgstr ""
 
-#: src/php/settings.php:126
+#: src/php/settings.php:131
 msgid "Embeds"
 msgstr ""
 
-#: src/php/settings.php:127
+#: src/php/settings.php:132
 msgid "Block library"
 msgstr ""
 
-#: src/php/settings.php:128
+#: src/php/settings.php:133
 msgid "Automatically download new WordPress themes"
 msgstr ""
 
-#: src/php/settings.php:131
+#: src/php/settings.php:136
 msgid "SVG upload"
 msgstr ""
 
-#: src/php/settings.php:132
+#: src/php/settings.php:137
 msgid "Center login form vertically"
 msgstr ""
 
-#: src/php/settings.php:133
+#: src/php/settings.php:138
 msgid "REST API"
 msgstr ""
 
-#: src/php/settings.php:134
+#: src/php/settings.php:139
 msgid "jQuery (if possible)"
 msgstr ""
 
-#: src/php/settings.php:148
+#: src/php/settings.php:153
 msgid "Made in France with ❤️ by "
 msgstr ""
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "If you like DeWordPressify, please consider "
 msgstr ""
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "giving it a review"
 msgstr ""
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "or"
 msgstr ""
 
-#: src/php/settings.php:150
+#: src/php/settings.php:155
 msgid "donating"
 msgstr ""
 
-#: src/php/settings.php:151
+#: src/php/settings.php:156
 msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
 msgstr ""
