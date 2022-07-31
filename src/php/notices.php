@@ -74,7 +74,7 @@ if (get_option('dwpify_installBanner') == 'toBeTriggered') {
             <p style="margin-right: 10px">
                 <?php _e('You\'ve been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊', 'dewordpressify')?><br>
         
-                <a class="button" href="#" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'dewordpressify') ?></a>
+                <a class="button" href="https://wordpress.org/plugins/dewordpressify/#reviews" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'dewordpressify') ?></a>
                 <a class="button" href="https://ko-fi.com/tahoe" style="margin-top: 8px"><?php _e('Donate', 'dewordpressify') ?></a>
             </p>
 

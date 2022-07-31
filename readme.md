@@ -27,6 +27,25 @@ You might want to install DeWordPressify on multiple websites without having to 
 
 <br>
 
+## 🌟 Support my work!
+
+Here's some ideas:
+- Leave a review <a href="https://wordpress.org/plugins/dewordpressify/#reviews">on WordPress.org</a>
+- Tell people about DeWordPressify through Twitter, Reddit or blog posts
+- Check out my other projects, like <a href="https://bonjourr.fr/">Bonjourr</a> or <a href="https://pourcentag.es/">pourcentag.es</a>
+- Add a GitHub Star to the repository ⭐️
+
+<br>
+
+## ☕️ Donate
+
+I love making high quality open source software! My goal is to become a full time indie developer, donations motivate and allow me to pour more time into these, making them even better and tackle more ambitious projects. 
+<br>
+
+<a href='https://ko-fi.com/supportkofi' target='_blank'><img height='35' style='border:0px;height:34px;' src='https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/61e11d503cc13747866d338b_Button-2.png' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+
+<br>
+
 ## 👨‍💻 Things to do
 
 - [x] Delete data on uninstall
@@ -40,7 +59,7 @@ You might want to install DeWordPressify on multiple websites without having to 
 - [x] Installation banner
 - [x] "You've been using DeWordPressify for a while" banner
 - [x] Logo on settings page?
-- [ ] Links for banners and stuff
+- [x] Links for banners and stuff
 - [ ] Animated logo (mayyyyybe)
 - [x] Translation file + french translation
 - [ ] Publish on WordPress!
