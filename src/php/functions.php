@@ -1,5 +1,53 @@
 <?php 
 
+function getDefaultOptions() {
+    $dwpifyDefaults = array(
+
+        // general tab
+        'prioritise' => 'no',
+        'adminbar_logo' => 'yes',
+        'thank_you' => 'yes',
+        'thank_you_string' => '',
+        'footer_version' => 'yes',
+        'footer_version_string' => '',
+        'login_logo' => 'wp_logo',
+        'dashboard_news' => 'yes',
+        'smileys' => 'yes',
+        'rss' => 'yes',
+        'comments' => 'yes',
+
+        // email tab
+        'email_from' => '',
+        'email_username' => '',
+
+        // advanced tab
+        'css' => 'yes',
+        'head' => 'yes',
+        'wp_embed' => 'yes',
+        'block_library' => 'yes',
+        'wp_themes' => 'yes',
+
+        // bonus tab
+        'svg' => 'no',
+        'centerLogin' => 'no',
+        'restAPI' => 'yes',
+        'jquery' => 'yes',
+
+        // state of banners
+        'installDate' => false,
+        'installBanner' => false,
+        'usedNotice' => false,
+    );
+
+    // add dwpify_ prefix to all keys
+    $dwpifyDefaults = array_combine(
+        array_map(function($k) { return 'dwpify_' . $k; },
+        array_keys($dwpifyDefaults)), $dwpifyDefaults
+    );
+
+    return $dwpifyDefaults;
+}
+
 function nw() { return is_network_admin(); }
 
 function updateOption($key, $value) {
@@ -24,48 +72,6 @@ function tabsUrl() {
 }
 function getCurrentTab() {
     return !isset($_GET['action']) ? 'general' : $_GET['action'];
-}
-
-function getDefaultOptions() {
-    $dwpifyDefaults = array(
-        'installDate' => false,
-        'installBanner' => false,
-        'usedNotice' => false,
-
-        'prioritise' => 'no',
-        'adminbar_logo' => 'yes',
-        'thank_you' => 'yes',
-        'thank_you_string' => '',
-        'footer_version' => 'yes',
-        'footer_version_string' => '',
-        'login_logo' => 'wp_logo',
-        'dashboard_news' => 'yes',
-        'smileys' => 'yes',
-        'rss' => 'yes',
-        'comments' => 'yes',
-
-        'email_from' => '',
-        'email_username' => '',
-
-        'css' => 'yes',
-        'head' => 'yes',
-        'wp_embed' => 'yes',
-        'block_library' => 'yes',
-        'wp_themes' => 'yes',
-
-        'svg' => 'no',
-        'centerLogin' => 'no',
-        'restAPI' => 'yes',
-        'jquery' => 'yes'
-    );
-
-    // add dwpify_ prefix to all keys
-    $dwpifyDefaults = array_combine(
-        array_map(function($k) { return 'dwpify_' . $k; },
-        array_keys($dwpifyDefaults)), $dwpifyDefaults
-    );
-
-    return $dwpifyDefaults;
 }
 
 function checkOption($key, $string = false) {
