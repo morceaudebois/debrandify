@@ -23,10 +23,10 @@ add_filter('plugin_row_meta', function($plugin_meta, $plugin_file, $plugin_data)
 
         $plugin_meta['dwpify-donate'] = sprintf(
             '<a href="%s" target="_blank" class="dewordpressify-donation-button"> ✨ %s</a>', 
-            'https://ko-fi.com/tahoe', esc_html__('Make a donation', 'dewordpressifyi')
+            'https://ko-fi.com/tahoe', esc_html__('Donate', 'dewordpressify')
         );
         
-        unset($plugin_meta[2]);
+        unset($plugin_meta[2]); // remove default website link
     } return $plugin_meta;
 }, 10, 3);
 

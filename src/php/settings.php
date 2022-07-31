@@ -36,7 +36,8 @@
 		$value = getOption('dwpify_' . $key) ? getOption('dwpify_' . $key) : ''; ?>
 		<tr>
 			<th scope="row"><?php echo $title; ?></th>
-			<td><?php echo "<input type='text' id='${key}' name='dwpify_${key}' value='${value}' placeholder='${placeholder}' />" ?></td>
+			<td><?php echo "<input type='text' id='${key}' name='dwpify_${key}' value='${value}' placeholder='${placeholder}' />"; 
+			if ($key == 'email_username') echo ' @' . $_SERVER['SERVER_NAME'] ?></td>
 		</tr>
 	<?php }
 
@@ -140,7 +141,9 @@
 
 			<br><hr><br><br>
 
-			<img src="<?php echo plugin_dir_url(__DIR__ ) . 'images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+			<a href="https://github.com/morceaudebois/DeWordPressify">
+				<img src="<?php echo plugin_dir_url(__DIR__ ) . 'images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+			</a>
 		
 			<p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
 		
