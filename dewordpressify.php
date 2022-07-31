@@ -1,11 +1,11 @@
 <?php 
 /**
  * @package DeWordPressify
- * @version 1.0
+ * @version 1.0.0
  */
 /*
     Plugin Name: DeWordPressify
-    Version: 1.0
+    Version: 1.0.0
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
     Plugin URI: https://github.com/morceaudebois/DeWordPressify

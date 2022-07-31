@@ -147,7 +147,7 @@
 			<br><hr><br><br>
 
 			<a href="https://github.com/morceaudebois/DeWordPressify">
-				<img src="<?php echo plugin_dir_url(__DIR__ ) . 'images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
+				<img src="<?php echo plugin_dir_url(__DIR__) . 'images/dewordpressify.png' ?>" alt="dewordpressify banner" id="dwpify_banner">
 			</a>
 		
 			<p><?php _e('Made in France with ❤️ by ', 'dewordpressify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
