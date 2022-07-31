@@ -42,7 +42,7 @@ Here's some ideas:
 I love making high quality open source software! My goal is to become a full time indie developer, donations motivate and allow me to pour more time into these, making them even better and tackle more ambitious projects. 
 <br>
 
-<a href='https://ko-fi.com/supportkofi' target='_blank'><img height='35' style='border:0px;height:34px;' src='https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/61e11d503cc13747866d338b_Button-2.png' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+<a href='https://ko-fi.com/tahoe' target='_blank'><img height='35' style='border:0px;height:34px;' src='https://uploads-ssl.webflow.com/5c14e387dab576fe667689cf/61e11d503cc13747866d338b_Button-2.png' border='0' alt='Buy Me a Coffee at ko-fi.com' />
 
 <br>
 
