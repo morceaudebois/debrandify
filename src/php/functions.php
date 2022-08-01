@@ -1,4 +1,4 @@
-<?php 
+<?php if (!defined('ABSPATH')) { exit; }
 
 function getDefaultOptions() {
     $dwpifyDefaults = array(

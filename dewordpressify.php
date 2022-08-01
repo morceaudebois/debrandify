@@ -1,4 +1,4 @@
-<?php 
+<?php if (!defined('ABSPATH')) { exit; }
 /**
  * @package DeWordPressify
  * @version 1.0.0

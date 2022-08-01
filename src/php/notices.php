@@ -1,4 +1,4 @@
-<?php 
+<?php if (!defined('ABSPATH')) { exit; }
 
 // adds "settings" link in plugins.php page 
 add_filter('plugin_action_links_dewordpressify/dewordpressify.php', function($links) {

@@ -1,4 +1,6 @@
-<?php class dwpifyOptions {
+<?php if (!defined('ABSPATH')) { exit; }
+
+class dwpifyOptions {
 
 	public function printCheckbox($key, $title, $text = false) {
 		$isChecked = checked('yes', getOption('dwpify_' . $key), false); ?>
