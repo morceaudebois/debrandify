@@ -3,7 +3,7 @@
 class dwpifyOptions {
 
 	public function printCheckbox($key, $title, $text = false) {
-		$isChecked = checked('yes', getOption('dwpify_' . $key), false); ?>
+		$isChecked = checked('yes', dwpify_getOption('dwpify_' . $key), false); ?>
 
 		<tr>
 			<th scope="row">
@@ -25,7 +25,7 @@ class dwpifyOptions {
 
 				<?php if ($text) { 
 					$stringKey = $key . '_string';
-					$value = getOption('dwpify_' . $stringKey);
+					$value = dwpify_getOption('dwpify_' . $stringKey);
 					$placeholder = __($text, 'dewordpressify');
 
 					echo "<input type='text' id='${stringKey}' class='greyedOut' name='dwpify_${stringKey}' value='${value}' placeholder='${placeholder}' />";
@@ -35,7 +35,7 @@ class dwpifyOptions {
 	<?php }
 
 	public function printTextField($key, $title, $placeholder) { 
-		$value = getOption('dwpify_' . $key) ? getOption('dwpify_' . $key) : ''; ?>
+		$value = dwpify_getOption('dwpify_' . $key) ? dwpify_getOption('dwpify_' . $key) : ''; ?>
 		<tr>
 			<th scope="row"><?php echo $title; ?></th>
 			<td><?php echo "<input type='text' id='${key}' name='dwpify_${key}' value='${value}' placeholder='${placeholder}' />"; 
@@ -57,24 +57,24 @@ class dwpifyOptions {
 			} ?>
 				
 			<h2 class="nav-tab-wrapper">
-				<a href="<?php echo tabsUrl(); ?>" class="nav-tab <?php if (getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo dwpify_tabsUrl(); ?>" class="nav-tab <?php if (dwpify_getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('General', 'dewordpressify') ?>
 				</a>
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'email') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'email'), dwpify_tabsUrl())); ?>" class="nav-tab <?php if (dwpify_getCurrentTab() == 'email') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Email', 'dewordpressify') ?>
 				</a> 
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'advanced') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'advanced'), dwpify_tabsUrl())); ?>" class="nav-tab <?php if (dwpify_getCurrentTab() == 'advanced') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Advanced', 'dewordpressify') ?>
 				</a>
 
-				<a href="<?php echo esc_url(add_query_arg(array('action' => 'bonus'), tabsUrl())); ?>" class="nav-tab <?php if (getCurrentTab() == 'bonus') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(add_query_arg(array('action' => 'bonus'), dwpify_tabsUrl())); ?>" class="nav-tab <?php if (dwpify_getCurrentTab() == 'bonus') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('Bonus features!', 'dewordpressify') ?> 🎊
 				</a>
 			</h2>
 
-			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo getCurrentTab()?>">
+			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo dwpify_getCurrentTab()?>">
 				<?php wp_nonce_field('dwpify-validate'); ?>
 
 				<table class="form-table">
@@ -83,13 +83,13 @@ class dwpifyOptions {
 							$this->printCheckbox('prioritise', __('Prioritise these settings', 'dewordpressify'));
 						} ?>
 
-						<?php switch(getCurrentTab()) {
+						<?php switch(dwpify_getCurrentTab()) {
 							case 'general':
 								$this->printCheckbox('adminbar_logo', __('WordPress admin bar logo', 'dewordpressify'));
 								$this->printCheckbox('thank_you', __('Thank you sentence in admin footer', 'dewordpressify'), __('Your own text', 'dewordpressify'));
 								$this->printCheckbox('footer_version', __('WordPress version in admin footer', 'dewordpressify'), __('Your own text', 'dewordpressify'));
 
-								$options = getOption('dwpify_login_logo') ? getOption('dwpify_login_logo') : 'wp_logo' ?>
+								$options = dwpify_getOption('dwpify_login_logo') ? dwpify_getOption('dwpify_login_logo') : 'wp_logo' ?>
 								<tr><th scope="row"><?php _e('Login logo image', 'dewordpressify'); ?></th>
 									<td>
 										<select name="dwpify_login_logo">
@@ -169,7 +169,7 @@ class dwpifyOptions {
 
         foreach ($_POST as $key => $value) {
             if (substr($key, 0, 7) === "dwpify_") { // checks if starts with dwpify_
-				updateOption($key, sanitize_text_field($value));
+				dwpify_updateOption($key, sanitize_text_field($value));
             }
         }
 

@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) { exit; }
 
-function getDefaultOptions() {
+function dwpify_getDefaultOptions() {
     $dwpifyDefaults = array(
 
         // general tab
@@ -51,31 +51,31 @@ function getDefaultOptions() {
 
 function nw() { return is_network_admin(); }
 
-function updateOption($key, $value) {
+function dwpify_updateOption($key, $value) {
     if (nw()) { return update_site_option($key, $value);
     } else { return update_option($key, $value); }
 }
 
-function getOption($key) {
+function dwpify_getOption($key) {
     if (nw()) { return get_site_option($key);
     } else { return get_option($key); }
 }
 
-function is_login_form() {
+function dwpify_is_login_form() {
     $ABSPATH_MY = str_replace(array('\\','/'), DIRECTORY_SEPARATOR, ABSPATH);
     return ((in_array($ABSPATH_MY.'wp-login.php', get_included_files()) || in_array($ABSPATH_MY.'wp-register.php', get_included_files())) || (isset($_GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php') || $_SERVER['PHP_SELF']== '/wp-login.php');
 }
 
-function tabsUrl() {
-    $tabsUrl = '.php?page=dewordpressify';
-    if (nw()) { return network_admin_url('settings' . $tabsUrl);
-    } else { return admin_url('admin' . $tabsUrl); }
+function dwpify_tabsUrl() {
+    $dwpify_tabsUrl = '.php?page=dewordpressify';
+    if (nw()) { return network_admin_url('settings' . $dwpify_tabsUrl);
+    } else { return admin_url('admin' . $dwpify_tabsUrl); }
 }
-function getCurrentTab() {
+function dwpify_getCurrentTab() {
     return !isset($_GET['action']) ? 'general' : $_GET['action'];
 }
 
-function checkOption($key, $string = false) {
+function dwpify_checkOption($key, $string = false) {
     $key = 'dwpify_' . $key;
 
     // checks if per network option has priority

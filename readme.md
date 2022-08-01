@@ -24,7 +24,7 @@ You might want to install DeWordPressify on multiple websites without having to 
 
 1. Get ahold of the DeWordPressify plugin. You can either download a [release](https://github.com/morceaudebois/DeWordPressify/releases/tag/1.0) from this repo or simply get it from the `/wp-content/plugins/` folder on a website where it's already installed.
 2. Once you have the plugin, navigate to `/src/php/` in it and open the `functions.php` file.
-3. The first thing you'll see should be the `dwpify_getDefaultOptions()` function. This is where default options are defined, each line corresponding to a toggle/field of the DeWordPressify settings page.
+3. The first thing you'll see should be the `dwpify_dwpify_getDefaultOptions()` function. This is where default options are defined, each line corresponding to a toggle/field of the DeWordPressify settings page.
 4. Simply edit each line you want customised, `'yes'` being toggled and `'no'` being untoggled. 
 5. Save the file and upload the plugin to your new site (either zip it and upload it through the WordPress dashboard, or put it in the `/wp-content/plugins/` folder)
 6. Activate it and that's it! DeWordPressify should be initialised with your custom settings.

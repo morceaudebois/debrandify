@@ -19,17 +19,17 @@ include(plugin_dir_path(__FILE__) . '/src/php/functions.php');
 include(plugin_dir_path(__FILE__) . '/src/php/settings.php');
 
 // activation
-function init() {
+function dwpify_init() {
     // adds default options if missing
     if (!get_option('dwpify_adminbar_logo')) {
-        foreach (getDefaultOptions() as $key => $value) {
+        foreach (dwpify_getDefaultOptions() as $key => $value) {
             add_option($key, $value);
         }
     }
 
     // same but for global multisite options 
     if (is_multisite() && !get_site_option('dwpify_adminbar_logo')) {
-        foreach (getDefaultOptions() as $key => $value) {
+        foreach (dwpify_getDefaultOptions() as $key => $value) {
             add_site_option($key, $value);
         }
     }
@@ -41,14 +41,14 @@ function init() {
 
 add_action('init', function() {
 
-    init();
+    dwpify_init();
 
-    everywhere(); // triggers on whole site
-    add_action('admin_init', 'wp_admin'); // triggers in wp-admin
-    add_action('login_init', 'loginPage'); // triggers on login page
+    dwpify_everywhere(); // triggers on whole site
+    add_action('admin_init', 'dwpify_wp_admin'); // triggers in wp-admin
+    add_action('login_init', 'dwpify_loginPage'); // triggers on login page
 
      // triggers when user logged in
-    if (is_user_logged_in()) user_logged_in();
+    if (is_user_logged_in()) dwpify_user_logged_in();
     
     load_plugin_textdomain('dewordpressify', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 
@@ -58,22 +58,22 @@ add_action('init', function() {
     });    
 });
 
-function wp_admin() {
+function dwpify_wp_admin() {
     add_filter('admin_footer_text', function($defaultString) {
-        if (checkOption('thank_you')) {
-            $theString = checkOption('thank_you_string', true);
+        if (dwpify_checkOption('thank_you')) {
+            $theString = dwpify_checkOption('thank_you_string', true);
             echo $theString ? $theString : $defaultString;
         }
     }, 11);
     
     add_filter('update_footer', function($defaultString) {
-        if (checkOption('footer_version')) {
-            $theString = checkOption('footer_version_string', true);
+        if (dwpify_checkOption('footer_version')) {
+            $theString = dwpify_checkOption('footer_version_string', true);
             echo $theString ? $theString : $defaultString;
         }
     }, 11);
 
-    if (!checkOption('dashboard_news')) {
+    if (!dwpify_checkOption('dashboard_news')) {
         function rm_dahsboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
@@ -83,15 +83,15 @@ function wp_admin() {
         add_action('wp_dashboard_setup',         'rm_dahsboardnews', 20);
     }
 
-    if (is_plugin_active('elementor/elementor.php') && !checkOption('elementor_overview')) {
+    if (is_plugin_active('elementor/elementor.php') && !dwpify_checkOption('elementor_overview')) {
         add_action('wp_dashboard_setup', function() {
             remove_meta_box( 'e-dashboard-overview', 'dashboard', 'normal');
         }, 40);
     }
 }
 
-function user_logged_in() {
-    if (!checkOption('adminbar_logo')) {
+function dwpify_user_logged_in() {
+    if (!dwpify_checkOption('adminbar_logo')) {
         add_action('wp_before_admin_bar_render', function() {
             global $wp_admin_bar;
             $wp_admin_bar->remove_menu('wp-logo');
@@ -99,11 +99,11 @@ function user_logged_in() {
     }
 }
 
-function loginPage() {
+function dwpify_loginPage() {
     add_action('login_head', function() { ?>
         <style type="text/css">
             <?php
-                switch(checkOption('login_logo', true)) {
+                switch(dwpify_checkOption('login_logo', true)) {
                     case 'site_logo':
                         add_filter('login_headerurl', function() {
                             return get_bloginfo('url');
@@ -152,9 +152,9 @@ function loginPage() {
     <?php });
 }
 
-function everywhere() {
+function dwpify_everywhere() {
 
-    if (!checkOption('smileys')) {
+    if (!dwpify_checkOption('smileys')) {
         // source https://gist.github.com/netmagik/88e004b17e4cc43d04b6#file-disable-emoji-in-wordpress
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -171,7 +171,7 @@ function everywhere() {
         });
     }
 
-    if (!checkOption('rss')) {
+    if (!dwpify_checkOption('rss')) {
         remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
         remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
         remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -198,7 +198,7 @@ function everywhere() {
         add_action('do_feed_atom_comments', 'disableRss', 1);
     }
 
-    if (!checkOption('comments')) {
+    if (!dwpify_checkOption('comments')) {
         // Disable support for comments and trackbacks in post types
         add_action('admin_init', function() {
             $post_types = get_post_types();
@@ -253,24 +253,24 @@ function everywhere() {
         });
     }
 
-    if (!empty(checkOption('email_from', true))) {
+    if (!empty(dwpify_checkOption('email_from', true))) {
         add_filter('wp_mail_from_name', function() {
-            return checkOption('email_from', true);
+            return dwpify_checkOption('email_from', true);
         });
     } 
 
-    if (!empty(checkOption('email_username', true))) {
+    if (!empty(dwpify_checkOption('email_username', true))) {
         add_filter('wp_mail_from', function() { // Function to change email address
-            return checkOption('email_username', true) . '@' . parse_url(get_site_url(), PHP_URL_HOST);
+            return dwpify_checkOption('email_username', true) . '@' . parse_url(get_site_url(), PHP_URL_HOST);
         });
     }
 
-    if (!checkOption('css')) {
+    if (!dwpify_checkOption('css')) {
         remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
         remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
     }
     
-    if (!checkOption('head')) {
+    if (!dwpify_checkOption('head')) {
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
@@ -279,13 +279,13 @@ function everywhere() {
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
     }
 
-    if (!checkOption('wp_embed')) {
+    if (!dwpify_checkOption('wp_embed')) {
         add_action('wp_footer', function() {
             wp_dequeue_script('wp-embed');
         });
     }
 
-    if (!checkOption('block_library')) {
+    if (!dwpify_checkOption('block_library')) {
         add_action('wp_enqueue_scripts', function() {
             // // remove block library css
             wp_dequeue_style('wp-block-library');
@@ -294,11 +294,11 @@ function everywhere() {
         });
     }
 
-    if (!checkOption('wp_themes')) {
+    if (!dwpify_checkOption('wp_themes')) {
         define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
     }
 
-    if (checkOption('svg')) {
+    if (dwpify_checkOption('svg')) {
         // Shamelessly stolen here https://wpengine.com/resources/enable-svg-wordpress/
         
         // Allow SVG
@@ -331,7 +331,7 @@ function everywhere() {
         });
     }
 
-    if (checkOption('centerLogin')) {
+    if (dwpify_checkOption('centerLogin')) {
         add_action('login_head', function() { ?>
             <style type="text/css">
                 /* centered login form */
@@ -356,20 +356,20 @@ function everywhere() {
         <?php });
     }
 
-    if (!checkOption('restAPI')) {
+    if (!dwpify_checkOption('restAPI')) {
         add_filter('rest_authentication_errors', function() {
             return new WP_Error('rest_disabled', __('The WordPress REST API has been disabled.'), array('status' => rest_authorization_required_code()));
         });
     }
 
-    if (!checkOption('jquery')) {
-        if (!is_login_form() && !is_admin()) {
+    if (!dwpify_checkOption('jquery')) {
+        if (!dwpify_is_login_form() && !is_admin()) {
             wp_deregister_script('jquery');
         }
     }
 }
 
-add_action('wp_ajax_used_notice', 'addUsedNoticeOption');
-add_action('wp_ajax_nopriv_used_notice', 'addUsedNoticeOption');
+add_action('wp_ajax_used_notice', 'dwpify_addUsedNoticeOption');
+add_action('wp_ajax_nopriv_used_notice', 'dwpify_addUsedNoticeOption');
 
-function addUsedNoticeOption() { update_option('dwpify_usedNotice', 'closed'); }
+function dwpify_addUsedNoticeOption() { update_option('dwpify_usedNotice', 'closed'); }
