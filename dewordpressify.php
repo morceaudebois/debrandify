@@ -165,7 +165,7 @@ function dwpify_everywhere() {
         remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
         
         // Remove from TinyMCE
-        add_filter('tiny_mce_plugins', function() {
+        add_filter('tiny_mce_plugins', function($plugins) {
             if (is_array($plugins)) return array_diff($plugins, array('wpemoji'));
             return array();
         });

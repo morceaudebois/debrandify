@@ -56,7 +56,7 @@ if (get_option('dwpify_installBanner') == 'toBeTriggered') {
                 document.querySelector('#used_banner .notice-dismiss').onclick = function() {
                     document.querySelector('#used_banner').remove();
 
-                    fetch('/wp-admin/admin-ajax.php', {
+                    fetch('<?= get_option('siteurl') ?>/wp-admin/admin-ajax.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
