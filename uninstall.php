@@ -5,7 +5,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) exit;
 
 include(plugin_dir_path(__FILE__) . 'src/php/functions.php');
 
-$allOptions = wpdbrd_getDefaultOptions();
+$allOptions = dbrdify_getDefaultOptions();
 
 // gets rid of all data
 foreach ($allOptions as $key => $value) {

@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) { exit; }
 
-function wpdbrd_getDefaultOptions() {
-    $dwpifyDefaults = array(
+function dbrdify_getDefaultOptions() {
+    $dbrdifyDefaults = array(
 
         // general tab
         'prioritise' => 'no',
@@ -41,46 +41,46 @@ function wpdbrd_getDefaultOptions() {
         'usedNotice' => false,
     );
 
-    // add wpdbrd_ prefix to all keys
-    $dwpifyDefaults = array_combine(
-        array_map(function($k) { return 'wpdbrd_' . $k; },
-        array_keys($dwpifyDefaults)), $dwpifyDefaults
+    // add dbrdify_ prefix to all keys
+    $dbrdifyDefaults = array_combine(
+        array_map(function($k) { return 'dbrdify_' . $k; },
+        array_keys($dbrdifyDefaults)), $dbrdifyDefaults
     );
 
-    return $dwpifyDefaults;
+    return $dbrdifyDefaults;
 }
 
 function nw() { return is_network_admin(); }
 
-function wpdbrd_updateOption($key, $value) {
+function dbrdify_updateOption($key, $value) {
     if (nw()) { return update_site_option($key, $value);
     } else { return update_option($key, $value); }
 }
 
-function wpdbrd_getOption($key) {
+function dbrdify_getOption($key) {
     if (nw()) { return get_site_option($key);
     } else { return get_option($key); }
 }
 
-function wpdbrd_is_login_form() {
+function dbrdify_is_login_form() {
     $ABSPATH_MY = str_replace(array('\\','/'), DIRECTORY_SEPARATOR, ABSPATH);
     return ((in_array($ABSPATH_MY.'wp-login.php', get_included_files()) || in_array($ABSPATH_MY.'wp-register.php', get_included_files())) || (isset($_GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php') || $_SERVER['PHP_SELF']== '/wp-login.php');
 }
 
-function wpdbrd_tabsUrl() {
-    $wpdbrd_tabsUrl = '.php?page=wp-debrand';
-    if (nw()) { return network_admin_url('settings' . $wpdbrd_tabsUrl);
-    } else { return admin_url('admin' . $wpdbrd_tabsUrl); }
+function dbrdify_tabsUrl() {
+    $dbrdify_tabsUrl = '.php?page=debrandify';
+    if (nw()) { return network_admin_url('settings' . $dbrdify_tabsUrl);
+    } else { return admin_url('admin' . $dbrdify_tabsUrl); }
 }
-function wpdbrd_getCurrentTab() {
+function dbrdify_getCurrentTab() {
     return !isset($_GET['action']) ? 'general' : $_GET['action'];
 }
 
-function wpdbrd_checkOption($key, $string = false) {
-    $key = 'wpdbrd_' . $key;
+function dbrdify_checkOption($key, $string = false) {
+    $key = 'dbrdify_' . $key;
 
     // checks if per network option has priority
-    if (is_multisite() && get_option('wpdbrd_prioritise') == 'no') {
+    if (is_multisite() && get_option('dbrdify_prioritise') == 'no') {
         if (!$string) return get_site_option($key) == 'yes' ? true : false;
         return get_site_option($key); // when string output (select)
     } 

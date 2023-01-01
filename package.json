@@ -1,7 +1,7 @@
 {
-  "name": "wp-debrand",
+  "name": "debrandify",
   "version": "1.0.0",
-  "description": "<h1 align=\"center\">   <a href=\"https://tahoe.be\"><img src=\"https://raw.githubusercontent.com/morceaudebois/wp-debrand/master/src/images/wp-debrand.png\" width=\"80%\" alt=\"\"></a> </h1>",
+  "description": "<h1 align=\"center\">   <a href=\"https://tahoe.be\"><img src=\"https://raw.githubusercontent.com/morceaudebois/debrandify/master/src/images/debrandify.png\" width=\"80%\" alt=\"\"></a> </h1>",
   "main": "script.js",
   "scripts": {
     "scss": "sass --watch --no-source-map src/scss/style.scss src/css/style.css",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/morceaudebois/wp-debrand.git"
+    "url": "git+https://github.com/morceaudebois/debrandify.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/morceaudebois/wp-debrand/issues"
+    "url": "https://github.com/morceaudebois/debrandify/issues"
   },
-  "homepage": "https://github.com/morceaudebois/wp-debrand#readme",
+  "homepage": "https://github.com/morceaudebois/debrandify#readme",
   "dependencies": {
     "sass": "^1.57.1",
     "scss": "^0.2.4"

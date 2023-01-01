@@ -2,10 +2,10 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Debrand 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-debrand\n"
+"Project-Id-Version: Debrandify 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/debrandify\n"
 "POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
-"PO-Revision-Date: 2023-01-01 14:36+0100\n"
+"PO-Revision-Date: 2023-01-01 19:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,20 +14,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.2.2\n"
-"X-Domain: wp-debrand\n"
+"X-Domain: debrandify\n"
 
 #. Plugin Name of the plugin
-msgid "WP Debrand"
+msgid "Debrandify"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/morceaudebois/wp-debrand"
+msgid "https://github.com/morceaudebois/debrandify"
 msgstr ""
 
 #. Description of the plugin
-msgid "WP Debrand is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter."
+msgid "Debrandify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter."
 msgstr ""
-"WP Debrand permet de retirer toutes mentions de WordPress de votre tableau de bord, de les remplacer par votre propre marque et de rendre votre site plus léger."
+"Debrandify permet de retirer toutes mentions de WordPress de votre tableau de bord, de les remplacer par votre propre marque et de rendre votre site plus léger."
 
 #. Author of the plugin
 msgid "Tahoe Beetschen"
@@ -42,17 +42,17 @@ msgid "Donate"
 msgstr "Faire un don"
 
 #: src/php/notices.php:40
-msgid "Thank you for installing <b>WP Debrand</b>! You can start getting rid of WordPress' branding right away."
-msgstr "Merci d’avoir installé <b>WP Debrand</b>! Vous pouvez commencer à vous en servir dès maintenant."
+msgid "Thank you for installing <b>Debrandify</b>! You can start getting rid of WordPress' branding right away."
+msgstr "Merci d’avoir installé <b>Debrandify</b>! Vous pouvez commencer à vous en servir dès maintenant."
 
 #: src/php/notices.php:42
 msgid "Visit settings page"
-msgstr "Réglages de WP Debrand"
+msgstr "Réglages de Debrandify"
 
 #: src/php/notices.php:75
-msgid "You've been using WP Debrand for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
+msgid "You've been using Debrandify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
-"Cela commence à faire longtemps que vous utilisez WP Debrand, j’espère qu’il vous plaît ! Si c’est le cas, n’hésitez pas à soutenir mon travail avec les "
+"Cela commence à faire longtemps que vous utilisez Debrandify, j’espère qu’il vous plaît ! Si c’est le cas, n’hésitez pas à soutenir mon travail avec les "
 "boutons si dessous 😊"
 
 #: src/php/notices.php:77
@@ -60,8 +60,8 @@ msgid "Review"
 msgstr "Noter"
 
 #: src/php/settings.php:10
-msgid "Your site uses WordPress Multisite, which means WP Debrand options are set up "
-msgstr "Votre site utilise WordPress Multisite, ce qui veut dire que les options de WP Debrand sont réglées "
+msgid "Your site uses WordPress Multisite, which means Debrandify options are set up "
+msgstr "Votre site utilise WordPress Multisite, ce qui veut dire que les options de Debrandify sont réglées "
 
 #: src/php/settings.php:10
 msgid "on the network level"
@@ -72,15 +72,15 @@ msgid ". You can prioritise this specific site's settings by toggling this optio
 msgstr ". Vous pouvez rendre les options de ce site prioritaires sur celles du réseau en cochant cette option."
 
 #: src/php/settings.php:49
-msgid "WP Debrand multisite settings"
-msgstr "Réglages WP Debrand du réseau"
+msgid "Debrandify multisite settings"
+msgstr "Réglages Debrandify du réseau"
 
 #: src/php/settings.php:50
-msgid "WP Debrand Settings"
-msgstr "Réglages de WP Debrand"
+msgid "Debrandify Settings"
+msgstr "Réglages de Debrandify"
 
 #: src/php/settings.php:54
-msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the WP Debrand settings of its dashboard."
+msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the Debrandify settings of its dashboard."
 msgstr ""
 "Ces réglages impacteront le réseau de sites complet. Si vous souhaitez mettre en place des réglages spécifiques à un site, rendez vous dans les réglages WP "
 "Debrand sur le tableau de bord du site en question."
@@ -222,8 +222,8 @@ msgid "Made in France with ❤️ by "
 msgstr "Fabriqué en France avec ❤️ par "
 
 #: src/php/settings.php:155
-msgid "If you like WP Debrand, please consider "
-msgstr "Si vous aimez WP Debrand, pensez à "
+msgid "If you like Debrandify, please consider "
+msgstr "Si vous aimez Debrandify, pensez à "
 
 #: src/php/settings.php:155
 msgid "giving it a review"
