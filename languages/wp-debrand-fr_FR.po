@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WP Debrand 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-debrand\n"
 "POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
-"PO-Revision-Date: 2022-07-31 16:09+0200\n"
+"PO-Revision-Date: 2023-01-01 13:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Domain: wp-debrand\n"
 
 #. Plugin Name of the plugin
@@ -25,13 +25,9 @@ msgid "https://github.com/morceaudebois/wp-debrand"
 msgstr ""
 
 #. Description of the plugin
-msgid ""
-"WP Debrand is a simple WordPress plugin that lets you hide WordPress' "
-"branding and replace it with yours as well as make your site lighter."
+msgid "WP Debrand is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter."
 msgstr ""
-"WP Debrand permet de retirer toutes mentions de WordPress de votre "
-"tableau de bord, de les remplacer par votre propre marque et de rendre votre "
-"site plus léger."
+"WP Debrand permet de retirer toutes mentions de WordPress de votre tableau de bord, de les remplacer par votre propre marque et de rendre votre site plus léger."
 
 #. Author of the plugin
 msgid "Tahoe Beetschen"
@@ -46,48 +42,34 @@ msgid "Donate"
 msgstr "Faire un don"
 
 #: src/php/notices.php:40
-msgid ""
-"Thank you for installing <b>WP Debrand</b>! You can start getting rid of "
-"WordPress' branding right away."
-msgstr ""
-"Merci d’avoir installé <b>WP Debrand</b>! Vous pouvez commencer à vous "
-"en servir dès maintenant."
+msgid "Thank you for installing <b>WP Debrand</b>! You can start getting rid of WordPress' branding right away."
+msgstr "Merci d’avoir installé <b>WP Debrand</b>! Vous pouvez commencer à vous en servir dès maintenant."
 
 #: src/php/notices.php:42
 msgid "Visit settings page"
 msgstr "Réglages de WP Debrand"
 
 #: src/php/notices.php:75
-msgid ""
-"You've been using WP Debrand for a while now, I hope you like it! If so, "
-"please consider giving a review or donating, that would help a lot 😊"
+msgid "You've been using WP Debrand for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
-"Cela commence à faire longtemps que vous utilisez WP Debrand, j’espère "
-"qu’il vous plaît ! Si c’est le cas, n’hésitez pas à soutenir mon travail "
-"avec les boutons si dessous 😊"
+"Cela commence à faire longtemps que vous utilisez WP Debrand, j’espère qu’il vous plaît ! Si c’est le cas, n’hésitez pas à soutenir mon travail avec les "
+"boutons si dessous 😊"
 
 #: src/php/notices.php:77
 msgid "Review"
 msgstr "Noter"
 
 #: src/php/settings.php:10
-msgid ""
-"Your site uses WordPress Multisite, which means WP Debrand options are "
-"set up "
-msgstr ""
-"Votre site utilise WordPress Multisite, ce qui veut dire que les options de "
-"WP Debrand sont réglées "
+msgid "Your site uses WordPress Multisite, which means WP Debrand options are set up "
+msgstr "Votre site utilise WordPress Multisite, ce qui veut dire que les options de WP Debrand sont réglées "
 
 #: src/php/settings.php:10
 msgid "on the network level"
 msgstr "sur le réseau"
 
 #: src/php/settings.php:10
-msgid ""
-". You can prioritise this specific site's settings by toggling this option."
-msgstr ""
-". Vous pouvez rendre les options de ce site prioritaires sur celles du "
-"réseau en cochant cette option."
+msgid ". You can prioritise this specific site's settings by toggling this option."
+msgstr ". Vous pouvez rendre les options de ce site prioritaires sur celles du réseau en cochant cette option."
 
 #: src/php/settings.php:49
 msgid "WP Debrand multisite settings"
@@ -98,14 +80,10 @@ msgid "WP Debrand Settings"
 msgstr "Réglages de WP Debrand"
 
 #: src/php/settings.php:54
-msgid ""
-"These will impact your whole network of sites. If you wish to set things up "
-"specifically for a site, head to the WP Debrand settings of its "
-"dashboard."
+msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the WP Debrand settings of its dashboard."
 msgstr ""
-"Ces réglages impacteront le réseau de sites complet. Si vous souhaitez "
-"mettre en place des réglages spécifiques à un site, rendez vous dans les "
-"réglages WP Debrand sur le tableau de bord du site en question."
+"Ces réglages impacteront le réseau de sites complet. Si vous souhaitez mettre en place des réglages spécifiques à un site, rendez vous dans les réglages WP "
+"Debrand sur le tableau de bord du site en question."
 
 #: src/php/settings.php:59
 msgid "General"
@@ -193,8 +171,7 @@ msgstr "Nom du site"
 
 #: src/php/settings.php:126
 msgid "Username of the email adress that sends from your site"
-msgstr ""
-"Première partie de l’adresse avec laquelle votre site envoie des emails"
+msgstr "Première partie de l’adresse avec laquelle votre site envoie des emails"
 
 #: src/php/settings.php:126
 msgid "First part of email"
@@ -257,12 +234,8 @@ msgid "donating"
 msgstr "faire un don"
 
 #: src/php/settings.php:156
-msgid ""
-"This is what motivates me to keep it updated and create new projects as an "
-"indie developer 😊"
-msgstr ""
-"C’est ce qui me motive à garder ce projet à jour et à en créer de nouveaux "
-"en tant que développeur indépendant 😊"
+msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
+msgstr "C’est ce qui me motive à garder ce projet à jour et à en créer de nouveaux en tant que développeur indépendant 😊"
 
 #~ msgid "General settings"
 #~ msgstr "Réglages généraux"
@@ -273,12 +246,8 @@ msgstr ""
 #~ msgid "Advanced Settings"
 #~ msgstr "Réglages avancés"
 
-#~ msgid ""
-#~ "These settings may break your site. If you don't know what they do, you "
-#~ "probably shouldn't tinker with them."
-#~ msgstr ""
-#~ "Ces réglages pourraient faire planter votre site. Si vous n’êtes pas sûr "
-#~ "de ce que vous faites, c’est mieux de ne pas y toucher."
+#~ msgid "These settings may break your site. If you don't know what they do, you probably shouldn't tinker with them."
+#~ msgstr "Ces réglages pourraient faire planter votre site. Si vous n’êtes pas sûr de ce que vous faites, c’est mieux de ne pas y toucher."
 
 #~ msgid "From field"
 #~ msgstr "Champs “from”"

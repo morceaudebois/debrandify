@@ -9,7 +9,8 @@
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
     Plugin URI: https://github.com/morceaudebois/wp-debrand
-    Domain Path: /languages
+    Domain Path: /assets/languages/
+    Text Domain: wp-debrand
     Description: WP Debrand is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter.
 
     License: GPL2
@@ -19,36 +20,36 @@ include(plugin_dir_path(__FILE__) . '/src/php/functions.php');
 include(plugin_dir_path(__FILE__) . '/src/php/settings.php');
 
 // activation
-function dwpify_init() {
+function wpdbrd_init() {
     // adds default options if missing
-    if (!get_option('dwpify_adminbar_logo')) {
-        foreach (dwpify_getDefaultOptions() as $key => $value) {
+    if (!get_option('wpdbrd_adminbar_logo')) {
+        foreach (wpdbrd_getDefaultOptions() as $key => $value) {
             add_option($key, $value);
         }
     }
 
     // same but for global multisite options 
-    if (is_multisite() && !get_site_option('dwpify_adminbar_logo')) {
-        foreach (dwpify_getDefaultOptions() as $key => $value) {
+    if (is_multisite() && !get_site_option('wpdbrd_adminbar_logo')) {
+        foreach (wpdbrd_getDefaultOptions() as $key => $value) {
             add_site_option($key, $value);
         }
     }
 
     // to know when to trigger notices
-    if (!get_option('dwpify_installBanner')) { update_option('dwpify_installBanner', 'toBeTriggered'); }
-    if (!get_option('dwpify_installDate')) { update_option('dwpify_installDate', time()); }
+    if (!get_option('wpdbrd_installBanner')) { update_option('wpdbrd_installBanner', 'toBeTriggered'); }
+    if (!get_option('wpdbrd_installDate')) { update_option('wpdbrd_installDate', time()); }
 }
 
 add_action('init', function() {
 
-    dwpify_init();
+    wpdbrd_init();
 
-    dwpify_everywhere(); // triggers on whole site
-    add_action('admin_init', 'dwpify_wp_admin'); // triggers in wp-admin
-    add_action('login_init', 'dwpify_loginPage'); // triggers on login page
+    wpdbrd_everywhere(); // triggers on whole site
+    add_action('admin_init', 'wpdbrd_wp_admin'); // triggers in wp-admin
+    add_action('login_init', 'wpdbrd_loginPage'); // triggers on login page
 
      // triggers when user logged in
-    if (is_user_logged_in()) dwpify_user_logged_in();
+    if (is_user_logged_in()) wpdbrd_user_logged_in();
     
     load_plugin_textdomain('wp-debrand', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 
@@ -58,22 +59,22 @@ add_action('init', function() {
     });    
 });
 
-function dwpify_wp_admin() {
+function wpdbrd_wp_admin() {
     add_filter('admin_footer_text', function($defaultString) {
-        if (dwpify_checkOption('thank_you')) {
-            $theString = dwpify_checkOption('thank_you_string', true);
+        if (wpdbrd_checkOption('thank_you')) {
+            $theString = wpdbrd_checkOption('thank_you_string', true);
             echo $theString ? $theString : $defaultString;
         }
     }, 11);
     
     add_filter('update_footer', function($defaultString) {
-        if (dwpify_checkOption('footer_version')) {
-            $theString = dwpify_checkOption('footer_version_string', true);
+        if (wpdbrd_checkOption('footer_version')) {
+            $theString = wpdbrd_checkOption('footer_version_string', true);
             echo $theString ? $theString : $defaultString;
         }
     }, 11);
 
-    if (!dwpify_checkOption('dashboard_news')) {
+    if (!wpdbrd_checkOption('dashboard_news')) {
         function rm_dahsboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
@@ -83,15 +84,15 @@ function dwpify_wp_admin() {
         add_action('wp_dashboard_setup',         'rm_dahsboardnews', 20);
     }
 
-    if (is_plugin_active('elementor/elementor.php') && !dwpify_checkOption('elementor_overview')) {
+    if (is_plugin_active('elementor/elementor.php') && !wpdbrd_checkOption('elementor_overview')) {
         add_action('wp_dashboard_setup', function() {
             remove_meta_box( 'e-dashboard-overview', 'dashboard', 'normal');
         }, 40);
     }
 }
 
-function dwpify_user_logged_in() {
-    if (!dwpify_checkOption('adminbar_logo')) {
+function wpdbrd_user_logged_in() {
+    if (!wpdbrd_checkOption('adminbar_logo')) {
         add_action('wp_before_admin_bar_render', function() {
             global $wp_admin_bar;
             $wp_admin_bar->remove_menu('wp-logo');
@@ -99,11 +100,11 @@ function dwpify_user_logged_in() {
     }
 }
 
-function dwpify_loginPage() {
+function wpdbrd_loginPage() {
     add_action('login_head', function() { ?>
         <style type="text/css">
             <?php
-                switch(dwpify_checkOption('login_logo', true)) {
+                switch(wpdbrd_checkOption('login_logo', true)) {
                     case 'site_logo':
                         add_filter('login_headerurl', function() {
                             return get_bloginfo('url');
@@ -152,9 +153,9 @@ function dwpify_loginPage() {
     <?php });
 }
 
-function dwpify_everywhere() {
+function wpdbrd_everywhere() {
 
-    if (!dwpify_checkOption('smileys')) {
+    if (!wpdbrd_checkOption('smileys')) {
         // source https://gist.github.com/netmagik/88e004b17e4cc43d04b6#file-disable-emoji-in-wordpress
         remove_action('wp_head', 'print_emoji_detection_script', 7);
         remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -171,7 +172,7 @@ function dwpify_everywhere() {
         });
     }
 
-    if (!dwpify_checkOption('rss')) {
+    if (!wpdbrd_checkOption('rss')) {
         remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
         remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
         remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -198,7 +199,7 @@ function dwpify_everywhere() {
         add_action('do_feed_atom_comments', 'disableRss', 1);
     }
 
-    if (!dwpify_checkOption('comments')) {
+    if (!wpdbrd_checkOption('comments')) {
         // Disable support for comments and trackbacks in post types
         add_action('admin_init', function() {
             $post_types = get_post_types();
@@ -253,24 +254,24 @@ function dwpify_everywhere() {
         });
     }
 
-    if (!empty(dwpify_checkOption('email_from', true))) {
+    if (!empty(wpdbrd_checkOption('email_from', true))) {
         add_filter('wp_mail_from_name', function() {
-            return dwpify_checkOption('email_from', true);
+            return wpdbrd_checkOption('email_from', true);
         });
     } 
 
-    if (!empty(dwpify_checkOption('email_username', true))) {
+    if (!empty(wpdbrd_checkOption('email_username', true))) {
         add_filter('wp_mail_from', function() { // Function to change email address
-            return dwpify_checkOption('email_username', true) . '@' . parse_url(get_site_url(), PHP_URL_HOST);
+            return wpdbrd_checkOption('email_username', true) . '@' . parse_url(get_site_url(), PHP_URL_HOST);
         });
     }
 
-    if (!dwpify_checkOption('css')) {
+    if (!wpdbrd_checkOption('css')) {
         remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
         remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
     }
     
-    if (!dwpify_checkOption('head')) {
+    if (!wpdbrd_checkOption('head')) {
         remove_action('wp_head', 'rsd_link');
         remove_action('wp_head', 'wlwmanifest_link');
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
@@ -279,13 +280,13 @@ function dwpify_everywhere() {
         remove_action('wp_head', 'wp_oembed_add_discovery_links');
     }
 
-    if (!dwpify_checkOption('wp_embed')) {
+    if (!wpdbrd_checkOption('wp_embed')) {
         add_action('wp_footer', function() {
             wp_dequeue_script('wp-embed');
         });
     }
 
-    if (!dwpify_checkOption('block_library')) {
+    if (!wpdbrd_checkOption('block_library')) {
         add_action('wp_enqueue_scripts', function() {
             // // remove block library css
             wp_dequeue_style('wp-block-library');
@@ -294,11 +295,11 @@ function dwpify_everywhere() {
         });
     }
 
-    if (!dwpify_checkOption('wp_themes')) {
+    if (!wpdbrd_checkOption('wp_themes')) {
         define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
     }
 
-    if (dwpify_checkOption('svg')) {
+    if (wpdbrd_checkOption('svg')) {
         // Shamelessly stolen here https://wpengine.com/resources/enable-svg-wordpress/
         
         // Allow SVG
@@ -331,7 +332,7 @@ function dwpify_everywhere() {
         });
     }
 
-    if (dwpify_checkOption('centerLogin')) {
+    if (wpdbrd_checkOption('centerLogin')) {
         add_action('login_head', function() { ?>
             <style type="text/css">
                 /* centered login form */
@@ -356,20 +357,20 @@ function dwpify_everywhere() {
         <?php });
     }
 
-    if (!dwpify_checkOption('restAPI')) {
+    if (!wpdbrd_checkOption('restAPI')) {
         add_filter('rest_authentication_errors', function() {
             return new WP_Error('rest_disabled', __('The WordPress REST API has been disabled.'), array('status' => rest_authorization_required_code()));
         });
     }
 
-    if (!dwpify_checkOption('jquery')) {
-        if (!dwpify_is_login_form() && !is_admin()) {
+    if (!wpdbrd_checkOption('jquery')) {
+        if (!wpdbrd_is_login_form() && !is_admin()) {
             wp_deregister_script('jquery');
         }
     }
 }
 
-add_action('wp_ajax_used_notice', 'dwpify_addUsedNoticeOption');
-add_action('wp_ajax_nopriv_used_notice', 'dwpify_addUsedNoticeOption');
+add_action('wp_ajax_used_notice', 'wpdbrd_addUsedNoticeOption');
+add_action('wp_ajax_nopriv_used_notice', 'wpdbrd_addUsedNoticeOption');
 
-function dwpify_addUsedNoticeOption() { update_option('dwpify_usedNotice', 'closed'); }
+function wpdbrd_addUsedNoticeOption() { update_option('wpdbrd_usedNotice', 'closed'); }

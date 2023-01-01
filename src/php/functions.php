@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) { exit; }
 
-function dwpify_getDefaultOptions() {
+function wpdbrd_getDefaultOptions() {
     $dwpifyDefaults = array(
 
         // general tab
@@ -40,9 +40,9 @@ function dwpify_getDefaultOptions() {
         'usedNotice' => false,
     );
 
-    // add dwpify_ prefix to all keys
+    // add wpdbrd_ prefix to all keys
     $dwpifyDefaults = array_combine(
-        array_map(function($k) { return 'dwpify_' . $k; },
+        array_map(function($k) { return 'wpdbrd_' . $k; },
         array_keys($dwpifyDefaults)), $dwpifyDefaults
     );
 
@@ -51,35 +51,35 @@ function dwpify_getDefaultOptions() {
 
 function nw() { return is_network_admin(); }
 
-function dwpify_updateOption($key, $value) {
+function wpdbrd_updateOption($key, $value) {
     if (nw()) { return update_site_option($key, $value);
     } else { return update_option($key, $value); }
 }
 
-function dwpify_getOption($key) {
+function wpdbrd_getOption($key) {
     if (nw()) { return get_site_option($key);
     } else { return get_option($key); }
 }
 
-function dwpify_is_login_form() {
+function wpdbrd_is_login_form() {
     $ABSPATH_MY = str_replace(array('\\','/'), DIRECTORY_SEPARATOR, ABSPATH);
     return ((in_array($ABSPATH_MY.'wp-login.php', get_included_files()) || in_array($ABSPATH_MY.'wp-register.php', get_included_files())) || (isset($_GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php') || $_SERVER['PHP_SELF']== '/wp-login.php');
 }
 
-function dwpify_tabsUrl() {
-    $dwpify_tabsUrl = '.php?page=wp-debrand';
-    if (nw()) { return network_admin_url('settings' . $dwpify_tabsUrl);
-    } else { return admin_url('admin' . $dwpify_tabsUrl); }
+function wpdbrd_tabsUrl() {
+    $wpdbrd_tabsUrl = '.php?page=wp-debrand';
+    if (nw()) { return network_admin_url('settings' . $wpdbrd_tabsUrl);
+    } else { return admin_url('admin' . $wpdbrd_tabsUrl); }
 }
-function dwpify_getCurrentTab() {
+function wpdbrd_getCurrentTab() {
     return !isset($_GET['action']) ? 'general' : $_GET['action'];
 }
 
-function dwpify_checkOption($key, $string = false) {
-    $key = 'dwpify_' . $key;
+function wpdbrd_checkOption($key, $string = false) {
+    $key = 'wpdbrd_' . $key;
 
     // checks if per network option has priority
-    if (is_multisite() && get_option('dwpify_prioritise') == 'no') {
+    if (is_multisite() && get_option('wpdbrd_prioritise') == 'no') {
         if (!$string) return get_site_option($key) == 'yes' ? true : false;
         return get_site_option($key); // when string output (select)
     } 

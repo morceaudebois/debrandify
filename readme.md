@@ -1,8 +1,8 @@
 <h1 align="center">
-  <a href="https://tahoe.be"><img src="https://raw.githubusercontent.com/morceaudebois/wp-debrand/master/src/images/wp-debrand.png" width="70%" alt=""></a>
+  <a href="https://tahoe.be"><img src="https://raw.githubusercontent.com/morceaudebois/wp-debrand/master/src/images/wp-debrand.png" width="80%" alt=""></a>
 </h1>
 
-WP Debrand (formerly DeWordpressify) is a toolkit plugin that adds plenty of settings to customise and improve WordPress. You'll be able to remove WordPress' branding and replace it with your own as well as get rid of some of the bloat that comes built-in. Here's the key features:
+WP Debrand (formerly DeWordPressify) is a toolkit plugin that adds plenty of settings to customise and improve WordPress. You'll be able to remove WordPress' branding and replace it with your own as well as get rid of some of the bloat that comes built-in. Here's the key features:
 
 - ✨ Customise the WordPress dashboard and emails with your own branding instead of WordPress', remove or replace WordPress logos and texts
 - 🗑 Disable WordPress features such as comments, RSS feeds, emojis, REST API, WP Embeds and much more
@@ -24,7 +24,7 @@ You might want to install WP Debrand on multiple websites without having to cust
 
 1. Get ahold of the WP Debrand plugin. You can either download a [release](https://github.com/morceaudebois/wp-debrand/releases/tag/1.0) from this repo or simply get it from the `/wp-content/plugins/` folder on a website where it's already installed.
 2. Once you have the plugin, navigate to `/src/php/` in it and open the `functions.php` file.
-3. The first thing you'll see should be the `dwpify_dwpify_getDefaultOptions()` function. This is where default options are defined, each line corresponding to a toggle/field of the WP Debrand settings page.
+3. The first thing you'll see should be the `wpdbrd_wpdbrd_getDefaultOptions()` function. This is where default options are defined, each line corresponding to a toggle/field of the WP Debrand settings page.
 4. Simply edit each line you want customised, `'yes'` being toggled and `'no'` being untoggled. 
 5. Save the file and upload the plugin to your new site (either zip it and upload it through the WordPress dashboard, or put it in the `/wp-content/plugins/` folder)
 6. Activate it and that's it! WP Debrand should be initialised with your custom settings.

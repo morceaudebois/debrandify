@@ -1,4 +1,4 @@
-#dwpify_banner {
+#wpdbrd_banner {
   max-width: 100%;
   max-height: 5em;
 }
@@ -75,15 +75,4 @@ table tbody tr {
 table tbody.greyedOut tr:not(tr:first-child) {
   opacity: 0.3;
   pointer-events: none;
-}
-
-@media screen and (max-width: 782px) {
-  .form-table td {
-    display: flex;
-      align-items: center;
-  }
-
-  .form-table th {
-    width: 100%;
-  }
 }

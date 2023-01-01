@@ -31,7 +31,7 @@ add_filter('plugin_row_meta', function($plugin_meta, $plugin_file, $plugin_data)
 }, 10, 3);
 
 // manages banners
-if (get_option('dwpify_installBanner') == 'toBeTriggered') {
+if (get_option('wpdbrd_installBanner') == 'toBeTriggered') {
     add_action('admin_notices', function() { ?>
         <div class="notice notice-success is-dismissible" style="display: flex; flex-direction: row; align-items: center;">
 
@@ -44,10 +44,10 @@ if (get_option('dwpify_installBanner') == 'toBeTriggered') {
         </div> 
     <?php });
 
-    update_option('dwpify_installBanner', 'triggered');
+    update_option('wpdbrd_installBanner', 'triggered');
 
 // change to +30 days to debug notice
-} else if (get_option('dwpify_installDate') < strtotime('-30 days') && empty(get_option('dwpify_usedNotice'))) {
+} else if (get_option('wpdbrd_installDate') < strtotime('-30 days') && empty(get_option('wpdbrd_usedNotice'))) {
 
     add_action('admin_notices', function() { ?>
 
