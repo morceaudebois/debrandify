@@ -85,3 +85,18 @@ table tbody {
 		pointer-events: none;
 	}
 }
+
+@media screen and (max-width: 782px) {
+	.form-table td {
+		display: flex;
+		align-items: center;
+
+		.switch {
+			flex-shrink: 0;
+		}
+	}
+
+	.form-table th {
+		width: 100%;
+	}
+}

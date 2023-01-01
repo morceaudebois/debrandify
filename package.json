@@ -4,7 +4,7 @@
   "description": "<h1 align=\"center\">   <a href=\"https://tahoe.be\"><img src=\"https://raw.githubusercontent.com/morceaudebois/wp-debrand/master/src/images/wp-debrand.png\" width=\"80%\" alt=\"\"></a> </h1>",
   "main": "script.js",
   "scripts": {
-    "scss": "sass --watch --no-source-map style.scss style.css",
+    "scss": "sass --watch --no-source-map src/scss/style.scss src/css/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/morceaudebois/wp-debrand#readme",
   "dependencies": {
+    "sass": "^1.57.1",
     "scss": "^0.2.4"
   }
 }

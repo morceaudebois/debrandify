@@ -76,3 +76,16 @@ table tbody.greyedOut tr:not(tr:first-child) {
   opacity: 0.3;
   pointer-events: none;
 }
+
+@media screen and (max-width: 782px) {
+  .form-table td {
+    display: flex;
+    align-items: center;
+  }
+  .form-table td .switch {
+    flex-shrink: 0;
+  }
+  .form-table th {
+    width: 100%;
+  }
+}
