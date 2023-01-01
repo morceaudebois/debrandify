@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://tahoe.be"><img src="https://raw.githubusercontent.com/morceaudebois/wp-debrand/master/src/images/wp-debrand.png" width="80%" alt=""></a>
+  <a href="https://tahoe.be"><img src="https://raw.githubusercontent.com/morceaudebois/wp-debrand/master/src/images/wp-debrand.png" width="70%" alt=""></a>
 </h1>
 
 WP Debrand (formerly DeWordPressify) is a toolkit plugin that adds plenty of settings to customise and improve WordPress. You'll be able to remove WordPress' branding and replace it with your own as well as get rid of some of the bloat that comes built-in. Here's the key features:

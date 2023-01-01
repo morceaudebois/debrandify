@@ -113,6 +113,8 @@ class dwpifyOptions {
 								</tr>
 
                                 <?php 
+								$this->printCheckbox('wordpress-tab-suffix', __('"— WordPress" suffix in tab titles of dashboard pages', 'wp-debrand'));
+
 								$this->printCheckbox('dashboard_news', __('"News and events" widget on dashboard', 'wp-debrand'));
 
 								if (is_plugin_active('elementor/elementor.php')) {

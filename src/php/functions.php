@@ -11,6 +11,7 @@ function wpdbrd_getDefaultOptions() {
         'footer_version' => 'yes',
         'footer_version_string' => '',
         'login_logo' => 'wp_logo',
+        'wordpress-tab-suffix' => 'yes',
         'dashboard_news' => 'yes',
         'elementor_overview' => 'yes',
         'smileys' => 'yes',

@@ -1,17 +1,17 @@
-# Copyright (C) 2022 Tahoe Beetschen
+# Copyright (C) 2023 Tahoe Beetschen
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Debrand 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-debrand\n"
+"Project-Id-Version: WP Debrand 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/DeWordPressify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
+"POT-Creation-Date: 2023-01-01T12:51:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.6.0\n"
+"X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: wp-debrand\n"
 
 #. Plugin Name of the plugin
@@ -55,179 +55,179 @@ msgstr ""
 msgid "Review"
 msgstr ""
 
-#: src/php/settings.php:10
+#: src/php/settings.php:12
 msgid "Your site uses WordPress Multisite, which means WP Debrand options are set up "
 msgstr ""
 
-#: src/php/settings.php:10
+#: src/php/settings.php:12
 msgid "on the network level"
 msgstr ""
 
-#: src/php/settings.php:10
+#: src/php/settings.php:12
 msgid ". You can prioritise this specific site's settings by toggling this option."
 msgstr ""
 
-#: src/php/settings.php:49
+#: src/php/settings.php:51
 msgid "WP Debrand multisite settings"
 msgstr ""
 
-#: src/php/settings.php:50
+#: src/php/settings.php:52
 msgid "WP Debrand Settings"
 msgstr ""
 
-#: src/php/settings.php:54
+#: src/php/settings.php:56
 msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the WP Debrand settings of its dashboard."
 msgstr ""
 
-#: src/php/settings.php:59
+#: src/php/settings.php:61
 msgid "General"
 msgstr ""
 
-#: src/php/settings.php:63
+#: src/php/settings.php:65
 msgid "Email"
 msgstr ""
 
-#: src/php/settings.php:67
+#: src/php/settings.php:69
 msgid "Advanced"
 msgstr ""
 
-#: src/php/settings.php:71
+#: src/php/settings.php:73
 msgid "Bonus features!"
 msgstr ""
 
-#: src/php/settings.php:81
+#: src/php/settings.php:83
 msgid "Prioritise these settings"
 msgstr ""
 
-#: src/php/settings.php:86
+#: src/php/settings.php:88
 msgid "WordPress admin bar logo"
 msgstr ""
 
-#: src/php/settings.php:87
+#: src/php/settings.php:89
 msgid "Thank you sentence in admin footer"
 msgstr ""
 
-#: src/php/settings.php:87
-#: src/php/settings.php:88
+#: src/php/settings.php:89
+#: src/php/settings.php:90
 msgid "Your own text"
 msgstr ""
 
-#: src/php/settings.php:88
+#: src/php/settings.php:90
 msgid "WordPress version in admin footer"
 msgstr ""
 
-#: src/php/settings.php:91
+#: src/php/settings.php:93
 msgid "Login logo image"
 msgstr ""
 
-#: src/php/settings.php:95
+#: src/php/settings.php:97
 msgid "Default WordPress logo"
 msgstr ""
 
-#: src/php/settings.php:99
+#: src/php/settings.php:101
 msgid "Site logo (if there is one)"
 msgstr ""
 
-#: src/php/settings.php:103
+#: src/php/settings.php:105
 msgid "Site title"
 msgstr ""
 
-#: src/php/settings.php:107
+#: src/php/settings.php:109
 msgid "Hide"
 msgstr ""
 
-#: src/php/settings.php:114
+#: src/php/settings.php:116
 msgid "\"News and events\" widget on dashboard"
 msgstr ""
 
-#: src/php/settings.php:117
+#: src/php/settings.php:119
 msgid "\"Elementor overview\" widget on dashboard"
 msgstr ""
 
-#: src/php/settings.php:120
+#: src/php/settings.php:122
 msgid "Integrated smileys"
 msgstr ""
 
-#: src/php/settings.php:121
+#: src/php/settings.php:123
 msgid "Integrated RSS feed"
 msgstr ""
 
-#: src/php/settings.php:122
+#: src/php/settings.php:124
 msgid "Comments"
 msgstr ""
 
-#: src/php/settings.php:125
+#: src/php/settings.php:127
 msgid "\"From\" text of emails sent by your site"
 msgstr ""
 
-#: src/php/settings.php:125
+#: src/php/settings.php:127
 msgid "Your site's name"
 msgstr ""
 
-#: src/php/settings.php:126
+#: src/php/settings.php:128
 msgid "Username of the email adress that sends from your site"
 msgstr ""
 
-#: src/php/settings.php:126
+#: src/php/settings.php:128
 msgid "First part of email"
 msgstr ""
 
-#: src/php/settings.php:129
+#: src/php/settings.php:131
 msgid "Global inline styles"
 msgstr ""
 
-#: src/php/settings.php:130
+#: src/php/settings.php:132
 msgid "Unnecessary code in head tag"
 msgstr ""
 
-#: src/php/settings.php:131
+#: src/php/settings.php:133
 msgid "Embeds"
 msgstr ""
 
-#: src/php/settings.php:132
+#: src/php/settings.php:134
 msgid "Block library"
 msgstr ""
 
-#: src/php/settings.php:133
+#: src/php/settings.php:135
 msgid "Automatically download new WordPress themes"
 msgstr ""
 
-#: src/php/settings.php:136
+#: src/php/settings.php:138
 msgid "SVG upload"
 msgstr ""
 
-#: src/php/settings.php:137
+#: src/php/settings.php:139
 msgid "Center login form vertically"
 msgstr ""
 
-#: src/php/settings.php:138
+#: src/php/settings.php:140
 msgid "REST API"
 msgstr ""
 
-#: src/php/settings.php:139
+#: src/php/settings.php:141
 msgid "jQuery (if possible)"
 msgstr ""
 
-#: src/php/settings.php:153
+#: src/php/settings.php:155
 msgid "Made in France with ❤️ by "
 msgstr ""
 
-#: src/php/settings.php:155
+#: src/php/settings.php:157
 msgid "If you like WP Debrand, please consider "
 msgstr ""
 
-#: src/php/settings.php:155
+#: src/php/settings.php:157
 msgid "giving it a review"
 msgstr ""
 
-#: src/php/settings.php:155
+#: src/php/settings.php:157
 msgid "or"
 msgstr ""
 
-#: src/php/settings.php:155
+#: src/php/settings.php:157
 msgid "donating"
 msgstr ""
 
-#: src/php/settings.php:156
+#: src/php/settings.php:158
 msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
 msgstr ""

@@ -1,15 +1,15 @@
 <?php if (!defined('ABSPATH')) { exit; }
 /**
  * @package WP Debrand
- * @version 1.0.0
+ * @version 1.1.0
  */
 /*
     Plugin Name: WP Debrand
-    Version: 1.0.0
+    Version: 1.1.0
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
     Plugin URI: https://github.com/morceaudebois/wp-debrand
-    Domain Path: /assets/languages/
+    Domain Path: languages/
     Text Domain: wp-debrand
     Description: WP Debrand is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter.
 
@@ -197,6 +197,17 @@ function wpdbrd_everywhere() {
         add_action('do_feed_atom', 'disableRss', 1);
         add_action('do_feed_rss2_comments', 'disableRss', 1);
         add_action('do_feed_atom_comments', 'disableRss', 1);
+    }
+
+    // here because if it's in admin, it doesn't work on login page
+    if (!wpdbrd_checkOption('wordpress-tab-suffix')) {
+        add_filter('admin_title', 'removeSuffix', 99);
+        add_filter('login_title', 'removeSuffix', 99);
+        
+        function removeSuffix($origtitle) {
+            // weird em dash encoding
+            return str_replace(' &#8212; WordPress', '', $origtitle);
+        }
     }
 
     if (!wpdbrd_checkOption('comments')) {
