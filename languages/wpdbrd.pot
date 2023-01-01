@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Debrand 1.0.0\n"
+"Project-Id-Version: WP Debrand 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/DeWordPressify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-01T12:51:39+00:00\n"
+"POT-Creation-Date: 2023-01-01T13:31:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: wp-debrand\n"
@@ -137,97 +137,101 @@ msgid "Hide"
 msgstr ""
 
 #: src/php/settings.php:116
+msgid "\"— WordPress\" suffix in tab titles of dashboard pages"
+msgstr ""
+
+#: src/php/settings.php:118
 msgid "\"News and events\" widget on dashboard"
 msgstr ""
 
-#: src/php/settings.php:119
+#: src/php/settings.php:121
 msgid "\"Elementor overview\" widget on dashboard"
 msgstr ""
 
-#: src/php/settings.php:122
+#: src/php/settings.php:124
 msgid "Integrated smileys"
 msgstr ""
 
-#: src/php/settings.php:123
+#: src/php/settings.php:125
 msgid "Integrated RSS feed"
 msgstr ""
 
-#: src/php/settings.php:124
+#: src/php/settings.php:126
 msgid "Comments"
 msgstr ""
 
-#: src/php/settings.php:127
+#: src/php/settings.php:129
 msgid "\"From\" text of emails sent by your site"
 msgstr ""
 
-#: src/php/settings.php:127
+#: src/php/settings.php:129
 msgid "Your site's name"
 msgstr ""
 
-#: src/php/settings.php:128
+#: src/php/settings.php:130
 msgid "Username of the email adress that sends from your site"
 msgstr ""
 
-#: src/php/settings.php:128
+#: src/php/settings.php:130
 msgid "First part of email"
 msgstr ""
 
-#: src/php/settings.php:131
+#: src/php/settings.php:133
 msgid "Global inline styles"
 msgstr ""
 
-#: src/php/settings.php:132
+#: src/php/settings.php:134
 msgid "Unnecessary code in head tag"
 msgstr ""
 
-#: src/php/settings.php:133
+#: src/php/settings.php:135
 msgid "Embeds"
 msgstr ""
 
-#: src/php/settings.php:134
+#: src/php/settings.php:136
 msgid "Block library"
 msgstr ""
 
-#: src/php/settings.php:135
+#: src/php/settings.php:137
 msgid "Automatically download new WordPress themes"
 msgstr ""
 
-#: src/php/settings.php:138
+#: src/php/settings.php:140
 msgid "SVG upload"
 msgstr ""
 
-#: src/php/settings.php:139
+#: src/php/settings.php:141
 msgid "Center login form vertically"
 msgstr ""
 
-#: src/php/settings.php:140
+#: src/php/settings.php:142
 msgid "REST API"
 msgstr ""
 
-#: src/php/settings.php:141
+#: src/php/settings.php:143
 msgid "jQuery (if possible)"
 msgstr ""
 
-#: src/php/settings.php:155
+#: src/php/settings.php:157
 msgid "Made in France with ❤️ by "
 msgstr ""
 
-#: src/php/settings.php:157
+#: src/php/settings.php:159
 msgid "If you like WP Debrand, please consider "
 msgstr ""
 
-#: src/php/settings.php:157
+#: src/php/settings.php:159
 msgid "giving it a review"
 msgstr ""
 
-#: src/php/settings.php:157
+#: src/php/settings.php:159
 msgid "or"
 msgstr ""
 
-#: src/php/settings.php:157
+#: src/php/settings.php:159
 msgid "donating"
 msgstr ""
 
-#: src/php/settings.php:158
+#: src/php/settings.php:160
 msgid "This is what motivates me to keep it updated and create new projects as an indie developer 😊"
 msgstr ""

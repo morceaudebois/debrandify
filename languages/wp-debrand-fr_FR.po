@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WP Debrand 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-debrand\n"
 "POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
-"PO-Revision-Date: 2023-01-01 13:37+0100\n"
+"PO-Revision-Date: 2023-01-01 14:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -141,7 +141,11 @@ msgstr "Titre du site"
 msgid "Hide"
 msgstr "Cacher"
 
-#: src/php/settings.php:114
+#: src/php/settings.php:116
+msgid "\"— WordPress\" suffix in tab titles of dashboard pages"
+msgstr "Suffixe \"— WordPress\" dans les titres des onglets du tableau de bord"
+
+#: src/php/settings.php:118
 msgid "\"News and events\" widget on dashboard"
 msgstr "Widget “Évènements et nouveautés WordPress” du tableau de bord"
 
