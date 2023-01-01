@@ -2,8 +2,8 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: DeWordPressify 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
+"Project-Id-Version: WP Debrand 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-debrand\n"
 "POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
 "PO-Revision-Date: 2022-07-31 16:09+0200\n"
 "Last-Translator: \n"
@@ -14,22 +14,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.1\n"
-"X-Domain: dewordpressify\n"
+"X-Domain: wp-debrand\n"
 
 #. Plugin Name of the plugin
-msgid "DeWordPressify"
+msgid "WP Debrand"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/morceaudebois/DeWordPressify"
+msgid "https://github.com/morceaudebois/wp-debrand"
 msgstr ""
 
 #. Description of the plugin
 msgid ""
-"DeWordPressify is a simple WordPress plugin that lets you hide WordPress' "
+"WP Debrand is a simple WordPress plugin that lets you hide WordPress' "
 "branding and replace it with yours as well as make your site lighter."
 msgstr ""
-"DeWordPressify permet de retirer toutes mentions de WordPress de votre "
+"WP Debrand permet de retirer toutes mentions de WordPress de votre "
 "tableau de bord, de les remplacer par votre propre marque et de rendre votre "
 "site plus léger."
 
@@ -47,22 +47,22 @@ msgstr "Faire un don"
 
 #: src/php/notices.php:40
 msgid ""
-"Thank you for installing <b>DeWordPressify</b>! You can start getting rid of "
+"Thank you for installing <b>WP Debrand</b>! You can start getting rid of "
 "WordPress' branding right away."
 msgstr ""
-"Merci d’avoir installé <b>DeWordPressify</b>! Vous pouvez commencer à vous "
+"Merci d’avoir installé <b>WP Debrand</b>! Vous pouvez commencer à vous "
 "en servir dès maintenant."
 
 #: src/php/notices.php:42
 msgid "Visit settings page"
-msgstr "Réglages de DeWordPressify"
+msgstr "Réglages de WP Debrand"
 
 #: src/php/notices.php:75
 msgid ""
-"You've been using DeWordPressify for a while now, I hope you like it! If so, "
+"You've been using WP Debrand for a while now, I hope you like it! If so, "
 "please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
-"Cela commence à faire longtemps que vous utilisez DeWordPressify, j’espère "
+"Cela commence à faire longtemps que vous utilisez WP Debrand, j’espère "
 "qu’il vous plaît ! Si c’est le cas, n’hésitez pas à soutenir mon travail "
 "avec les boutons si dessous 😊"
 
@@ -72,11 +72,11 @@ msgstr "Noter"
 
 #: src/php/settings.php:10
 msgid ""
-"Your site uses WordPress Multisite, which means DeWordPressify options are "
+"Your site uses WordPress Multisite, which means WP Debrand options are "
 "set up "
 msgstr ""
 "Votre site utilise WordPress Multisite, ce qui veut dire que les options de "
-"DeWordpressify sont réglées "
+"WP Debrand sont réglées "
 
 #: src/php/settings.php:10
 msgid "on the network level"
@@ -90,22 +90,22 @@ msgstr ""
 "réseau en cochant cette option."
 
 #: src/php/settings.php:49
-msgid "DeWordPressify multisite settings"
-msgstr "Réglages DeWordPressify du réseau"
+msgid "WP Debrand multisite settings"
+msgstr "Réglages WP Debrand du réseau"
 
 #: src/php/settings.php:50
-msgid "DeWordPressify Settings"
-msgstr "Réglages de DeWordPressify"
+msgid "WP Debrand Settings"
+msgstr "Réglages de WP Debrand"
 
 #: src/php/settings.php:54
 msgid ""
 "These will impact your whole network of sites. If you wish to set things up "
-"specifically for a site, head to the DeWordPressify settings of its "
+"specifically for a site, head to the WP Debrand settings of its "
 "dashboard."
 msgstr ""
 "Ces réglages impacteront le réseau de sites complet. Si vous souhaitez "
 "mettre en place des réglages spécifiques à un site, rendez vous dans les "
-"réglages DeWordPressify sur le tableau de bord du site en question."
+"réglages WP Debrand sur le tableau de bord du site en question."
 
 #: src/php/settings.php:59
 msgid "General"
@@ -241,8 +241,8 @@ msgid "Made in France with ❤️ by "
 msgstr "Fabriqué en France avec ❤️ par "
 
 #: src/php/settings.php:155
-msgid "If you like DeWordPressify, please consider "
-msgstr "Si vous aimez DeWordPressify, pensez à "
+msgid "If you like WP Debrand, please consider "
+msgstr "Si vous aimez WP Debrand, pensez à "
 
 #: src/php/settings.php:155
 msgid "giving it a review"

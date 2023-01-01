@@ -1,9 +1,9 @@
 <?php if (!defined('ABSPATH')) { exit; }
 
 // adds "settings" link in plugins.php page 
-add_filter('plugin_action_links_dewordpressify/dewordpressify.php', function($links) {
+add_filter('plugin_action_links_wp-debrand/wp-debrand.php', function($links) {
     // Build and escape the URL.
-    $url = esc_url(add_query_arg('page', 'dewordpressify', get_admin_url() . 'admin.php'));
+    $url = esc_url(add_query_arg('page', 'wp-debrand', get_admin_url() . 'admin.php'));
 
     // Create the link.
     $settings_link = "<a href='$url'>" . __('Settings') . '</a>';
@@ -15,15 +15,15 @@ add_filter('plugin_action_links_dewordpressify/dewordpressify.php', function($li
 
 // adds other links in plugins.php page
 add_filter('plugin_row_meta', function($plugin_meta, $plugin_file, $plugin_data) {
-    if (isset($plugin_data['TextDomain']) && 'dewordpressify' == $plugin_data['TextDomain']) {
+    if (isset($plugin_data['TextDomain']) && 'wp-debrand' == $plugin_data['TextDomain']) {
         $plugin_meta['dwpify-github'] = sprintf(
             '<a href="%s" target="_blank">🐙 %s</a>',
-            'https://github.com/morceaudebois/DeWordPressify', esc_html__('GitHub')
+            'https://github.com/morceaudebois/wp-debrand', esc_html__('GitHub')
         );
 
         $plugin_meta['dwpify-donate'] = sprintf(
-            '<a href="%s" target="_blank" class="dewordpressify-donation-button"> ✨ %s</a>', 
-            'https://ko-fi.com/tahoe', esc_html__('Donate', 'dewordpressify')
+            '<a href="%s" target="_blank" class="wp-debrand-donation-button"> ✨ %s</a>', 
+            'https://ko-fi.com/tahoe', esc_html__('Donate', 'wp-debrand')
         );
         
         unset($plugin_meta[2]); // remove default website link
@@ -37,9 +37,9 @@ if (get_option('dwpify_installBanner') == 'toBeTriggered') {
 
             <img src="<?php echo plugin_dir_url(__FILE__) . 'src/images/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
 
-            <p><?php _e('Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress\' branding right away.', 'dewordpressify')?><br>
+            <p><?php _e('Thank you for installing <b>WP Debrand</b>! You can start getting rid of WordPress\' branding right away.', 'wp-debrand')?><br>
         
-            <a class="button" href="<?php menu_page_url('dewordpressify')?>" style="margin-top: 8px"><?php _e('Visit settings page', 'dewordpressify') ?></a></p>
+            <a class="button" href="<?php menu_page_url('wp-debrand')?>" style="margin-top: 8px"><?php _e('Visit settings page', 'wp-debrand') ?></a></p>
             
         </div> 
     <?php });
@@ -72,10 +72,10 @@ if (get_option('dwpify_installBanner') == 'toBeTriggered') {
             <img src="<?php echo plugin_dir_url(__FILE__) . 'src/images/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
 
             <p style="margin-right: 10px">
-                <?php _e('You\'ve been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊', 'dewordpressify')?><br>
+                <?php _e('You\'ve been using WP Debrand for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊', 'wp-debrand')?><br>
         
-                <a class="button" href="https://wordpress.org/plugins/dewordpressify/#reviews" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'dewordpressify') ?></a>
-                <a class="button" href="https://ko-fi.com/tahoe" style="margin-top: 8px"><?php _e('Donate', 'dewordpressify') ?></a>
+                <a class="button" href="https://wordpress.org/plugins/wp-debrand/#reviews" style="margin-top: 8px; margin-right: 5px;"><?php _e('Review', 'wp-debrand') ?></a>
+                <a class="button" href="https://ko-fi.com/tahoe" style="margin-top: 8px"><?php _e('Donate', 'wp-debrand') ?></a>
             </p>
 
             <!-- added button manually instead of with 

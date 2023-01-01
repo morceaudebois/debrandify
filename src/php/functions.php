@@ -67,7 +67,7 @@ function dwpify_is_login_form() {
 }
 
 function dwpify_tabsUrl() {
-    $dwpify_tabsUrl = '.php?page=dewordpressify';
+    $dwpify_tabsUrl = '.php?page=wp-debrand';
     if (nw()) { return network_admin_url('settings' . $dwpify_tabsUrl);
     } else { return admin_url('admin' . $dwpify_tabsUrl); }
 }

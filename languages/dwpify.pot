@@ -2,8 +2,8 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: DeWordPressify 1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dewordpressify\n"
+"Project-Id-Version: WP Debrand 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-debrand\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,18 +12,18 @@ msgstr ""
 "POT-Creation-Date: 2022-07-31T11:07:11+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
-"X-Domain: dewordpressify\n"
+"X-Domain: wp-debrand\n"
 
 #. Plugin Name of the plugin
-msgid "DeWordPressify"
+msgid "WP Debrand"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/morceaudebois/DeWordPressify"
+msgid "https://github.com/morceaudebois/wp-debrand"
 msgstr ""
 
 #. Description of the plugin
-msgid "DeWordPressify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter."
+msgid "WP Debrand is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter."
 msgstr ""
 
 #. Author of the plugin
@@ -40,7 +40,7 @@ msgid "Donate"
 msgstr ""
 
 #: src/php/notices.php:40
-msgid "Thank you for installing <b>DeWordPressify</b>! You can start getting rid of WordPress' branding right away."
+msgid "Thank you for installing <b>WP Debrand</b>! You can start getting rid of WordPress' branding right away."
 msgstr ""
 
 #: src/php/notices.php:42
@@ -48,7 +48,7 @@ msgid "Visit settings page"
 msgstr ""
 
 #: src/php/notices.php:75
-msgid "You've been using DeWordPressify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
+msgid "You've been using WP Debrand for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊"
 msgstr ""
 
 #: src/php/notices.php:77
@@ -56,7 +56,7 @@ msgid "Review"
 msgstr ""
 
 #: src/php/settings.php:10
-msgid "Your site uses WordPress Multisite, which means DeWordPressify options are set up "
+msgid "Your site uses WordPress Multisite, which means WP Debrand options are set up "
 msgstr ""
 
 #: src/php/settings.php:10
@@ -68,15 +68,15 @@ msgid ". You can prioritise this specific site's settings by toggling this optio
 msgstr ""
 
 #: src/php/settings.php:49
-msgid "DeWordPressify multisite settings"
+msgid "WP Debrand multisite settings"
 msgstr ""
 
 #: src/php/settings.php:50
-msgid "DeWordPressify Settings"
+msgid "WP Debrand Settings"
 msgstr ""
 
 #: src/php/settings.php:54
-msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the DeWordPressify settings of its dashboard."
+msgid "These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the WP Debrand settings of its dashboard."
 msgstr ""
 
 #: src/php/settings.php:59
@@ -213,7 +213,7 @@ msgid "Made in France with ❤️ by "
 msgstr ""
 
 #: src/php/settings.php:155
-msgid "If you like DeWordPressify, please consider "
+msgid "If you like WP Debrand, please consider "
 msgstr ""
 
 #: src/php/settings.php:155

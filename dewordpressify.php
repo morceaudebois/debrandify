@@ -1,16 +1,16 @@
 <?php if (!defined('ABSPATH')) { exit; }
 /**
- * @package DeWordPressify
+ * @package WP Debrand
  * @version 1.0.0
  */
 /*
-    Plugin Name: DeWordPressify
+    Plugin Name: WP Debrand
     Version: 1.0.0
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
-    Plugin URI: https://github.com/morceaudebois/DeWordPressify
+    Plugin URI: https://github.com/morceaudebois/wp-debrand
     Domain Path: /languages
-    Description: DeWordPressify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter.
+    Description: WP Debrand is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter.
 
     License: GPL2
 */
@@ -50,7 +50,7 @@ add_action('init', function() {
      // triggers when user logged in
     if (is_user_logged_in()) dwpify_user_logged_in();
     
-    load_plugin_textdomain('dewordpressify', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    load_plugin_textdomain('wp-debrand', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 
     add_action('admin_init', function() {
         // triggers right after activation
