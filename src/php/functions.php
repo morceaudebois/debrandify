@@ -27,7 +27,6 @@ function dbrdify_getDefaultOptions() {
         'head' => 'yes',
         'wp_embed' => 'yes',
         'block_library' => 'yes',
-        'wp_themes' => 'yes',
 
         // bonus tab
         'svg' => 'no',

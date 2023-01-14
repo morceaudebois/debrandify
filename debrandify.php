@@ -307,10 +307,6 @@ function dbrdify_everywhere() {
         });
     }
 
-    if (!dbrdify_checkOption('wp_themes')) {
-        define('CORE_UPGRADE_SKIP_NEW_BUNDLED', true);
-    }
-
     if (dbrdify_checkOption('svg')) {
         // Shamelessly stolen here https://wpengine.com/resources/enable-svg-wordpress/
         

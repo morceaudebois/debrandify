@@ -134,7 +134,6 @@ class dbrdifyOptions {
 								$this->printCheckbox('head', __('Unnecessary code in head tag', 'debrandify'));
                                 $this->printCheckbox('wp_embed', __('Embeds', 'debrandify'));
                                 $this->printCheckbox('block_library', __('Block library', 'debrandify'));
-                                $this->printCheckbox('wp_themes', __('Automatically download new WordPress themes', 'debrandify'));
 								break;
 							case 'bonus':
 								$this->printCheckbox('svg', __('SVG upload', 'debrandify'));
