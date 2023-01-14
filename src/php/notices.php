@@ -56,7 +56,7 @@ if (get_option('dbrdify_installBanner') == 'toBeTriggered') {
                 document.querySelector('#used_banner .notice-dismiss').onclick = function() {
                     document.querySelector('#used_banner').remove();
 
-                    fetch('<?= get_option('siteurl') ?>/wp-admin/admin-ajax.php', {
+                    fetch('<?php echo get_option('siteurl') ?>/wp-admin/admin-ajax.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

@@ -73,7 +73,7 @@ function dbrdify_tabsUrl() {
     } else { return admin_url('admin' . $dbrdify_tabsUrl); }
 }
 function dbrdify_getCurrentTab() {
-    return !isset($_GET['action']) ? 'general' : $_GET['action'];
+    return !isset($_GET['action']) ? 'general' : esc_html($_GET['action']);
 }
 
 function dbrdify_checkOption($key, $string = false) {

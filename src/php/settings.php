@@ -7,7 +7,7 @@ class dbrdifyOptions {
 
 		<tr>
 			<th scope="row">
-				<?php echo $title;
+				<?php echo esc_html($title);
 				 if ($key === 'prioritise') {
 					echo "<p class='desc'>" . __('Your site uses WordPress Multisite, which means Debrandify options are set up ', 'debrandify') . "<a href='" . network_admin_url('settings.php?page=debrandify') . "'>" . __('on the network level', 'debrandify') . "</a>" . __('. You can prioritise this specific site\'s settings by toggling this option.', 'debrandify') . "</p>";
 				 }
@@ -18,8 +18,8 @@ class dbrdifyOptions {
 			<td>
 				<label class='switch'>
 					<!-- hidden checkbox to return no when unchecked -->
-					<input name="dbrdify_<?php echo $key; ?>" <?php echo $isChecked ?> type="hidden" value="no">
-					<input id="<?php echo $key ?>" name="dbrdify_<?php echo $key; ?>" <?php echo $isChecked ?>type="checkbox" value="yes">
+					<input name="dbrdify_<?php echo esc_html($key); ?>" <?php echo esc_html($isChecked) ?> type="hidden" value="no">
+					<input id="<?php echo esc_html($key) ?>" name="dbrdify_<?php echo esc_html($key); ?>" <?php echo esc_html($isChecked) ?>type="checkbox" value="yes">
 					<span class='slider round span'></span>
 				</label>
 
@@ -37,9 +37,9 @@ class dbrdifyOptions {
 	public function printTextField($key, $title, $placeholder) { 
 		$value = dbrdify_getOption('dbrdify_' . $key) ? dbrdify_getOption('dbrdify_' . $key) : ''; ?>
 		<tr>
-			<th scope="row"><?php echo $title; ?></th>
+			<th scope="row"><?php echo esc_html($title); ?></th>
 			<td><?php echo "<input type='text' id='${key}' name='dbrdify_${key}' value='${value}' placeholder='${placeholder}' />"; 
-			if ($key == 'email_username') echo ' @' . $_SERVER['SERVER_NAME'] ?></td>
+			if ($key == 'email_username') echo ' @' . esc_html($_SERVER['SERVER_NAME']) ?></td>
 		</tr>
 	<?php }
 
