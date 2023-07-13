@@ -2,17 +2,18 @@
 
 class dbrdifyOptions {
 
+	// for each checkbox
 	public function printCheckbox($key, $title, $text = false) {
 		$isChecked = checked('yes', dbrdify_getOption('dbrdify_' . $key), false); ?>
 
 		<tr>
 			<th scope="row">
 				<?php echo esc_html($title);
-				 if ($key === 'prioritise') {
-					echo "<p class='desc'>" . __('Your site uses WordPress Multisite, which means Debrandify options are set up ', 'debrandify') . "<a href='" . network_admin_url('settings.php?page=debrandify') . "'>" . __('on the network level', 'debrandify') . "</a>" . __('. You can prioritise this specific site\'s settings by toggling this option.', 'debrandify') . "</p>";
-				 }
+					if ($key === 'prioritise') {
+						echo "<p class='desc'>" . esc_html(__('Your site uses WordPress Multisite, which means Debrandify options are set up ', 'debrandify')) . "<a href='" . esc_url(network_admin_url('settings.php?page=debrandify')) . "'>" . esc_html(__('on the network level', 'debrandify')) . "</a>" . esc_html(__('. You can prioritise this specific site\'s settings by toggling this option.', 'debrandify')) . "</p>";
+					}
 				?>
-				
+
 			</th>
 			
 			<td>
@@ -25,20 +26,21 @@ class dbrdifyOptions {
 
 				<?php if ($text) { 
 					$stringKey = $key . '_string';
-					$value = dbrdify_getOption('dbrdify_' . $stringKey);
-					$placeholder = __($text, 'debrandify');
+					$value = esc_attr(dbrdify_getOption('dbrdify_' . $stringKey));
+					$placeholder = esc_attr(__($text, 'debrandify'));
 
-					echo "<input type='text' id='${stringKey}' class='greyedOut' name='dbrdify_${stringKey}' value='${value}' placeholder='${placeholder}' />";
+					echo "<input type='text' id='" . esc_attr($stringKey) . "' class='greyedOut' name='dbrdify_" . esc_attr($stringKey) . "' value='" . esc_attr($value) . "' placeholder='" . esc_attr($placeholder) . "' />";
+
 				} ?>
 			</td>
 		</tr>
 	<?php }
 
 	public function printTextField($key, $title, $placeholder) { 
-		$value = dbrdify_getOption('dbrdify_' . $key) ? dbrdify_getOption('dbrdify_' . $key) : ''; ?>
+		$value = dbrdify_getOption('dbrdify_' . $key) ? esc_attr(dbrdify_getOption('dbrdify_' . $key)) : ''; ?>
 		<tr>
 			<th scope="row"><?php echo esc_html($title) ?></th>
-			<td><?php echo "<input type='text' id='${key}' name='dbrdify_${key}' value='${value}' placeholder='${placeholder}' />"; 
+			<td><?php echo "<input type='text' id='" . esc_attr($key) . "' name='dbrdify_${key}' value='" . esc_attr($value) . "' placeholder='" . esc_attr($placeholder) . "' />"; ?></td>
 			if ($key == 'email_username') echo ' @' . esc_html($_SERVER['SERVER_NAME']) ?></td>
 		</tr>
 	<?php }
@@ -53,11 +55,11 @@ class dbrdifyOptions {
 			</h1>
 
 			<?php if (nw()) {
-				echo "<span>" . __('These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the Debrandify settings of its dashboard.', 'debrandify') . "</span>";
+				echo "<span>" . esc_html(__('These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the Debrandify settings of its dashboard.', 'debrandify')) . "</span>";
 			} ?>
 				
 			<h2 class="nav-tab-wrapper">
-				<a href="<?php echo dbrdify_tabsUrl(); ?>" class="nav-tab <?php if (dbrdify_getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
+				<a href="<?php echo esc_url(dbrdify_tabsUrl()); ?>" class="nav-tab <?php if (dbrdify_getCurrentTab() == 'general') echo 'nav-tab-active'; ?>">
 					<?php esc_html_e('General', 'debrandify') ?>
 				</a>
 
@@ -74,7 +76,7 @@ class dbrdifyOptions {
 				</a>
 			</h2>
 
-			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo dbrdify_getCurrentTab()?>">
+			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo esc_attr(dbrdify_getCurrentTab())?>">
 				<?php wp_nonce_field('dbrdify-validate'); ?>
 
 				<table class="form-table">
@@ -150,7 +152,7 @@ class dbrdifyOptions {
 			<br><hr><br><br>
 
 			<a href="https://github.com/morceaudebois/debrandify">
-				<img src="<?php echo plugin_dir_url(__DIR__) . 'images/debrandify.png' ?>" alt="debrandify banner" id="dbrdify_banner">
+				<img src="<?php echo esc_url(plugin_dir_url(__DIR__) . 'images/debrandify.png') ?>" alt="debrandify banner" id="dbrdify_banner">
 			</a>
 		
 			<p><?php _e('Made in France with ❤️ by ', 'debrandify') ?> <a href="https://tahoe.be">Tahoe Beetschen</a></p>
@@ -210,7 +212,7 @@ class dbrdifyOptions {
 
 		add_action('network_admin_notices', function() {
 			if (isset($_GET['page']) && $_GET['page'] == 'debrandify' && isset($_GET['updated'])) {
-				echo '<div id="message" class="updated notice is-dismissible"><p>Settings updated.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+				echo '<div id="message" class="updated notice is-dismissible"><p>' . esc_html__('Settings updated.', 'debrandify') . '</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">' . esc_html__('Dismiss this notice.', 'debrandify') . '</span></button></div>';
 			}
 		});
 	}
