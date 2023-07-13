@@ -64,14 +64,14 @@ function dbrdify_wp_admin() {
     add_filter('admin_footer_text', function($defaultString) {
         if (dbrdify_checkOption('thank_you')) {
             $theString = dbrdify_checkOption('thank_you_string', true);
-            echo $theString ? esc_html($theString) : esc_html($defaultString);
+            echo $theString ? $theString : $defaultString;
         }
     }, 11);
     
     add_filter('update_footer', function($defaultString) {
         if (dbrdify_checkOption('footer_version')) {
             $theString = dbrdify_checkOption('footer_version_string', true);
-            echo $theString ? esc_html($theString) : esc_html($defaultString);
+            echo $theString ? $theString : $defaultString;
         }
     }, 11);
 

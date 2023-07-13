@@ -37,11 +37,16 @@ class dbrdifyOptions {
 	<?php }
 
 	public function printTextField($key, $title, $placeholder) { 
-		$value = dbrdify_getOption('dbrdify_' . $key) ? esc_attr(dbrdify_getOption('dbrdify_' . $key)) : ''; ?>
+		$value = dbrdify_getOption('dbrdify_' . $key) ? esc_attr(dbrdify_getOption('dbrdify_' . $key)) : '';
+		$escapedKey = esc_attr($key);
+		$escapedPlaceholder = esc_attr($placeholder); ?>
+
 		<tr>
 			<th scope="row"><?php echo esc_html($title) ?></th>
-			<td><?php echo "<input type='text' id='" . esc_attr($key) . "' name='dbrdify_${key}' value='" . esc_attr($value) . "' placeholder='" . esc_attr($placeholder) . "' />"; ?></td>
-			if ($key == 'email_username') echo ' @' . esc_html($_SERVER['SERVER_NAME']) ?></td>
+			<td>
+				<input type="text" id="<?php echo $escapedKey ?>" name="dbrdify_<?php echo $escapedKey ?>" value="<?php echo $value ?>" placeholder="<?php echo $escapedPlaceholder ?>" />
+				<?php if ($key === 'email_username') echo ' @' . esc_html($_SERVER['SERVER_NAME']) ?>
+			</td>
 		</tr>
 	<?php }
 
@@ -159,6 +164,14 @@ class dbrdifyOptions {
 		
 			<p><?php _e('If you like Debrandify, please consider ', 'debrandify') ?> <a href="https://wordpress.org/plugins/debrandify/#reviews"><?php _e('giving it a review', 'debrandify') ?></a> <?php _e('or', 'debrandify') ?> <a href="https://ko-fi.com/tahoe"><?php _e('donating', 'debrandify') ?></a>. <br>
 			<?php _e('This is what motivates me to keep it updated and create new projects as an indie developer 😊', 'debrandify') ?></p> 
+
+			<p>
+				<?php _e('As this is my first WordPress plugin, it might have some bugs! 🐞', 'debrandify'); ?>
+				<br>
+				<?php _e('If you find some, please ', 'debrandify') ?>
+				<a href="https://github.com/morceaudebois/debrandify/issues"><?php _e('report them here', 'debrandify')?></a> 
+				<?php _e('so that I can fix them quickly.', 'debrandify') ?>
+			</p>
 		</div>
 	<?php }
 
