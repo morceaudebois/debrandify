@@ -13,21 +13,24 @@ class dbrdifyOptions {
 						echo "<p class='desc'>" . esc_html(__('Your site uses WordPress Multisite, which means Debrandify options are set up ', 'debrandify')) . "<a href='" . esc_url(network_admin_url('settings.php?page=debrandify')) . "'>" . esc_html(__('on the network level', 'debrandify')) . "</a>" . esc_html(__('. You can prioritise this specific site\'s settings by toggling this option.', 'debrandify')) . "</p>";
 					}
 				?>
-
 			</th>
 			
 			<td>
 				<label class='switch'>
 					<!-- hidden checkbox to return no when unchecked -->
-					<input name="dbrdify_<?php echo esc_html($key) ?>" <?php echo $isChecked ?> type="hidden" value="no">
-					<input id="<?php echo esc_html($key) ?>" name="dbrdify_<?php echo esc_html($key) ?>" <?php echo $isChecked ?>type="checkbox" value="yes">
+					<input 
+						name="dbrdify_<?php echo esc_html($key) ?>"
+						<?php echo esc_attr($isChecked) ?>
+						type="hidden" value="no"
+					>
+					<input id="<?php echo esc_attr($key) ?>" name="dbrdify_<?php echo esc_attr($key) ?>" <?php echo esc_attr($isChecked) ?> type="checkbox" value="yes">
 					<span class='slider round span'></span>
 				</label>
 
 				<?php if ($text) { 
 					$stringKey = $key . '_string';
 					$value = esc_attr(dbrdify_getOption('dbrdify_' . $stringKey));
-					$placeholder = esc_attr(__($text, 'debrandify'));
+					$placeholder = esc_attr($text);
 
 					echo "<input type='text' id='" . esc_attr($stringKey) . "' class='greyedOut' name='dbrdify_" . esc_attr($stringKey) . "' value='" . esc_attr($value) . "' placeholder='" . esc_attr($placeholder) . "' />";
 
@@ -37,29 +40,31 @@ class dbrdifyOptions {
 	<?php }
 
 	public function printTextField($key, $title, $placeholder) { 
-		$value = dbrdify_getOption('dbrdify_' . $key) ? esc_attr(dbrdify_getOption('dbrdify_' . $key)) : '';
-		$escapedKey = esc_attr($key);
-		$escapedPlaceholder = esc_attr($placeholder); ?>
+		$value = dbrdify_getOption('dbrdify_' . $key) ? dbrdify_getOption('dbrdify_' . $key) : ''; ?>
 
 		<tr>
 			<th scope="row"><?php echo esc_html($title) ?></th>
 			<td>
-				<input type="text" id="<?php echo $escapedKey ?>" name="dbrdify_<?php echo $escapedKey ?>" value="<?php echo $value ?>" placeholder="<?php echo $escapedPlaceholder ?>" />
-				<?php if ($key === 'email_username') echo ' @' . esc_html($_SERVER['SERVER_NAME']) ?>
+				<input type="text" id="<?php echo esc_attr($key) ?>" name="dbrdify_<?php echo esc_attr($key) ?>" value="<?php echo esc_attr($value) ?>" placeholder="<?php echo esc_attr($placeholder) ?>" />
+				<?php
+					if (isset($key) && is_string($key) && $key === 'email_username') {
+						echo ' @' . esc_html($_SERVER['SERVER_NAME']);
+					}
+				?>
 			</td>
 		</tr>
 	<?php }
 
 	public function settings_dom() {
-		$settingsUrl = nw() ? 'edit' : 'admin-post'; ?>
+		$settingsUrl = dbrdify_nw() ? 'edit' : 'admin-post'; ?>
 		
 		<div class="wrap">
 			<h1>
-				<?php if (nw()) { _e('Debrandify multisite settings', 'debrandify'); }
+				<?php if (dbrdify_nw()) { _e('Debrandify multisite settings', 'debrandify'); }
 				else { _e('Debrandify Settings', 'debrandify'); } ?>
 			</h1>
 
-			<?php if (nw()) {
+			<?php if (dbrdify_nw()) {
 				echo "<span>" . esc_html(__('These will impact your whole network of sites. If you wish to set things up specifically for a site, head to the Debrandify settings of its dashboard.', 'debrandify')) . "</span>";
 			} ?>
 				
@@ -81,12 +86,12 @@ class dbrdifyOptions {
 				</a>
 			</h2>
 
-			<form method="post" action="<?php echo nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo esc_attr(dbrdify_getCurrentTab())?>">
+			<form method="post" action="<?php echo dbrdify_nw() ? 'edit' : 'admin-post' ?>.php?action=dwifyAction&tab=<?php echo esc_attr(dbrdify_getCurrentTab())?>">
 				<?php wp_nonce_field('dbrdify-validate'); ?>
 
 				<table class="form-table">
 					<?php 
-						if (is_multisite() && !nw()) {
+						if (is_multisite() && !dbrdify_nw()) {
 							$this->printCheckbox('prioritise', __('Prioritise these settings', 'debrandify'));
 						} ?>
 
@@ -175,23 +180,32 @@ class dbrdifyOptions {
 		</div>
 	<?php }
 
+
 	public function save() {
 		
 		check_admin_referer('dbrdify-validate'); // Nonce security check
 
-		function rediUrl() {
-			if (nw()) { return network_admin_url('settings.php?action=' . $_GET['tab']);
-			} else { return admin_url('options-general.php?page=debrandify&action=' . $_GET['tab']); }
+		function dbrdify_rediUrl() {
+			$tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : '';
+
+			// validation
+			if (!in_array($tab, array('general', 'email', 'advanced', 'bonus'))) {
+				$tab = 'general';
+			}
+
+			if (dbrdify_nw()) { return network_admin_url('settings.php?action=' . $tab);
+			} else { return admin_url('options-general.php?page=debrandify&action=' . $tab); }
 		}
 
         foreach ($_POST as $key => $value) {
+			$key = sanitize_text_field($key);
             if (substr($key, 0, 8) === "dbrdify_") { // checks if starts with dbrdify_
 				dbrdify_updateOption($key, sanitize_text_field($value));
             }
         }
 
 		wp_redirect(add_query_arg(array('page' => 'debrandify', 'updated' => true),
-			rediUrl()
+			dbrdify_rediUrl()
 		)); exit;
 	}
 

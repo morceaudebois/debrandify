@@ -49,15 +49,15 @@ function dbrdify_getDefaultOptions() {
     return $dbrdifyDefaults;
 }
 
-function nw() { return is_network_admin(); }
+function dbrdify_nw() { return is_network_admin(); }
 
 function dbrdify_updateOption($key, $value) {
-    if (nw()) { return update_site_option($key, $value);
+    if (dbrdify_nw()) { return update_site_option($key, $value);
     } else { return update_option($key, $value); }
 }
 
 function dbrdify_getOption($key) {
-    if (nw()) { return get_site_option($key);
+    if (dbrdify_nw()) { return get_site_option($key);
     } else { return get_option($key); }
 }
 
@@ -68,11 +68,18 @@ function dbrdify_is_login_form() {
 
 function dbrdify_tabsUrl() {
     $dbrdify_tabsUrl = '.php?page=debrandify';
-    if (nw()) { return network_admin_url('settings' . $dbrdify_tabsUrl);
+    if (dbrdify_nw()) { return network_admin_url('settings' . $dbrdify_tabsUrl);
     } else { return admin_url('admin' . $dbrdify_tabsUrl); }
 }
 function dbrdify_getCurrentTab() {
-    return !isset($_GET['action']) ? 'general' : esc_html($_GET['action']);
+    $action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : 'general';
+
+    // validation
+    if (!in_array($action, array('general', 'email', 'advanced', 'bonus'))) {
+       $action = 'general';
+    }
+
+    return esc_html($action);
 }
 
 function dbrdify_checkOption($key, $string = false) {

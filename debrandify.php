@@ -64,25 +64,25 @@ function dbrdify_wp_admin() {
     add_filter('admin_footer_text', function($defaultString) {
         if (dbrdify_checkOption('thank_you')) {
             $theString = dbrdify_checkOption('thank_you_string', true);
-            echo $theString ? $theString : $defaultString;
+            echo esc_html($theString ? $theString : $defaultString);
         }
     }, 11);
     
     add_filter('update_footer', function($defaultString) {
         if (dbrdify_checkOption('footer_version')) {
             $theString = dbrdify_checkOption('footer_version_string', true);
-            echo $theString ? $theString : $defaultString;
+            echo esc_html($theString ? $theString : $defaultString);
         }
     }, 11);
 
     if (!dbrdify_checkOption('dashboard_news')) {
-        function rm_dahsboardnews() {
+        function dbrdify_rm_dashboardnews() {
             remove_meta_box('dashboard_primary', get_current_screen(), 'side');
         }
 
-        add_action('wp_network_dashboard_setup', 'rm_dahsboardnews', 20);
-        add_action('wp_user_dashboard_setup',    'rm_dahsboardnews', 20);
-        add_action('wp_dashboard_setup',         'rm_dahsboardnews', 20);
+        add_action('wp_network_dashboard_setup', 'dbrdify_rm_dashboardnews', 20);
+        add_action('wp_user_dashboard_setup',    'dbrdify_rm_dashboardnews', 20);
+        add_action('wp_dashboard_setup',         'dbrdify_rm_dashboardnews', 20);
     }
 
     if (is_plugin_active('elementor/elementor.php') && !dbrdify_checkOption('elementor_overview')) {
@@ -187,25 +187,30 @@ function dbrdify_everywhere() {
         add_action('feed_links_show_posts_feed', '__return_false', - 1);
         add_action('feed_links_show_comments_feed', '__return_false', - 1);
 
-        function disableRss() {
-            wp_die(__('No feed available, please visit the <a href="'. esc_url(home_url('/')) .'">homepage</a>!'));
+        function dbrdify_disableRss() {
+            wp_die(
+                __('No feed available, please visit the ', 'debrandify') .
+                '<a href="' . esc_url(home_url('/')) . '">' .
+                __('homepage', 'debrandify') .
+                '</a> !'
+            );
         }
-           
-        add_action('do_feed', 'disableRss', 1);
-        add_action('do_feed_rdf', 'disableRss', 1);
-        add_action('do_feed_rss', 'disableRss', 1);
-        add_action('do_feed_rss2', 'disableRss', 1);
-        add_action('do_feed_atom', 'disableRss', 1);
-        add_action('do_feed_rss2_comments', 'disableRss', 1);
-        add_action('do_feed_atom_comments', 'disableRss', 1);
+
+        add_action('do_feed', 'dbrdify_disableRss', 1);
+        add_action('do_feed_rdf', 'dbrdify_disableRss', 1);
+        add_action('do_feed_rss', 'dbrdify_disableRss', 1);
+        add_action('do_feed_rss2', 'dbrdify_disableRss', 1);
+        add_action('do_feed_atom', 'dbrdify_disableRss', 1);
+        add_action('do_feed_rss2_comments', 'dbrdify_disableRss', 1);
+        add_action('do_feed_atom_comments', 'dbrdify_disableRss', 1);
     }
 
     // here because if it's in admin, it doesn't work on login page
     if (!dbrdify_checkOption('wordpress-tab-suffix')) {
-        add_filter('admin_title', 'removeSuffix', 99);
-        add_filter('login_title', 'removeSuffix', 99);
+        add_filter('admin_title', 'dbrdify_removeSuffix', 99);
+        add_filter('login_title', 'dbrdify_removeSuffix', 99);
         
-        function removeSuffix($origtitle) {
+        function dbrdify_removeSuffix($origtitle) {
             // weird em dash encoding
             return str_replace(' &#8212; WordPress', '', $origtitle);
         }
@@ -224,9 +229,9 @@ function dbrdify_everywhere() {
         });
 
         // Close comments on the front-end
-        function df_disable_comments_status() { return false; }
-        add_filter('comments_open', 'df_disable_comments_status', 20, 2);
-        add_filter('pings_open', 'df_disable_comments_status', 20, 2);
+        function dbrdify_df_disable_comments_status() { return false; }
+        add_filter('comments_open', 'dbrdify_df_disable_comments_status', 20, 2);
+        add_filter('pings_open', 'dbrdify_df_disable_comments_status', 20, 2);
 
         // Hide existing comments
         add_filter('comments_array', function() {
@@ -367,7 +372,7 @@ function dbrdify_everywhere() {
 
     if (!dbrdify_checkOption('restAPI')) {
         add_filter('rest_authentication_errors', function() {
-            return new WP_Error('rest_disabled', __('The WordPress REST API has been disabled.'), array('status' => rest_authorization_required_code()));
+            return new WP_Error('rest_disabled', __('The WordPress REST API has been disabled.', 'debrandify'), array('status' => rest_authorization_required_code()));
         });
     }
 

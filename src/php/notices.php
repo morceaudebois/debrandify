@@ -35,7 +35,7 @@ if (get_option('dbrdify_installBanner') == 'toBeTriggered') {
     add_action('admin_notices', function() { ?>
         <div class="notice notice-success is-dismissible" style="display: flex; flex-direction: row; align-items: center;">
 
-            <img src="<?php echo plugin_dir_url(__FILE__) . 'src/images/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
+            <img src="<?php echo esc_url(plugin_dir_url(__FILE__) . '../images/bin.png') ?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
 
             <p><?php _e('Thank you for installing <b>Debrandify</b>! You can start getting rid of WordPress\' branding right away.', 'debrandify')?><br>
         
@@ -47,7 +47,7 @@ if (get_option('dbrdify_installBanner') == 'toBeTriggered') {
     update_option('dbrdify_installBanner', 'triggered');
 
 // change to +30 days to debug notice
-} else if (get_option('dbrdify_installDate') < strtotime('-30 days') && empty(get_option('dbrdify_usedNotice'))) {
+} else if (get_option('dbrdify_installDate') < strtotime('+30 days') && empty(get_option('dbrdify_usedNotice'))) {
 
     add_action('admin_notices', function() { ?>
 
@@ -56,7 +56,7 @@ if (get_option('dbrdify_installBanner') == 'toBeTriggered') {
                 document.querySelector('#used_banner .notice-dismiss').onclick = function() {
                     document.querySelector('#used_banner').remove();
 
-                    fetch('<?php echo get_option('siteurl') ?>/wp-admin/admin-ajax.php', {
+                    fetch('<?php echo esc_url(get_option('siteurl') . "/wp-admin/admin-ajax.php") ?>', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -69,7 +69,7 @@ if (get_option('dbrdify_installBanner') == 'toBeTriggered') {
         </script>
 
         <div class="notice" id="used_banner" style="display: flex; flex-direction: row; align-items: center; position: relative;">
-            <img src="<?php echo plugin_dir_url(__FILE__) . 'src/images/bin.png'?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
+            <img src="<?php echo esc_url((plugin_dir_url(__FILE__) . '../images/bin.png')) ?>" alt="" style="max-height: 70px; height: auto; margin: 10px 15px 10px 0px">
 
             <p style="margin-right: 10px">
                 <?php _e('You\'ve been using Debrandify for a while now, I hope you like it! If so, please consider giving a review or donating, that would help a lot 😊', 'debrandify')?><br>
