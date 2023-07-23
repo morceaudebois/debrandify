@@ -47,7 +47,7 @@ if (get_option('dbrdify_installBanner') == 'toBeTriggered') {
     update_option('dbrdify_installBanner', 'triggered');
 
 // change to +30 days to debug notice
-} else if (get_option('dbrdify_installDate') < strtotime('+30 days') && empty(get_option('dbrdify_usedNotice'))) {
+} else if (get_option('dbrdify_installDate') < strtotime('-30 days') && empty(get_option('dbrdify_usedNotice'))) {
 
     add_action('admin_notices', function() { ?>
 

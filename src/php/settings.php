@@ -48,7 +48,7 @@ class dbrdifyOptions {
 				<input type="text" id="<?php echo esc_attr($key) ?>" name="dbrdify_<?php echo esc_attr($key) ?>" value="<?php echo esc_attr($value) ?>" placeholder="<?php echo esc_attr($placeholder) ?>" />
 				<?php
 					if (isset($key) && is_string($key) && $key === 'email_username') {
-						echo ' @' . esc_html($_SERVER['SERVER_NAME']);
+						echo ' @' . sanitize_text_field($_SERVER['SERVER_NAME']);
 					}
 				?>
 			</td>
@@ -197,11 +197,16 @@ class dbrdifyOptions {
 			} else { return admin_url('options-general.php?page=debrandify&action=' . $tab); }
 		}
 
-        foreach ($_POST as $key => $value) {
-			$key = sanitize_text_field($key);
-            if (substr($key, 0, 8) === "dbrdify_") { // checks if starts with dbrdify_
-				dbrdify_updateOption($key, sanitize_text_field($value));
-            }
+		// filters post request to only get what starts with dbrdify_
+		$values = array_filter($_POST, function($key) {
+			return substr($key, 0, 8) === "dbrdify_";
+		}, ARRAY_FILTER_USE_KEY);
+
+        foreach ($values as $key => $value) {
+			dbrdify_updateOption(
+				sanitize_text_field($key),
+				sanitize_text_field($value)
+			);
         }
 
 		wp_redirect(add_query_arg(array('page' => 'debrandify', 'updated' => true),
