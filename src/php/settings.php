@@ -48,7 +48,7 @@ class dbrdifyOptions {
 				<input type="text" id="<?php echo esc_attr($key) ?>" name="dbrdify_<?php echo esc_attr($key) ?>" value="<?php echo esc_attr($value) ?>" placeholder="<?php echo esc_attr($placeholder) ?>" />
 				<?php
 					if (isset($key) && is_string($key) && $key === 'email_username') {
-						echo ' @' . sanitize_text_field($_SERVER['SERVER_NAME']);
+						echo ' @' . esc_html(sanitize_text_field($_SERVER['SERVER_NAME']));
 					}
 				?>
 			</td>

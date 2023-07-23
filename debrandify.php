@@ -69,9 +69,15 @@ function dbrdify_wp_admin() {
     }, 11);
     
     add_filter('update_footer', function($defaultString) {
+        $allowed_tags = array(
+            'a' => array(
+                'href' => array()
+            )
+        );
+
         if (dbrdify_checkOption('footer_version')) {
             $theString = dbrdify_checkOption('footer_version_string', true);
-            echo empty($theString) ? $defaultString : esc_html($theString);
+            echo empty($theString) ? wp_kses($defaultString, $allowed_tags) : esc_html($theString);
         }
     }, 11);
 
