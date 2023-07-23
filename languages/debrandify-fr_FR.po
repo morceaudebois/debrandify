@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Debrandify 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/DeWordPressify\n"
-"POT-Creation-Date: 2023-07-13T17:15:01+00:00\n"
-"PO-Revision-Date: 2023-07-13 19:17+0200\n"
+"POT-Creation-Date: 2023-07-23T13:56:38+00:00\n"
+"PO-Revision-Date: 2023-07-23 15:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -40,6 +40,18 @@ msgstr ""
 #. Author URI of the plugin
 msgid "https://tahoe.be"
 msgstr ""
+
+#: debrandify.php:192
+msgid "No feed available, please visit the "
+msgstr "Aucun flux n’est disponible, merci de visiter la "
+
+#: debrandify.php:194
+msgid "homepage"
+msgstr "page d'accueil"
+
+#: debrandify.php:375
+msgid "The WordPress REST API has been disabled."
+msgstr "WordPress REST API a été désactivé."
 
 #: src/php/notices.php:26 src/php/notices.php:78
 msgid "Donate"
@@ -89,15 +101,15 @@ msgstr ""
 ". Vous pouvez rendre les options de ce site prioritaires sur celles du "
 "réseau en cochant cette option."
 
-#: src/php/settings.php:58
+#: src/php/settings.php:63
 msgid "Debrandify multisite settings"
 msgstr "Réglages Debrandify du réseau"
 
-#: src/php/settings.php:59
+#: src/php/settings.php:64
 msgid "Debrandify Settings"
 msgstr "Réglages de Debrandify"
 
-#: src/php/settings.php:63
+#: src/php/settings.php:68
 msgid ""
 "These will impact your whole network of sites. If you wish to set things up "
 "specifically for a site, head to the Debrandify settings of its dashboard."
@@ -106,156 +118,156 @@ msgstr ""
 "mettre en place des réglages spécifiques à un site, rendez vous dans les "
 "réglages WP Debrand sur le tableau de bord du site en question."
 
-#: src/php/settings.php:68
+#: src/php/settings.php:73
 msgid "General"
 msgstr "Général"
 
-#: src/php/settings.php:72
+#: src/php/settings.php:77
 msgid "Email"
 msgstr ""
 
-#: src/php/settings.php:76
+#: src/php/settings.php:81
 msgid "Advanced"
 msgstr "Avancé"
 
-#: src/php/settings.php:80
+#: src/php/settings.php:85
 msgid "Bonus features!"
 msgstr "Fonctions bonus !"
 
-#: src/php/settings.php:90
+#: src/php/settings.php:95
 msgid "Prioritise these settings"
 msgstr "Rendre ces réglages prioritaires"
 
-#: src/php/settings.php:95
+#: src/php/settings.php:100
 msgid "WordPress admin bar logo"
 msgstr "Logo WordPress dans la barre d’outils"
 
-#: src/php/settings.php:96
+#: src/php/settings.php:101
 msgid "Thank you sentence in admin footer"
 msgstr "Phrase de remerciement de pied de page du tableau de bord"
 
-#: src/php/settings.php:96 src/php/settings.php:97
+#: src/php/settings.php:101 src/php/settings.php:102
 msgid "Your own text"
 msgstr "Votre propre texte"
 
-#: src/php/settings.php:97
+#: src/php/settings.php:102
 msgid "WordPress version in admin footer"
 msgstr "Version WordPress de pied de page du tableau de bord"
 
-#: src/php/settings.php:100
+#: src/php/settings.php:105
 msgid "Login logo image"
 msgstr "Logo sur la page de connexion"
 
-#: src/php/settings.php:104
+#: src/php/settings.php:109
 msgid "Default WordPress logo"
 msgstr "Logo WordPress par défaut"
 
-#: src/php/settings.php:108
+#: src/php/settings.php:113
 msgid "Site logo (if there is one)"
 msgstr "Logo du site (s’il y en a un)"
 
-#: src/php/settings.php:112
+#: src/php/settings.php:117
 msgid "Site title"
 msgstr "Titre du site"
 
-#: src/php/settings.php:116
+#: src/php/settings.php:121
 msgid "Hide"
 msgstr "Cacher"
 
-#: src/php/settings.php:123
+#: src/php/settings.php:128
 msgid "\"— WordPress\" suffix in tab titles of dashboard pages"
 msgstr "Suffixe \"— WordPress\" dans les titres des onglets du tableau de bord"
 
-#: src/php/settings.php:125
+#: src/php/settings.php:130
 msgid "\"News and events\" widget on dashboard"
 msgstr "Widget “Évènements et nouveautés WordPress” du tableau de bord"
 
-#: src/php/settings.php:128
+#: src/php/settings.php:133
 msgid "\"Elementor overview\" widget on dashboard"
 msgstr "Widget “Vue d’ensemble Elementor” du tableau de bord"
 
-#: src/php/settings.php:131
+#: src/php/settings.php:136
 msgid "Integrated smileys"
 msgstr "Smileys WordPress"
 
-#: src/php/settings.php:132
+#: src/php/settings.php:137
 msgid "Integrated RSS feed"
 msgstr "Flux RSS"
 
-#: src/php/settings.php:133
+#: src/php/settings.php:138
 msgid "Comments"
 msgstr "Commentaires"
 
-#: src/php/settings.php:136
+#: src/php/settings.php:141
 msgid "\"From\" text of emails sent by your site"
 msgstr "Champs “From” des emails envoyés par votre site"
 
-#: src/php/settings.php:136
+#: src/php/settings.php:141
 msgid "Your site's name"
 msgstr "Nom du site"
 
-#: src/php/settings.php:137
+#: src/php/settings.php:142
 msgid "Username of the email adress that sends from your site"
 msgstr ""
 "Première partie de l’adresse avec laquelle votre site envoie des emails"
 
-#: src/php/settings.php:137
+#: src/php/settings.php:142
 msgid "First part of email"
 msgstr "Première partie de l&#8217;email"
 
-#: src/php/settings.php:140
+#: src/php/settings.php:145
 msgid "Global inline styles"
 msgstr "CSS à la ligne WordPress (global inline styles)"
 
-#: src/php/settings.php:141
+#: src/php/settings.php:146
 msgid "Unnecessary code in head tag"
 msgstr "Code superflu dans l’en-tête du site"
 
-#: src/php/settings.php:142
+#: src/php/settings.php:147
 msgid "Embeds"
 msgstr "Intégration de liens (WP Embeds)"
 
-#: src/php/settings.php:143
+#: src/php/settings.php:148
 msgid "Block library"
 msgstr "Bibliothèque de blocs WordPress (Block Library)"
 
-#: src/php/settings.php:146
+#: src/php/settings.php:151
 msgid "SVG upload"
 msgstr "Téléversement de SVG"
 
-#: src/php/settings.php:147
+#: src/php/settings.php:152
 msgid "Center login form vertically"
 msgstr "Centrer verticalement le formulaire de connexion"
 
-#: src/php/settings.php:148
+#: src/php/settings.php:153
 msgid "REST API"
 msgstr ""
 
-#: src/php/settings.php:149
+#: src/php/settings.php:154
 msgid "jQuery (if possible)"
 msgstr "jQuery (si possible)"
 
-#: src/php/settings.php:163
+#: src/php/settings.php:168
 msgid "Made in France with ❤️ by "
 msgstr "Fabriqué en France avec ❤️ par "
 
-#: src/php/settings.php:165
+#: src/php/settings.php:170
 msgid "If you like Debrandify, please consider "
 msgstr "Si vous aimez Debrandify, pensez à "
 
-#: src/php/settings.php:165
+#: src/php/settings.php:170
 msgid "giving it a review"
 msgstr "le noter"
 
-#: src/php/settings.php:165
+#: src/php/settings.php:170
 msgid "or"
 msgstr "ou"
 
-#: src/php/settings.php:165
+#: src/php/settings.php:170
 msgid "donating"
 msgstr "faire un don"
 
-#: src/php/settings.php:166
+#: src/php/settings.php:171
 msgid ""
 "This is what motivates me to keep it updated and create new projects as an "
 "indie developer 😊"
@@ -263,29 +275,29 @@ msgstr ""
 "C’est ce qui me motive à garder ce projet à jour et à en créer de nouveaux "
 "en tant que développeur indépendant 😊"
 
-#: src/php/settings.php:169
+#: src/php/settings.php:174
 msgid "As this is my first WordPress plugin, it might have some bugs! 🐞"
 msgstr ""
 "Puisque Debrandify est mon premier plugin WordPress, il peut y avoir des "
 "bugs ! 🐞"
 
-#: src/php/settings.php:171
+#: src/php/settings.php:176
 msgid "If you find some, please "
 msgstr "Si vous en trouvez, merci de les "
 
-#: src/php/settings.php:172
+#: src/php/settings.php:177
 msgid "report them here"
 msgstr "signaler ici"
 
-#: src/php/settings.php:173
+#: src/php/settings.php:178
 msgid "so that I can fix them quickly."
 msgstr "pour que je puisse les corriger rapidement."
 
-#: src/php/settings.php:228
+#: src/php/settings.php:247
 msgid "Settings updated."
 msgstr "Réglages enregistrés."
 
-#: src/php/settings.php:228
+#: src/php/settings.php:247
 msgid "Dismiss this notice."
 msgstr "Ignorer."
 
