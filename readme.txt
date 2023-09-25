@@ -4,7 +4,7 @@ Donate link: https://ko-fi.com/tahoe
 Tags: branding, rebrand, rebranding, customise, lightweight, minimalism, cleanup, remove
 Requires at least: 4.7
 Tested up to: 6.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -31,6 +31,10 @@ Debrandify (formerly DeWordPressify) is a toolkit plugin that adds plenty of set
 4. Debrandify's bonus options
 
 == Changelog ==
+
+= 1.1.1 =
+* Review/donate notice only appears to those who can manage plugins
+* Added some emojis and a link to Debrandify settings on the notice's icon
 
 = 1.1 =
 * Named was changed from DeWordPressify to be able to publish on the WordPress plugin platform
