@@ -1,17 +1,17 @@
 <?php if (!defined('ABSPATH')) { exit; }
 /**
  * @package Debrandify
- * @version 1.1.0
+ * @version 1.1.1
  */
 /*
     Plugin Name: Debrandify
-    Version: 1.1.0
+    Version: 1.1.1
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
     Plugin URI: https://github.com/morceaudebois/debrandify
     Domain Path: languages/
     Text Domain: debrandify
-    Description: Debrandify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours as well as make your site lighter.
+    Description: Debrandify is a simple WordPress plugin that lets you hide WordPress' branding and replace it with yours.
 
     License: GPL2
 */

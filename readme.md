@@ -57,7 +57,7 @@ I love making high quality open source software! My goal is to become a full tim
 - [x] Block library toggle
 - [ ] Animated logo (mayyyyybe)
 - [x] Translation file + french translation
-- [ ] Publish on WordPress!
+- [x] Publish on WordPress!
 
 <br>
 
