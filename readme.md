@@ -1,6 +1,10 @@
 <h1 align="center">
-  <a href="https://tahoe.be"><img src="https://raw.githubusercontent.com/morceaudebois/debrandify/master/src/images/debrandify.png" width="70%" alt=""></a>
+  <a href="https://wordpress.org/plugins/debrandify/"><img src="https://raw.githubusercontent.com/morceaudebois/debrandify/master/src/images/debrandify.png" width="70%" alt="debrandify logo"></a>
 </h1>
+
+<p align="center">
+  <a href="https://wordpress.org/plugins/debrandify/"><img src="https://raw.githubusercontent.com/morceaudebois/debrandify/master/assets/wordpress_label.svg" width="180"/></a>
+</p>
 
 Debrandify (formerly DeWordPressify) is a toolkit plugin that adds plenty of settings to customise and improve WordPress. You'll be able to remove WordPress' branding and replace it with your own as well as get rid of some of the bloat that comes built-in. Here's the key features:
 
