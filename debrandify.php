@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) { exit; }
 /**
  * @package Debrandify
- * @version 1.1.1
+ * @version 1.1.2
  */
 /*
     Plugin Name: Debrandify
