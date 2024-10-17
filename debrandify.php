@@ -5,7 +5,7 @@
  */
 /*
     Plugin Name: Debrandify
-    Version: 1.1.1
+    Version: 1.1.3
     Author: Tahoe Beetschen
     Author URI: https://tahoe.be
     Plugin URI: https://github.com/morceaudebois/debrandify
