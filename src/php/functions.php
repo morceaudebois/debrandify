@@ -29,7 +29,6 @@ function dbrdify_getDefaultOptions() {
         'block_library' => 'yes',
 
         // bonus tab
-        'svg' => 'no',
         'centerLogin' => 'no',
         'restAPI' => 'yes',
         'jquery' => 'yes',

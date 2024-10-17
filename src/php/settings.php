@@ -148,7 +148,6 @@ class dbrdifyOptions {
                                 $this->printCheckbox('block_library', __('Block library', 'debrandify'));
 								break;
 							case 'bonus':
-								$this->printCheckbox('svg', __('SVG upload', 'debrandify'));
 								$this->printCheckbox('centerLogin', __('Center login form vertically', 'debrandify'));
 								$this->printCheckbox('restAPI', __('REST API', 'debrandify'));
 								$this->printCheckbox('jquery', __('jQuery (if possible)', 'debrandify'));
